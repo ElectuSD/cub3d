@@ -1,0 +1,13 @@
+# Ignore Everything
+*
+
+# But not theses
+!.git
+!.gitignore
+!Makefile
+
+!srcs/
+!include/
+
+!srcs/**
+!include/**
