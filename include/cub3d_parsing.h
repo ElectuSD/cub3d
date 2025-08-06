@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/06 11:50:07 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:11:57 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,38 @@
 
 # include <stdbool.h>
 
+# define DEFAULT_TRIM " \t\n"
+
 typedef struct s_list	t_list;
+typedef struct s_map	t_map;
+
+typedef enum e_error
+{
+	NO_ERRORS = 0,
+	PARSE_ERROR,
+	MALLOC_ERROR,
+	CEILING_DUPPLICATE,
+	FLOOR_DUPPLICATE,
+	NORTH_DUPPLICATE,
+	SOUTH_DUPPLICATE,
+	WEST_DUPPLICATE,
+	EAST_DUPPLICATE,
+}	t_error;
+
+typedef struct s_parser
+{
+	t_map	*map;
+	bool	ceiling;
+	bool	floor;
+	bool	north;
+	bool	south;
+	bool	west;
+	bool	east;
+	bool	parsing_map;
+}	t_parser;
+
+/* MAIN PARSING FUNCTION */
+int			parse(t_map *map);
 
 /* PUTS MAP INTO LIST OF NON EMPTY STRINGS */
 t_list		*map_parsing(int fd);

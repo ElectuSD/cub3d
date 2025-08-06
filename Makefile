@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/08/05 13:41:25 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/08/06 13:21:25 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,19 @@ LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 
 
 SRCS					:=				srcs/main.c \
-										srcs/map_utils.c \
-										srcs/parsing.c
-INCS					:=				include/cub3d_parsing.h
+										srcs/io/open_file.c \
+										srcs/parsing/colors_utils.c \
+										srcs/parsing/map_utils.c \
+										srcs/parsing/parsing.c \
+										srcs/parsing/texture_utils.c
+
+INCS					:=				include/cub3d_parsing.h \
+										include/cub3d_colors.h \
+										include/cub3d_map.h \
+										include/cub3d_player.h \
+										include/cub3d_texture.h \
+										include/cub3d_utils.h
+
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 
 
