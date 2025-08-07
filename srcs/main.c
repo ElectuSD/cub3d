@@ -6,11 +6,13 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/06 14:08:47 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:48:24 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+
+#include "libft_mem.h"
 
 #include "cub3d_map.h"
 #include "cub3d_utils.h"
@@ -29,6 +31,7 @@ int	main(int argc, char **argv)
 		printf("Usage : ./cub3d <map_name>.cub\n");
 		return (1);
 	}
+	ft_memset(&map, 0, sizeof(map));
 	map.fd = open_file(argv[1]);
 	if (map.fd == -1)
 		return (1);
@@ -54,16 +57,27 @@ void	print_parser_error(t_error error)
 		printf("Error\nCeiling colors dupplicate in map\n");
 	if (error == FLOOR_DUPPLICATE)
 		printf("Error\nFloor colors dupplicate in map\n");
+	if (error == MAP_DUPPLICATE)
+		printf("Error\nTwo maps found in map\n");
 }
 
 void	print_map_infos(t_map *map)
 {
+	int	i;
+
 	printf("Textures\n");
-	printf("North Texture : %s\n", map->textures.north);
-	printf("South Texture : %s\n", map->textures.south);
-	printf("West Texture : %s\n", map->textures.west);
-	printf("East Texture : %s\n", map->textures.east);
+	printf("North Texture  : %s\n", map->textures.north);
+	printf("South Texture  : %s\n", map->textures.south);
+	printf("West Texture   : %s\n", map->textures.west);
+	printf("East Texture   : %s\n", map->textures.east);
 	printf("\nColors\n");
 	printf("Ceiling Colors : R%d | G%d | B%d\n", map->ceiling.r, map->ceiling.g, map->ceiling.b);
-	printf("Floor Colors : R%d | G%d | B%d\n", map->floor.r, map->floor.g, map->floor.b);
+	printf("Floor Colors   : R%d | G%d | B%d\n", map->floor.r, map->floor.g, map->floor.b);
+	printf("\nMap\n");
+	i = 0;
+	while (map->map[i])
+	{
+		printf("%s\n", map->map[i]);
+		i++;
+	}
 }

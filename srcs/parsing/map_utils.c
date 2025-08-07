@@ -6,35 +6,35 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:25:10 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/06 11:48:54 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:53:36 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdbool.h>
+
+#include "cub3d_parsing.h"
 
 static bool	is_valid_map_dir(char c);
 static bool	is_valid_map_char(char c);
 static bool	is_valid_map_wall(char c);
 
-bool	is_valid_map_line(char *line)
+bool	is_valid_map_line(t_map_info *infos, char *line)
 {
-	static bool	has_direction = false;
-
 	while (line && *line)
 	{
 		if (!is_valid_map_char(*line))
 		{
-			printf("Non valid character in map : %c\n", *line);
+			printf("Error\nNon valid character in map : %c\n", *line);
 			return (false);
 		}
-		if (is_valid_map_dir(*line) && has_direction)
+		if (is_valid_map_dir(*line) && infos->has_player)
 		{
-			printf("Multiple direction for player spawn in map : %c\n", *line);
+			printf("Error\nMultiple direction for player spawn in map : %c\n",
+				*line);
 			return (false);
 		}
 		if (is_valid_map_dir(*line))
-			has_direction = true;
+			infos->has_player = true;
 		line++;
 	}
 	return (true);
@@ -52,5 +52,5 @@ static bool	is_valid_map_dir(char c)
 
 static bool	is_valid_map_wall(char c)
 {
-	return (c == '\n' || c == ' ' || c == '0' || c == '1');
+	return (c == '\t' || c == '\n' || c == ' ' || c == '0' || c == '1');
 }

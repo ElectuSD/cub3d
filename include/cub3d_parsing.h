@@ -6,19 +6,18 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/06 14:11:57 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/07 14:03:38 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_PARSING_H
 # define CUB3D_PARSING_H
 
-# include <stdbool.h>
+# include "cub3d_map.h"
 
 # define DEFAULT_TRIM " \t\n"
 
-typedef struct s_list	t_list;
-typedef struct s_map	t_map;
+typedef struct s_list		t_list;
 
 typedef enum e_error
 {
@@ -31,31 +30,50 @@ typedef enum e_error
 	SOUTH_DUPPLICATE,
 	WEST_DUPPLICATE,
 	EAST_DUPPLICATE,
+	MAP_DUPPLICATE,
+	INVALID_MAP_LINE,
+	INCOMPLETE_MAP,
 }	t_error;
 
 typedef struct s_parser
 {
-	t_map	*map;
-	bool	ceiling;
-	bool	floor;
-	bool	north;
-	bool	south;
-	bool	west;
-	bool	east;
-	bool	parsing_map;
+	char		*line;
+	t_map		*map;
+	t_list		*map_list;
+	t_map_info	map_infos;
+	bool		ceiling_done;
+	bool		floor_done;
+	bool		north_done;
+	bool		south_done;
+	bool		west_done;
+	bool		east_done;
+	bool		parsing_map;
+	bool		parsing_map_done;
 }	t_parser;
 
 /* MAIN PARSING FUNCTION */
 int			parse(t_map *map);
 
-/* PUTS MAP INTO LIST OF NON EMPTY STRINGS */
-t_list		*map_parsing(int fd);
+/* PARSE MAP */
+int			parse_map(t_parser *parser);
 
-/* GET NEXT NON EMPTY LINE IN MAP */
+/* PARSE CEILING AND FLOOR RGB COLORS */
+int			parse_colors(t_parser *parser);
+
+/* PARSE TEXTURES PATHS */
+int			parse_textures(t_parser *parser);
+
+/* UTILS FUNCTIONS FOR PARSING */
 int			get_next_non_empty_line(char **line, int fd);
+void		free_parser_line(char **line);
+char		*trim_end_of_line(char *line);
+char		*skip_leading_chars(char *line);
+
+/* CONVERT MAP LIST INTO MAP CHAR ** */
+char		**convert_list(t_list *map_list);
 
 /* LINE CHARACTER VALIDATION FUNCTION */
-bool		is_valid_map_line(char *line);
+bool		is_valid_map_line(t_map_info *infos, char *line);
 
 /* CHECKS IF LINE IS TEXTURE */
 bool		is_texture(char *line);
