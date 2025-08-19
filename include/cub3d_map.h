@@ -6,13 +6,14 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:01:31 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 12:58:38 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 10:37:27 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_MAP_H
 # define CUB3D_MAP_H
 
+# include <stdlib.h>
 # include <stdbool.h>
 
 # include "cub3d_colors.h"
@@ -34,5 +35,8 @@ typedef struct s_map
 	t_player		player;
 	t_textures		textures;
 }	t_map;
+
+/* GET MAP ROWS SIZE */
+size_t	get_map_size(char **map);
 
 #endif

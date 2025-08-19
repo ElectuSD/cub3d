@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 14:03:38 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 10:38:28 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ typedef enum e_error
 	WEST_DUPPLICATE,
 	EAST_DUPPLICATE,
 	MAP_DUPPLICATE,
+	MAP_NOT_LAST,
 	INVALID_MAP_LINE,
+	MAP_NOT_CLOSED,
 	INCOMPLETE_MAP,
 }	t_error;
 
@@ -41,12 +43,12 @@ typedef struct s_parser
 	t_map		*map;
 	t_list		*map_list;
 	t_map_info	map_infos;
-	bool		ceiling_done;
-	bool		floor_done;
-	bool		north_done;
-	bool		south_done;
-	bool		west_done;
-	bool		east_done;
+	bool		c_done;
+	bool		f_done;
+	bool		n_done;
+	bool		s_done;
+	bool		w_done;
+	bool		e_done;
 	bool		parsing_map;
 	bool		parsing_map_done;
 }	t_parser;
@@ -56,6 +58,9 @@ int			parse(t_map *map);
 
 /* PARSE MAP */
 int			parse_map(t_parser *parser);
+
+/* CHECKS IF MAP IS CLOSED BY WALLS */
+bool		map_is_closed(char **map, size_t map_size);
 
 /* PARSE CEILING AND FLOOR RGB COLORS */
 int			parse_colors(t_parser *parser);
