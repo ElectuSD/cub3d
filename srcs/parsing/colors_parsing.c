@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:09:24 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 14:04:16 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 09:26:55 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ int	parse_colors(t_parser *parser)
 	char	*identifier;
 	t_rgb	color;
 
+	if (parser->parsing_map_done)
+		return (MAP_NOT_LAST);
 	line = trim_end_of_line(parser->line);
 	identifier = ft_strtok(line, DEFAULT_TRIM);
 	color.r = ft_atoi(ft_strtok(NULL, ","));
 	color.g = ft_atoi(ft_strtok(NULL, ","));
 	color.b = ft_atoi(ft_strtok(NULL, ","));
 	if (is_ceiling(identifier))
-		if (set_color_map(&parser->ceiling_done, &parser->map->ceiling, &color))
+		if (set_color_map(&parser->c_done, &parser->map->ceiling, &color))
 			return (CEILING_DUPPLICATE);
 	if (is_floor(identifier))
-		if (set_color_map(&parser->floor_done, &parser->map->floor, &color))
+		if (set_color_map(&parser->f_done, &parser->map->floor, &color))
 			return (FLOOR_DUPPLICATE);
 	return (NO_ERRORS);
 }

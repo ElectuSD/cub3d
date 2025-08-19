@@ -6,16 +6,21 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 14:17:24 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 10:59:43 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 #include "libft_io.h"
+#include "libft_str.h"
 #include "libft_lst.h"
+#include "libft_utils.h"
 
+#include "cub3d_player.h"
 #include "cub3d_parsing.h"
+
+static bool	check_neighbours(size_t x, size_t y, char **map, size_t map_size);
 
 int	parse_map(t_parser *parser)
 {
@@ -66,4 +71,51 @@ char	**convert_list(t_list *map_list)
 	ft_lstclear(&map_list, NULL);
 	map[map_size] = NULL;
 	return (map);
+}
+
+bool	map_is_closed(char **map, size_t map_size)
+{
+	char	cur;
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < map_size)
+	{
+		x = skip_leading_chars(map[y]) - map[y];
+		while (x < ft_strlen(map[y]))
+		{
+			cur = map[y][x];
+			if (cur == '0' || is_player(cur))
+			{
+				if (!check_neighbours(x, y, map, map_size))
+					return (false);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (true);
+}
+
+static bool	check_neighbours(size_t x, size_t y, char **map, size_t map_size)
+{
+	static int	dy[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+	static int	dx[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
+	int			ny;
+	int			nx;
+	int			k;
+
+	k = 0;
+	while (k < 8)
+	{
+		ny = y + dy[k];
+		nx = x + dx[k];
+		if (nx < 0 || ny < 0 || ny >= (int)map_size
+			|| nx >= (int)ft_strlen(map[ny])
+			|| char_in_set(map[ny][nx], " \t"))
+			return (false);
+		k++;
+	}
+	return (true);
 }

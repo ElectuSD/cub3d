@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:38:22 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 14:15:49 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 10:38:40 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ int	parse(t_map *map)
 			return (error);
 	}
 	map->map = convert_list(parser.map_list);
+	if (!map_is_closed(map->map, get_map_size(map->map)))
+		return (MAP_NOT_CLOSED);
 	return (NO_ERRORS);
 }

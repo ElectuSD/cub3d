@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:25:10 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 13:53:36 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 10:36:44 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ bool	is_valid_map_line(t_map_info *infos, char *line)
 		line++;
 	}
 	return (true);
+}
+
+size_t	get_map_size(char **map)
+{
+	size_t	size;
+
+	size = 0;
+	while (map[size])
+		size++;
+	return (size);
 }
 
 static bool	is_valid_map_char(char c)

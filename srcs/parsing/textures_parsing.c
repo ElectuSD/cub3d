@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:11:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 14:24:38 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 09:29:58 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,54 @@
 #include "cub3d_map.h"
 #include "cub3d_parsing.h"
 
-static int	set_texture_path(bool *has_parsed, char **dir, char *path);
+static int	set_texture_helper(t_parser *parser, char *identifier, char *path);
+static int	set_texture(bool *has_parsed, char **dir, char *path);
 
 int	parse_textures(t_parser *parser)
 {
-	char	*line;
-	t_map	*map;
 	char	*identifier;
 	char	*path;
+	char	*line;
 
-	map = parser->map;
+	if (parser->parsing_map_done)
+		return (MAP_NOT_LAST);
 	line = ft_strtrim(parser->line, DEFAULT_TRIM);
 	if (!line)
 		return (MALLOC_ERROR);
 	identifier = ft_strtok(line, DEFAULT_TRIM);
 	path = ft_strtok(NULL, DEFAULT_TRIM);
+	return (set_texture_helper(parser, identifier, path));
+}
+
+static int	set_texture_helper(t_parser *parser, char *identifier, char *path)
+{
+	t_map	*map;
+
+	map = parser->map;
 	if (is_north(identifier))
-		if (set_texture_path(&parser->north_done, &map->textures.north, path))
+	{
+		if (set_texture(&parser->n_done, &map->textures.north, path))
 			return (NORTH_DUPPLICATE);
+	}
 	if (is_south(identifier))
-		if (set_texture_path(&parser->south_done, &map->textures.south, path))
+	{
+		if (set_texture(&parser->s_done, &map->textures.south, path))
 			return (SOUTH_DUPPLICATE);
+	}
 	if (is_west(identifier))
-		if (set_texture_path(&parser->west_done, &map->textures.west, path))
+	{
+		if (set_texture(&parser->w_done, &map->textures.west, path))
 			return (WEST_DUPPLICATE);
+	}
 	if (is_east(identifier))
-		if (set_texture_path(&parser->east_done, &map->textures.east, path))
+	{
+		if (set_texture(&parser->e_done, &map->textures.east, path))
 			return (EAST_DUPPLICATE);
+	}
 	return (NO_ERRORS);
 }
 
-static int	set_texture_path(bool *has_parsed, char **dir, char *path)
+static int	set_texture(bool *has_parsed, char **dir, char *path)
 {
 	if (*has_parsed)
 		return (PARSE_ERROR);
