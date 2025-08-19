@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 12:48:24 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:06:06 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		printf("Usage : ./cub3d <map_name>.cub\n");
+		return (1);
+	}
+	if (!is_valid_filename(argv[1]))
+	{
+		printf("Wrong filename, need map with .cub\n");
 		return (1);
 	}
 	ft_memset(&map, 0, sizeof(map));
@@ -59,6 +64,10 @@ void	print_parser_error(t_error error)
 		printf("Error\nFloor colors dupplicate in map\n");
 	if (error == MAP_DUPPLICATE)
 		printf("Error\nTwo maps found in map\n");
+	if (error == MAP_NOT_LAST)
+		printf("Error\nMap content is not last\n");
+	if (error == MAP_NOT_CLOSED)
+		printf("Error\nMap not closed by walls\n");
 }
 
 void	print_map_infos(t_map *map)
