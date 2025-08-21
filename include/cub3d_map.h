@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:01:31 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/19 10:37:27 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:07:42 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_map
 {
 	int				fd;
 	char			**map;
+	size_t			rows;
+	size_t			cols;
 	t_rgb			ceiling;
 	t_rgb			floor;
 	t_player		player;

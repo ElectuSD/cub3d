@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 11:20:30 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 13:41:25 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 # define CUB3D_H
 
 # include "cub3d_map.h" 
+# include "cub3d_render.h" 
 
 typedef struct s_cub3d
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_img	img;
 	t_map	map;
 }	t_cub3d;
 

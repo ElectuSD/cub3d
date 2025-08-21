@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:14:27 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 11:28:49 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 13:54:38 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	free_cub3d(t_cub3d *p)
 {
-	destroy_mlx_ptrs(&p->win_ptr, NULL, &p->mlx_ptr);
+	destroy_mlx_ptrs(&p->win_ptr, &p->img.img_ptr, &p->mlx_ptr);
 	free_map(&p->map);
 }
 

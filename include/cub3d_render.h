@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 11:08:24 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:15:08 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdbool.h>
 
 typedef struct s_cub3d	t_cub3d;
+typedef struct s_map	t_map;
 
 enum e_keycodes
 {
@@ -30,10 +31,60 @@ enum e_keycodes
 	DOWN					= 65364,
 };
 
+typedef struct s_line
+{
+	double		dx;
+	int			sx;
+	double		dy;
+	int			sy;
+	double		err;
+	double		e2;
+}	t_line;
+
+typedef struct s_point3d
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_point3d;
+
+typedef struct s_point2d
+{
+	double	x;
+	double	y;
+}	t_point2d;
+
+typedef struct s_img
+{
+	void		*img_ptr;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_lenght;
+	int			endian;
+	int			height;
+	int			width;
+	t_point2d	pos;
+}	t_img;
+
+/* CREATE SINGLE IMG*/
+void	create_img(t_cub3d *p);
+
 /* INIT MLX_PTR AND WIN_PTR */
 bool	init_mlx(t_cub3d *p);
 
 /* HOOK EVENTS FUNCTION */
 void	hook_events(t_cub3d *p);
+
+/* DRAWS PIXEL IN IMG*/
+void	ft_mlx_pixel_put(t_img *data, int x, int y, int color);
+
+/* DRAW LINE FUNCTION USING BRESENHAM ALGORITHM */
+void	draw_line(t_img *img, t_point2d p1, t_point2d p2);
+
+/* DRAW RECTANGLE USING DRAW LINE FUNCTION */
+void	draw_rectangle(t_img *img, t_point2d a, t_point2d b);
+
+/* DRAW MAP USIGN DRAW RECTANGLE */
+void	draw_map(t_img *img, t_map *map);
 
 #endif

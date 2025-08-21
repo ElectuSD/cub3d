@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_window.c                                    :+:      :+:    :+:   */
+/*   create_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/21 11:00:51 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 13:39:47 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/08/21 14:03:05 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,23 @@
 #include "cub3d.h"
 #include "cub3d_render.h"
 
-bool	init_mlx(t_cub3d *p)
+void	create_img(t_cub3d *p)
 {
-	p->mlx_ptr = mlx_init();
-	if (!p->mlx_ptr)
+	p->img.width = 1920;
+	p->img.height = 1080;
+	p->img.img_ptr = mlx_new_image(p->mlx_ptr, 1920, 1080);
+	if (!p->img.img_ptr)
 	{
-		printf("Failed to init mlx\n");
-		return (false);
+		printf("Failed to create img\n");
+		free_cub3d(p);
+		exit(1);
 	}
-	p->win_ptr = mlx_new_window(p->mlx_ptr, 1920, 1080, "Cub3d");
-	if (!p->win_ptr)
+	p->img.addr = mlx_get_data_addr(p->img.img_ptr, &p->img.bits_per_pixel, \
+			&p->img.line_lenght, &p->img.endian);
+	if (!p->img.addr)
 	{
-		printf("Failed to create mlx window\n");
-		return (false);
+		printf("Failed to get img data\n");
+		free_cub3d(p);
+		exit(1);
 	}
-	hook_events(p);
-	return (true);
 }
