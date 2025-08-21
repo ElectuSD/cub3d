@@ -9,7 +9,9 @@
 !libft/
 !srcs/
 !include/
+!mlx_linux/
 
 !libft/**
 !srcs/**
 !include/**
+!mlx_linux/**
