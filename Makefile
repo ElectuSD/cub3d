@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/08/21 11:21:23 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/08/21 13:50:23 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,10 @@ SRCS					:=				srcs/main.c \
 										srcs/parsing/textures_utils.c \
 										srcs/player/player_utils.c \
 										srcs/render/create_window.c \
-										srcs/render/hooks.c
+										srcs/render/hooks.c \
+										srcs/render/create_img.c \
+										srcs/render/draw_line.c \
+										srcs/render/draw.c
 
 INCS					:=				include/cub3d_parsing.h \
 										include/cub3d_colors.h \
