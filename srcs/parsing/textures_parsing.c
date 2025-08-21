@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:11:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/19 09:29:58 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:33:57 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	set_texture(bool *has_parsed, char **dir, char *path);
 
 int	parse_textures(t_parser *parser)
 {
+	int		ret;
 	char	*identifier;
 	char	*path;
 	char	*line;
@@ -31,7 +32,18 @@ int	parse_textures(t_parser *parser)
 		return (MALLOC_ERROR);
 	identifier = ft_strtok(line, DEFAULT_TRIM);
 	path = ft_strtok(NULL, DEFAULT_TRIM);
-	return (set_texture_helper(parser, identifier, path));
+	if (path)
+	{
+		path = ft_strdup(path);
+		if (!path)
+		{
+			free(line);
+			return (MALLOC_ERROR);
+		}
+	}
+	ret = set_texture_helper(parser, identifier, path);
+	free(line);
+	return (ret);
 }
 
 static int	set_texture_helper(t_parser *parser, char *identifier, char *path)

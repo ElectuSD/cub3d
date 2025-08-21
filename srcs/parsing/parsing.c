@@ -6,9 +6,11 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:38:22 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/19 10:38:40 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 10:59:32 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 #include "libft_mem.h"
 #include "cub3d_map.h"
@@ -64,4 +66,26 @@ int	parse(t_map *map)
 	if (!map_is_closed(map->map, get_map_size(map->map)))
 		return (MAP_NOT_CLOSED);
 	return (NO_ERRORS);
+}
+
+void	print_parser_error(t_error error)
+{
+	if (error == NORTH_DUPPLICATE)
+		printf("Error\nNorth texture dupplicate in map\n");
+	if (error == SOUTH_DUPPLICATE)
+		printf("Error\nSouth texture dupplicate in map\n");
+	if (error == WEST_DUPPLICATE)
+		printf("Error\nWest texture dupplicate in map\n");
+	if (error == EAST_DUPPLICATE)
+		printf("Error\nEast texture dupplicate in map\n");
+	if (error == CEILING_DUPPLICATE)
+		printf("Error\nCeiling colors dupplicate in map\n");
+	if (error == FLOOR_DUPPLICATE)
+		printf("Error\nFloor colors dupplicate in map\n");
+	if (error == MAP_DUPPLICATE)
+		printf("Error\nTwo maps found in map\n");
+	if (error == MAP_NOT_LAST)
+		printf("Error\nMap content is not last\n");
+	if (error == MAP_NOT_CLOSED)
+		printf("Error\nMap not closed by walls\n");
 }

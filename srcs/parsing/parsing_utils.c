@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:15:42 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/07 14:21:33 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:38:52 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	get_next_non_empty_line(char **line, int fd)
 			return (error);
 		if (!is_empty_line(*line) || !(*line))
 			break ;
+		free(*line);
 	}
 	return (NO_ERRORS);
 }

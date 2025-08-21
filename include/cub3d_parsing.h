@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/19 10:38:28 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/21 10:59:22 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,8 @@ bool		is_south(char *line);
 bool		is_color(char *line);
 bool		is_floor(char *line);
 bool		is_ceiling(char *line);
+
+/* PRINTS ERROR MESSAGE BASED ON ERROR DURING PARSING */
+void		print_parser_error(t_error error);
 
 #endif
