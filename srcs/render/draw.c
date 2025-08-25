@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:10:16 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/22 14:10:54 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:20:52 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 void	draw_player(t_img *img, t_map *map)
 {
-	double	scale;
+	int	scale;
 
-	scale = (double)img->width / (double)map->cols;
+	scale = img->width / map->cols;
 	printf("x : %f | y : %f\n", map->player.x, map->player.y);
-	draw_rectangle_fill(img, new_point2d(map->player.x * scale + (scale / 3.0), map->player.y * scale + (scale / 3.0)),
-		new_point2d((map->player.x + 1) * scale - (scale / 3.0), (map->player.y + 1) * scale - (scale / 3.0)), 0xFFFF00);
+	draw_rectangle_fill(img, new_point2d((map->player.x - 0.25) * scale, (map->player.y - 0.25) * scale),
+		new_point2d((map->player.x + 0.25) * scale, (map->player.y + 0.25) * scale), 0xFFFF00);
 }
 
 void	draw_grid(t_img *img, t_map *map)
@@ -34,7 +34,7 @@ void	draw_grid(t_img *img, t_map *map)
 	t_point2d	b;
 
 	i = 0;
-	scale = (int)(img->width / map->cols);
+	scale = img->width / map->cols;
 	while (map->map[i])
 	{
 		j = 0;
@@ -61,7 +61,7 @@ void	draw_map(t_img *img, t_map *map)
 	t_point2d	b;
 
 	i = 0;
-	scale = (int)(img->width / map->cols);
+	scale = img->width / map->cols;
 	draw_grid(img, map);
 	while (map->map[i])
 	{

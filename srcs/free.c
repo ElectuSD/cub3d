@@ -6,14 +6,24 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:14:27 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 13:54:38 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 10:28:44 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "cub3d.h"
 
-void	free_cub3d(t_cub3d *p)
+int	free_cub3d_and_exit(void *params)
+{
+	t_cub3d	*p;
+
+	p = params;
+	destroy_mlx_ptrs(&p->win_ptr, &p->img.img_ptr, &p->mlx_ptr);
+	free_map(&p->map);
+	exit(0);
+}
+
+void	free_cub3d(t_cub3d	*p)
 {
 	destroy_mlx_ptrs(&p->win_ptr, &p->img.img_ptr, &p->mlx_ptr);
 	free_map(&p->map);

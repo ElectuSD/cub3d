@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/22 13:47:48 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 10:28:46 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ typedef struct s_cub3d
 void	print_map_infos(t_map *map);
 
 /* FREE FUNCTIONS */
+int		free_cub3d_and_exit(void *params);
+void	free_cub3d(t_cub3d	*p);
 void	free_map(t_map *map);
-void	free_cub3d(t_cub3d *p);
 void	free_textures(t_textures *textures);
 void	destroy_mlx_ptrs(void **win_ptr, void **img_ptr, void **mlx_ptr);
 

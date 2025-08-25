@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:28:05 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/22 13:44:21 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:38:42 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,27 @@ static void	bresenham_line(t_img *img, t_point2d p1, t_point2d p2, t_line line)
 	double	distance;
 	double	progress;
 
+	p1.x = (int)p1.x;
+	p1.y = (int)p1.y;
+	p2.x = (int)p2.x;
+	p2.y = (int)p2.y;
 	distance = sqrt(line.dx * line.dx + line.dy * line.dy);
 	progress = 0.0;
-	while (1)
+
+	int	i;
+
+	i = 0;
+	while (i < 100000)
 	{
 		if (p1.x >= 0 && p1.x < img->width && p1.y >= 0 && p1.y <= img->height)
-			ft_mlx_pixel_put(img, p1.x, p1.y, line.color);
+			ft_mlx_pixel_put(img, (int)p1.x, (int)p1.y, line.color);
 		if ((int)p1.x == (int)p2.x && (int)p1.y == (int)p2.y)
 			break ;
 		get_next_pixel(&line, &p1);
 		progress += 1.0 / distance;
 		if (progress > 1.0)
 			progress = 1.0;
+		i++;
 	}
 }
 

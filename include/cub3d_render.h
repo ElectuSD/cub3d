@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/22 13:52:53 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:18:43 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_map	t_map;
 
 enum e_keycodes
 {
+	ON_KEYDOWN				= 2,
+	ON_KEYUP				= 3,
 	ON_BUTTON_PRESS			= 4,
 	ON_BUTTON_RELEASE		= 5,
 	ON_MOTION_NOTIFY		= 6,
@@ -75,6 +77,9 @@ typedef struct s_img
 
 /* RENDER LOOP FUNCTION */
 int			update_loop(void *params);
+
+/* RAYCAST PROTOTYPE FUNCTIOM */
+void		raycast(t_img *img, t_map *map);
 
 /* CREATE SINGLE IMG*/
 void		create_img(t_cub3d *p);
