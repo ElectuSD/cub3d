@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_player.h                                     :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/22 14:11:18 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/08/22 11:22:34 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/08/22 11:23:05 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_PLAYER_H
-# define CUB3D_PLAYER_H
-
-# include <stdbool.h>
-
-typedef enum e_directions
+double	min(double a, double b)
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-}	t_directions;
+	if (a <= b)
+		return (a);
+	return (b);
+}
 
-typedef struct s_player
+double	max(double a, double b)
 {
-	t_directions	player_direction;
-	double			x;
-	double			y;
-}	t_player;
-
-/* UTILS FUNCTIONS */
-bool			is_player(char c);
-char			*get_player_direction_str(t_directions dir);
-t_directions	get_player_direction(char c);
-
-#endif
+	if (a >= b)
+		return (a);
+	return (b);
+}

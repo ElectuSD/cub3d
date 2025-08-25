@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 14:25:12 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:52:17 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "cub3d_map.h"
 #include "cub3d_utils.h"
 #include "cub3d_render.h"
+#include "cub3d_player.h"
 #include "cub3d_parsing.h"
 
 static bool	init_map(t_map *map, char *filename);
@@ -45,9 +46,6 @@ int	main(int argc, char **argv)
 	if (!init_mlx(&p))
 		return (1);
 	print_map_infos(&p.map);
-	create_img(&p);
-	draw_map(&p.img, &p.map);
-	mlx_put_image_to_window(p.mlx_ptr, p.win_ptr, p.img.img_ptr, 100, 100);
 	mlx_loop(p.mlx_ptr);
 	return (0);
 }
@@ -69,12 +67,26 @@ static bool	init_map(t_map *map, char *filename)
 
 static void	get_map_infos(t_map *map)
 {
+	char	c;
+	size_t	i;
 	size_t	line_lenght;
 
 	map->rows = 0;
 	map->cols = 0;
 	while (map->map[map->rows])
 	{
+		i = 0;
+		while (map->map[map->rows][i])
+		{
+			c = map->map[map->rows][i];
+			if (is_player(c))
+			{
+				map->player.player_direction = get_player_direction(c);
+				map->player.x = i;
+				map->player.y = map->rows;
+			}
+			i++;
+		}
 		line_lenght = ft_strlen(map->map[map->rows]);
 		if (line_lenght > map->cols)
 			map->cols = line_lenght;

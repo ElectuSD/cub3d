@@ -6,13 +6,39 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:23:51 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/19 10:25:06 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:22:17 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#include "cub3d_player.h"
 
 bool	is_player(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
+}
+
+t_directions	get_player_direction(char c)
+{
+	if (c == 'N')
+		return (NORTH);
+	if (c == 'S')
+		return (SOUTH);
+	if (c == 'W')
+		return (WEST);
+	if (c == 'E')
+		return (EAST);
+	return (NORTH);
+}
+
+char	*get_player_direction_str(t_directions dir)
+{
+	if (dir == NORTH)
+		return ("NORTH");
+	if (dir == SOUTH)
+		return ("SOUTH");
+	if (dir == WEST)
+		return ("WEST");
+	if (dir == EAST)
+		return ("EAST");
+	return ("UNKNOWN");
 }

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:56:45 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 10:59:32 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:11:32 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@ void	print_map_infos(t_map *map)
 		printf("%s\n", map->map[i]);
 		i++;
 	}
+	printf("ROWS : %lu | COLS : %lu\n", map->rows, map->cols);
+	printf("Player DIR : %s\n", get_player_direction_str(map->player.player_direction));
+	printf("Player X,Y : %f | %f\n", map->player.x, map->player.y);
 }

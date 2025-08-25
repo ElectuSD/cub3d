@@ -6,35 +6,45 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:10:16 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 14:24:45 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:10:54 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 #include "cub3d_map.h"
 #include "cub3d_render.h"
 
-void	draw_map(t_img *img, t_map *map)
+void	draw_player(t_img *img, t_map *map)
 {
-	char		c;
+	double	scale;
+
+	scale = (double)img->width / (double)map->cols;
+	printf("x : %f | y : %f\n", map->player.x, map->player.y);
+	draw_rectangle_fill(img, new_point2d(map->player.x * scale + (scale / 3.0), map->player.y * scale + (scale / 3.0)),
+		new_point2d((map->player.x + 1) * scale - (scale / 3.0), (map->player.y + 1) * scale - (scale / 3.0)), 0xFFFF00);
+}
+
+void	draw_grid(t_img *img, t_map *map)
+{
+	int			scale;
 	size_t		i;
 	size_t		j;
 	t_point2d	a;
 	t_point2d	b;
 
 	i = 0;
+	scale = (int)(img->width / map->cols);
 	while (map->map[i])
 	{
 		j = 0;
 		while (map->map[i][j])
 		{
-			c = map->map[i][j];
-			if (c == '1')
+			if (map->map[i][j] == '1' || map->map[i][j] == '0')
 			{
-				a.x = j * 10;
-				a.y = i * 10;
-				b.x = (j + 1) * 10;
-				b.y = (i + 1) * 10;
-				draw_rectangle(img, a, b);
+				a = new_point2d(j * scale, (i * scale));
+				b = new_point2d((j + 1) * scale, ((i + 1) * scale));
+				draw_rectangle(img, a, b, 0x696969);
 			}
 			j++;
 		}
@@ -42,18 +52,62 @@ void	draw_map(t_img *img, t_map *map)
 	}
 }
 
-void	draw_rectangle(t_img *img, t_point2d a, t_point2d b)
+void	draw_map(t_img *img, t_map *map)
 {
+	int			scale;
+	size_t		i;
+	size_t		j;
+	t_point2d	a;
+	t_point2d	b;
+
+	i = 0;
+	scale = (int)(img->width / map->cols);
+	draw_grid(img, map);
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == '1')
+			{
+				a = new_point2d((j * scale) + 1, (i * scale) + 1);
+				b = new_point2d(((j + 1) * scale) - 1, ((i + 1) * scale) - 1);
+				draw_rectangle_fill(img, a, b, 0xFFFFFF);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_rectangle_fill(t_img *img, t_point2d a, t_point2d b, int color)
+{
+	t_rec		rectangle;
 	t_point2d	buffer;
 
-	buffer.x = a.x;
-	buffer.y = b.y;
-	draw_line(img, a, buffer);
-	draw_line(img, b, buffer);
-	buffer.x = b.x;
-	buffer.y = a.y;
-	draw_line(img, a, buffer);
-	draw_line(img, b, buffer);
+	rectangle = new_rectangle(new_point2d(min(a.x, b.x), min(a.y, b.y)),
+			new_point2d(max(a.x, b.x), max(a.y, b.y)));
+	while (rectangle.tl.y <= rectangle.br.y)
+	{
+		buffer = new_point2d(rectangle.br.x, rectangle.tl.y);
+		draw_line(img, rectangle.tl, buffer, color);
+		rectangle.tl.y += 1;
+	}
+}
+
+void	draw_rectangle(t_img *img, t_point2d a, t_point2d b, int color)
+{
+	t_point2d	buffer;
+	t_rec		rectangle;
+
+	rectangle = new_rectangle(new_point2d(min(a.x, b.x), min(a.y, b.y)),
+			new_point2d(max(a.x, b.x), max(a.y, b.y)));
+	buffer = new_point2d(rectangle.br.x, rectangle.tl.y);
+	draw_line(img, rectangle.tl, buffer, color);
+	draw_line(img, buffer, rectangle.br, color);
+	buffer = new_point2d(rectangle.tl.x, rectangle.br.y);
+	draw_line(img, rectangle.br, buffer, color);
+	draw_line(img, buffer, rectangle.tl, color);
 }
 
 void	ft_mlx_pixel_put(t_img *data, int x, int y, int color)

@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_player.h                                     :+:      :+:    :+:   */
+/*   create_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/22 14:11:18 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/08/22 11:18:47 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/08/22 11:28:11 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_PLAYER_H
-# define CUB3D_PLAYER_H
+#include "cub3d_render.h"
 
-# include <stdbool.h>
-
-typedef enum e_directions
+t_point2d	new_point2d(double x, double y)
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-}	t_directions;
+	t_point2d	new_point;
 
-typedef struct s_player
+	new_point.x = x;
+	new_point.y = y;
+	return (new_point);
+}
+
+t_rec	new_rectangle(t_point2d top_left, t_point2d bottom_right)
 {
-	t_directions	player_direction;
-	double			x;
-	double			y;
-}	t_player;
+	t_rec	new_rectangle;
 
-/* UTILS FUNCTIONS */
-bool			is_player(char c);
-char			*get_player_direction_str(t_directions dir);
-t_directions	get_player_direction(char c);
-
-#endif
+	new_rectangle.tl = top_left;
+	new_rectangle.br = bottom_right;
+	return (new_rectangle);
+}

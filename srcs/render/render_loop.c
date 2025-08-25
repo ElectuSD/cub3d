@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_player.h                                     :+:      :+:    :+:   */
+/*   render_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/22 14:11:18 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/08/22 13:51:45 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/08/22 13:54:10 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_PLAYER_H
-# define CUB3D_PLAYER_H
+#include <stdio.h>
 
-# include <stdbool.h>
+#include "mlx.h"
+#include "cub3d.h"
 
-typedef enum e_directions
+int	update_loop(void *params)
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-}	t_directions;
+	t_cub3d	*p;
 
-typedef struct s_player
-{
-	t_directions	player_direction;
-	double			x;
-	double			y;
-}	t_player;
-
-/* UTILS FUNCTIONS */
-bool			is_player(char c);
-char			*get_player_direction_str(t_directions dir);
-t_directions	get_player_direction(char c);
-
-#endif
+	p = params;
+	if (!p->is_updated)
+	{
+		printf("NEW IMAGE CREATED\n");
+		create_img(p);
+		draw_map(&p->img, &p->map);
+		draw_player(&p->img, &p->map);
+		mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img.img_ptr, 0, 0);
+		p->is_updated = true;
+	}
+	return (0);
+}

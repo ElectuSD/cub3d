@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 14:03:05 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:49:58 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 void	create_img(t_cub3d *p)
 {
+	if (p->img.img_ptr)
+		mlx_destroy_image(p->mlx_ptr, p->img.img_ptr);
+	p->img.img_ptr = NULL;
 	p->img.width = 1920;
 	p->img.height = 1080;
 	p->img.img_ptr = mlx_new_image(p->mlx_ptr, 1920, 1080);

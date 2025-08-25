@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 13:41:25 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:47:48 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 typedef struct s_cub3d
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	t_map	map;
+	bool		is_updated;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+	t_map		map;
 }	t_cub3d;
 
 /* PRINTING FUNCTION FOR DEBUG */
