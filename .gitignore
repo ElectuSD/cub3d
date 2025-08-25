@@ -5,6 +5,7 @@
 !.git
 !.gitignore
 !Makefile
+!test.cub
 
 !libft/
 !srcs/
