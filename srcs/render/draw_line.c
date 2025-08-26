@@ -6,76 +6,49 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:28:05 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 14:38:42 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 21:36:34 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdlib.h>
 
 #include "cub3d_render.h"
 
-static void	get_next_pixel(t_line *line, t_point2d *p1);
-static void	bresenham_line(t_img *img, t_point2d p1, t_point2d p2, t_line line);
-
-void	draw_line(t_img *img, t_point2d p1, t_point2d p2, int color)
+void draw_line(t_img *img, t_point2d p1, t_point2d p2, int color)
 {
-	t_line	line;
+    int x0 = (int)round(p1.x);
+    int y0 = (int)round(p1.y);
+    int x1 = (int)round(p2.x);
+    int y1 = (int)round(p2.y);
 
-	line.color = color;
-	line.dx = fabs(p2.x - p1.x);
-	line.dy = fabs(p2.y - p1.y);
-	if (p1.x < p2.x)
-		line.sx = 1;
-	else
-		line.sx = -1;
-	if (p1.y < p2.y)
-		line.sy = 1;
-	else
-		line.sy = -1;
-	line.err = line.dx - line.dy;
-	bresenham_line(img, p1, p2, line);
-}
+    t_line line;
+    line.color = color;
+    line.dx = abs(x1 - x0);
+    line.dy = abs(y1 - y0);
+    line.sx = (x0 < x1) ? 1 : -1;
+    line.sy = (y0 < y1) ? 1 : -1;
+    line.err = line.dx - line.dy;
 
-static void	bresenham_line(t_img *img, t_point2d p1, t_point2d p2, t_line line)
-{
-	double	distance;
-	double	progress;
+    while (1)
+    {
+        if (x0 >= 0 && x0 < img->width && y0 >= 0 && y0 < img->height)
+            ft_mlx_pixel_put(img, x0, y0, color);
 
-	p1.x = (int)p1.x;
-	p1.y = (int)p1.y;
-	p2.x = (int)p2.x;
-	p2.y = (int)p2.y;
-	distance = sqrt(line.dx * line.dx + line.dy * line.dy);
-	progress = 0.0;
+        if (x0 == x1 && y0 == y1)
+            break;
 
-	int	i;
+        int e2 = 2 * line.err;
 
-	i = 0;
-	while (i < 100000)
-	{
-		if (p1.x >= 0 && p1.x < img->width && p1.y >= 0 && p1.y <= img->height)
-			ft_mlx_pixel_put(img, (int)p1.x, (int)p1.y, line.color);
-		if ((int)p1.x == (int)p2.x && (int)p1.y == (int)p2.y)
-			break ;
-		get_next_pixel(&line, &p1);
-		progress += 1.0 / distance;
-		if (progress > 1.0)
-			progress = 1.0;
-		i++;
-	}
-}
-
-static void	get_next_pixel(t_line *line, t_point2d *p1)
-{
-	line->e2 = line->err * 2;
-	if (line->e2 > -line->dy)
-	{
-		line->err -= line->dy;
-		p1->x += line->sx;
-	}
-	if (line->e2 < line->dx)
-	{
-		line->err += line->dx;
-		p1->y += line->sy;
-	}
+        if (e2 > -line.dy)
+        {
+            line.err -= line.dy;
+            x0 += line.sx;
+        }
+        if (e2 < line.dx)
+        {
+            line.err += line.dx;
+            y0 += line.sy;
+        }
+    }
 }

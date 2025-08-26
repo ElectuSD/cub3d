@@ -6,40 +6,39 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:49:45 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 15:31:14 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 21:27:57 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include <stdio.h>
+#include <math.h>
 
 #include <cub3d_map.h>
 #include "cub3d_render.h"
 
 static double		get_vector_lenght(t_point2d vec);
-static t_point2d	get_dir_vector(t_directions dir);
 static t_point2d	get_norm_vector(t_point2d vec);
+static t_point2d	scale_2dpoint(t_point2d a, int scale);
 
 void	raycast(t_img *img, t_map *map)
 {
 	int			scale = img->width / map->cols;
 
-	t_point2d	vRayStart = new_point2d(map->player.x, map->player.y);
-	t_point2d	dirVec = get_dir_vector(map->player.player_direction);
-
-	//printf("X : %f | Y : %f\n", dirVec.x, dirVec.y);
-	//printf("X : %f | Y : %f\n", vRayStart.x, vRayStart.y);
-
-	t_point2d	vRayDir = get_norm_vector(new_point2d(dirVec.x * vRayStart.x, dirVec.y * vRayStart.y));
-
-	printf("X : %f | Y : %f\n", vRayDir.x, vRayDir.y);
-
+	t_point2d	vRayStart = map->player.pos;
+	t_point2d	dirVec = get_angle_vector(map->player.angle);
+	t_point2d	vRayDir = dirVec;(void)get_norm_vector(new_point2d(dirVec.x * vRayStart.x, dirVec.y * vRayStart.y));
 	t_point2d	vRayUnitStepSize = new_point2d(fabs(1.0f / vRayDir.x), fabs(1.0f / vRayDir.y));
-	t_point2d	vMapCheck = vRayStart;
+	t_point2d	vMapCheck;
+
+	printf("ANGLE : %f\n", map->player.angle);
+	printf("X : %f | Y : %f\n", dirVec.x, dirVec.y);
+
+	vMapCheck.x = (int)vRayStart.x;
+	vMapCheck.y = (int)vRayStart.y;
 	t_point2d	vRayLenght1D;
 	t_point2d	vStep;
 
-	if (map->map[(int)vRayStart.y][(int)vRayStart.x] == '1')
+	if (vRayStart.x < map->cols && vRayStart.x >= 0 && vRayStart.y < map->rows && vRayStart.y >= 0 && map->map[(int)vRayStart.y][(int)vRayStart.x] == '1')
 		return ;
 	if (vRayDir.x < 0)
 	{
@@ -79,7 +78,6 @@ void	raycast(t_img *img, t_map *map)
 			distance = vRayLenght1D.y;
 			vRayLenght1D.y += vRayUnitStepSize.y;
 		}
-
 		if (vMapCheck.x >= 0 && vMapCheck.x < (int)map->cols && vMapCheck.y >= 0 && vMapCheck.y < (int)map->rows)
 			if (map->map[(int)(vMapCheck.y)][(int)(vMapCheck.x)] == '1')
 				hit = true;
@@ -90,21 +88,9 @@ void	raycast(t_img *img, t_map *map)
 
 		vIntersection.x = (vRayStart.x + (vRayDir.x * distance)) * scale;
 		vIntersection.y = (vRayStart.y + (vRayDir.y * distance)) * scale;
-		draw_line(img, new_point2d(map->player.x * scale, map->player.y * scale), vIntersection, 0xFF0000);
+		printf("X : %f | Y : %f\n", vIntersection.x, vIntersection.y);
+		draw_line(img, scale_2dpoint(map->player.pos, scale), vIntersection, 0xFF0000);
 	}
-}
-
-static t_point2d	get_dir_vector(t_directions dir)
-{
-	if (dir == NORTH)
-		return (new_point2d(0, -1));
-	if (dir == SOUTH)
-		return (new_point2d(0, 1));
-	if (dir == WEST)
-		return (new_point2d(-1, 0));
-	if (dir == EAST)
-		return (new_point2d(1, 0));
-	return (new_point2d(0, 1));
 }
 
 static t_point2d	get_norm_vector(t_point2d vec)
@@ -118,4 +104,9 @@ static t_point2d	get_norm_vector(t_point2d vec)
 static double	get_vector_lenght(t_point2d vec)
 {
 	return (sqrt((vec.x * vec.x) + (vec.y * vec.y)));
+}
+
+static t_point2d	scale_2dpoint(t_point2d a, int scale)
+{
+	return (new_point2d(a.x * scale, a.y * scale));
 }

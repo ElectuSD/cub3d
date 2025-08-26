@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:10:16 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 13:20:52 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 20:44:41 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	draw_player(t_img *img, t_map *map)
 	int	scale;
 
 	scale = img->width / map->cols;
-	printf("x : %f | y : %f\n", map->player.x, map->player.y);
-	draw_rectangle_fill(img, new_point2d((map->player.x - 0.25) * scale, (map->player.y - 0.25) * scale),
-		new_point2d((map->player.x + 0.25) * scale, (map->player.y + 0.25) * scale), 0xFFFF00);
+	printf("x : %f | y : %f\n", map->player.pos.x, map->player.pos.y);
+	draw_rectangle_fill(img, new_point2d((map->player.pos.x - 0.25) * scale, (map->player.pos.y - 0.25) * scale),
+		new_point2d((map->player.pos.x + 0.25) * scale, (map->player.pos.y + 0.25) * scale), 0xFFFF00);
 }
 
 void	draw_grid(t_img *img, t_map *map)

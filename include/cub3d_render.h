@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 11:18:43 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 21:12:29 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ enum e_keycodes
 	ON_BUTTON_RELEASE		= 5,
 	ON_MOTION_NOTIFY		= 6,
 	ON_DESTROY				= 17,
+	A_KEY					= 97,
+	D_KEY					= 100,
+	E_KEY					= 101,
+	Q_KEY					= 113,
+	S_KEY					= 115,
+	W_KEY					= 119,
 	ESC_KEY					= 65307,
 	LEFT					= 65361,
 	UP						= 65362,

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:15:42 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 11:38:52 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/25 20:19:06 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*skip_leading_chars(char *line)
 
 char	*trim_end_of_line(char *line)
 {
-	size_t	size_of_line;
+	int	size_of_line;
 
 	if (!line)
 		return (NULL);
