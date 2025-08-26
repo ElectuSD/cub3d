@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/08/25 11:02:49 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/08/25 20:22:45 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ INCS					:=				include/cub3d_parsing.h \
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 
 
-CFLAGS					:=				-Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -g3
+CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -g3
 
 
 .PHONY:			all
