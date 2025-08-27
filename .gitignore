@@ -12,9 +12,11 @@
 !include/
 !mlx_linux/
 !texture/
+!maps/
 
 !libft/**
 !srcs/**
 !include/**
 !mlx_linux/**
 !texture/**
+!maps/**
