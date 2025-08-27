@@ -11,8 +11,10 @@
 !srcs/
 !include/
 !mlx_linux/
+!texture/
 
 !libft/**
 !srcs/**
 !include/**
 !mlx_linux/**
+!texture/**
