@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:14:27 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/26 11:39:32 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:48:36 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int	free_cub3d_and_exit(void *params)
 	t_cub3d	*p;
 
 	p = params;
+	free_map(p);
 	destroy_mlx_ptrs(&p->win_ptr, &p->raycast.img_ptr,
 		&p->minimap.img_ptr, &p->mlx_ptr);
-	free_map(&p->map);
 	exit(0);
 }
 
 void	free_cub3d(t_cub3d	*p)
 {
+	free_map(p);
 	destroy_mlx_ptrs(&p->win_ptr, &p->raycast.img_ptr,
 		&p->minimap.img_ptr, &p->mlx_ptr);
-	free_map(&p->map);
 }
 
 void	destroy_mlx_ptrs(void **win_ptr, void **raycast_ptr,
@@ -57,30 +57,42 @@ void	destroy_mlx_ptrs(void **win_ptr, void **raycast_ptr,
 	}
 }
 
-void	free_map(t_map *map)
+void	free_map(t_cub3d *p)
 {
 	size_t	i;
 
 	i = 0;
-	while (map->map[i])
+	while (p->map.map[i])
 	{
-		free(map->map[i]);
-		map->map[i] = NULL;
+		free(p->map.map[i]);
+		p->map.map[i] = NULL;
 		i++;
 	}
-	free(map->map);
-	map->map = NULL;
-	free_textures(&map->textures);
+	free(p->map.map);
+	p->map.map = NULL;
+	free_textures(p->mlx_ptr, &p->map.textures);
 }
 
-void	free_textures(t_textures *textures)
+void	free_textures(void *mlx_ptr, t_textures *textures)
 {
 	if (textures->north)
+	{
 		free(textures->north);
+		mlx_destroy_image(mlx_ptr, textures->n.img_ptr);
+	}
 	if (textures->south)
+	{
 		free(textures->south);
+		mlx_destroy_image(mlx_ptr, textures->s.img_ptr);
+	}
 	if (textures->west)
+	{
 		free(textures->west);
+		mlx_destroy_image(mlx_ptr, textures->w.img_ptr);
+	}
 	if (textures->east)
+	{
 		free(textures->east);
+		mlx_destroy_image(mlx_ptr, textures->e.img_ptr);
+	}
 }

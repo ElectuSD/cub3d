@@ -23,8 +23,9 @@ int	update_loop(void *params)
 	if (!p->is_updated)
 	{
 		printf("NEW IMAGE CREATED\n");
-		create_minimap_img(p);
-		create_raycast_img(p);
+		draw_map(&p->minimap, &p->map);
+		draw_player(&p->minimap, &p->map);
+		raycast(&p->raycast, &p->map);
 		mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->raycast.img_ptr, 0, 0);
 		mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->minimap.img_ptr, 0, 0);
 		p->is_updated = true;

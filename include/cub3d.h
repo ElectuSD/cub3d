@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/26 11:39:00 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:47:41 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	print_map_infos(t_map *map);
 /* FREE FUNCTIONS */
 int		free_cub3d_and_exit(void *params);
 void	free_cub3d(t_cub3d	*p);
-void	free_map(t_map *map);
-void	free_textures(t_textures *textures);
+void	free_map(t_cub3d *p);
+void	free_textures(void *mlx_ptr, t_textures *textures);
 void	destroy_mlx_ptrs(void **win_ptr, void **raycast_ptr,
 			void **minimap_ptr, void **mlx_ptr);
 

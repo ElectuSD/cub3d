@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 12:20:38 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:24:12 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	create_minimap_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	draw_map(&p->minimap, &p->map);
-	draw_player(&p->minimap, &p->map);
 }
 void	create_raycast_img(t_cub3d *p)
 {
@@ -65,6 +63,5 @@ void	create_raycast_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	raycast(&p->raycast, &p->map);
 }
 

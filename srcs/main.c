@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 12:21:35 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:24:49 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 #include "cub3d_player.h"
 #include "cub3d_parsing.h"
 
-static bool	init_map(t_map *map, char *filename);
+static bool	create_img(t_cub3d *p);
 static void	get_map_infos(t_map *map);
+static bool	init_map(t_map *map, char *filename);
 
 int	main(int argc, char **argv)
 {
@@ -45,7 +46,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_mlx(&p))
 		return (1);
-	print_map_infos(&p.map);
+	create_img(&p);
 	mlx_loop(p.mlx_ptr);
 	return (0);
 }
@@ -93,4 +94,12 @@ static void	get_map_infos(t_map *map)
 			map->cols = line_lenght;
 		map->rows++;
 	}
+}
+
+static bool	create_img(t_cub3d *p)
+{
+	load_textures(p, &p->map);
+	create_minimap_img(p);
+	create_raycast_img(p);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:01:31 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 14:07:42 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 13:03:24 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdbool.h>
 
 # include "cub3d_colors.h"
-# include "cub3d_texture.h"
 # include "cub3d_player.h"
+# include "cub3d_texture.h"
 
 typedef struct s_map_info
 {

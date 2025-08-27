@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:10:16 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 12:16:21 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:28:49 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	draw_player(t_img *img, t_map *map)
 	int	scale;
 
 	scale = img->width / map->cols;
-	printf("x : %f | y : %f\n", map->player.pos.x, map->player.pos.y);
 	draw_rectangle_fill(img, new_point2d((map->player.pos.x - 0.25) * scale, (map->player.pos.y - 0.25) * scale),
-		new_point2d((map->player.pos.x + 0.25) * scale, (map->player.pos.y + 0.25) * scale), 0xFFFF00);
+		new_point2d((map->player.pos.x + 0.25) * scale, (map->player.pos.y + 0.25) * scale), 0xFF0000);
 	draw_line(img, new_point2d(map->player.pos.x * scale, map->player.pos.y * scale),
 					new_point2d((map->player.pos.x + map->player.dir.x) * scale, (map->player.pos.y + map->player.dir.y) * scale), 0x0000FF);
 }
@@ -42,11 +41,11 @@ void	draw_grid(t_img *img, t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] == '1' || map->map[i][j] == '0')
+			if (is_player(map->map[i][j]) || map->map[i][j] == '1' || map->map[i][j] == '0')
 			{
 				a = new_point2d(j * scale, (i * scale));
 				b = new_point2d((j + 1) * scale, ((i + 1) * scale));
-				draw_rectangle(img, a, b, 0x696969);
+				draw_rectangle_fill(img, a, b, 0x696969);
 			}
 			j++;
 		}
