@@ -6,10 +6,11 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:28:05 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 21:36:34 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 11:04:26 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
@@ -30,7 +31,10 @@ void draw_line(t_img *img, t_point2d p1, t_point2d p2, int color)
     line.sy = (y0 < y1) ? 1 : -1;
     line.err = line.dx - line.dy;
 
-    while (1)
+	int	i;
+
+	i = 0;
+    while (i < 100000)
     {
         if (x0 >= 0 && x0 < img->width && y0 >= 0 && y0 < img->height)
             ft_mlx_pixel_put(img, x0, y0, color);
@@ -50,5 +54,6 @@ void draw_line(t_img *img, t_point2d p1, t_point2d p2, int color)
             line.err += line.dx;
             y0 += line.sy;
         }
+		i++;
     }
 }

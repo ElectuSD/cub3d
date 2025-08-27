@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 21:12:29 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/26 11:33:05 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int			update_loop(void *params);
 void		raycast(t_img *img, t_map *map);
 
 /* CREATE SINGLE IMG*/
-void		create_img(t_cub3d *p);
+void		create_minimap_img(t_cub3d *p);
+void		create_raycast_img(t_cub3d *p);
 
 /* INIT MLX_PTR AND WIN_PTR */
 bool		init_mlx(t_cub3d *p);

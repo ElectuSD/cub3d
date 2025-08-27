@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_colors.h                                     :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 10:59:02 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 12:36:41 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/08/27 12:35:56 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/08/27 12:36:25 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_COLORS_H
-# define CUB3D_COLORS_H
+#include "cub3d_colors.h"
 
-typedef struct s_rgb
+int	color_to_int(t_rgb color)
 {
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb;
+	return ((0xFF << 24) | (color.r << 16) | (color.g << 8) | color.b);
+}
 
-/* COLOR TO INT FUNCTION */
-int		color_to_int(t_rgb color);
+t_rgb	int_to_color(int color)
+{
+	t_rgb	new_color;
 
-#endif
+	new_color.r = (color >> 16) & 0xFF;
+	new_color.g = (color >> 8) & 0xFF;
+	new_color.b = color & 0xFF;
+	return (new_color);
+}

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 21:24:17 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:21:35 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ static void	get_map_infos(t_map *map)
 			if (is_player(c))
 			{
 				map->player.player_direction = get_player_direction(c);
-				map->player.angle = 4.612389;//init_player_angle(map->player.player_direction);
+				map->player.dir = init_player_dir(map->player.player_direction);
 				map->player.pos = new_point2d(i + 0.5, map->rows + 0.5);
+				map->player.plane = new_point2d(0.66, 0);
 			}
 			i++;
 		}

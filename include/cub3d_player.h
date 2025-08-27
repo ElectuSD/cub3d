@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 21:16:15 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/26 11:19:12 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ typedef struct s_player
 {
 	t_directions	player_direction;
 	t_point2d		pos;
-	double			angle;
+	t_point2d		dir;
+	t_point2d		plane;
 }	t_player;
 
 /* UTILS FUNCTIONS */
 bool			is_player(char c);
 char			*get_player_direction_str(t_directions dir);
-double			init_player_angle(t_directions dir);
-t_point2d		get_angle_vector(double angle);
+t_point2d		init_player_dir(t_directions dir);
 t_directions	get_player_direction(char c);
 
 #endif

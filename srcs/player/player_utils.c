@@ -6,11 +6,10 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:23:51 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/25 21:16:04 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/26 11:23:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "cub3d_player.h"
 
 bool	is_player(char c)
@@ -18,31 +17,17 @@ bool	is_player(char c)
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
-t_point2d	get_angle_vector(double angle)
-{
-	double	dx;
-	double	dy;
-
-	dx = cos(angle);
-	dy = sin(angle);
-	if (fabs(dx) < 1e-10)
-		dx = 0;
-	if (fabs(dy) < 1e-10)
-		dy = 0;
-	return (new_point2d(dx, dy));
-}
-
-double	init_player_angle(t_directions dir)
+t_point2d		init_player_dir(t_directions dir)
 {
 	if (dir == NORTH)
-		return (M_PI / 2);
+		return (new_point2d(0, -1));
 	if (dir == SOUTH)
-		return ((M_PI * 3) / 2);
+		return (new_point2d(0, 1));
 	if (dir == WEST)
-		return (M_PI);
+		return (new_point2d(-1, 0));
 	if (dir == EAST)
-		return (0);
-	return (M_PI / 2);
+		return (new_point2d(1, 0));
+	return (new_point2d(0, -1));
 }
 
 t_directions	get_player_direction(char c)
