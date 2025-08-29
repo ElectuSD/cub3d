@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 14:03:22 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:32:40 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_img
 	void		*img_ptr;
 	char		*addr;
 	int			bits_per_pixel;
+	int			bytes_per_pixel;
 	int			line_lenght;
 	int			endian;
 	int			height;
@@ -111,9 +112,5 @@ t_rec		new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right);
 t_ipoint2d	new_ipoint2d(int x, int y);
 t_dpoint2d	new_dpoint2d(double x, double y);
 t_ipoint2d	convert_dpoint2d_to_ipoint2d(t_dpoint2d dpoint2d);
-
-/* MATH UTILS FUNCTIONS */
-double		min(double a, double b);
-double		max(double a, double b);
 
 #endif

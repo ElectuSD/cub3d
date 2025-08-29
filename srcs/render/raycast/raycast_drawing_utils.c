@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 11:11:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 13:58:14 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:34:56 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_color_on_img(t_img *img, int x, int y)
 	int		color;
 	char	*dst;
 
-	dst = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_lenght + x * img->bytes_per_pixel);
 	color = *(unsigned int *)dst;
 	return (color);
 }

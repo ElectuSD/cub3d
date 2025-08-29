@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/28 19:08:07 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:33:19 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	create_minimap_img(t_cub3d *p)
 		exit(1);
 	}
 	p->minimap.scale = p->minimap.width / p->map.cols;
+	p->minimap.bytes_per_pixel = p->minimap.bits_per_pixel / 8;
 }
 
 void	create_raycast_img(t_cub3d *p)
@@ -66,4 +67,5 @@ void	create_raycast_img(t_cub3d *p)
 		exit(1);
 	}
 	p->raycast.scale = p->raycast.width / p->map.cols;
+	p->raycast.bytes_per_pixel = p->raycast.bits_per_pixel / 8;
 }
