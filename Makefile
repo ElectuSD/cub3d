@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/08/29 14:04:50 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/08/29 14:28:12 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,12 +78,18 @@ SRCS					:=				srcs/io/file_utils.c \
 										srcs/player/player_movements.c \
 										srcs/player/player_utils.c
 
-INCS					:=				include/cub3d_parsing.h \
-										include/cub3d_colors.h \
-										include/cub3d_map.h \
+INCS					:=				include/cub3d_colors.h \
 										include/cub3d_player.h \
+										include/cub3d_map.h \
 										include/cub3d_texture.h \
-										include/cub3d_utils.h
+										include/cub3d.h \
+										include/cub3d_raycast.h \
+										include/cub3d_render.h \
+										include/cub3d_utils.h \
+										include/cub3d_parsing.h
+										
+										
+										
 
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 
