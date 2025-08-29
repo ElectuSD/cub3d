@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 14:47:41 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/29 12:38:59 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "cub3d_map.h" 
 # include "cub3d_render.h" 
 
+# define FPS 60
+
 typedef struct s_cub3d
 {
 	bool		is_updated;
@@ -24,6 +26,7 @@ typedef struct s_cub3d
 	t_img		minimap;
 	t_img		raycast;
 	t_map		map;
+	double		frametime;
 }	t_cub3d;
 
 /* PRINTING FUNCTION FOR DEBUG */

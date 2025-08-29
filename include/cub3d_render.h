@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/28 20:04:48 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:03:22 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_line
 	double		dy;
 	int			sy;
 	double		err;
-	double		e2;
+	int			e2;
 	int			color;
 }	t_line;
 
@@ -81,33 +81,8 @@ typedef struct s_img
 	t_dpoint2d	pos;
 }	t_img;
 
-typedef struct s_raycast
-{
-	int			hit_side;
-	double		camerax;
-	t_dpoint2d	v_step;
-	t_dpoint2d	v_ray_dir;
-	t_dpoint2d	v_ray_start;
-	t_ipoint2d	v_map_check;
-	t_dpoint2d	v_ray_lenght_1d;
-	t_dpoint2d	v_ray_unit_step_size;
-}	t_raycast;
-
-typedef struct s_raycast_drawing
-{
-	t_img	texture;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	double	wall_x;
-	double	perp_wall_dist;
-}	t_raycast_drawing;
-
 /* RENDER LOOP FUNCTION */
 int			update_loop(void *params);
-
-/* RAYCAST PROTOTYPE FUNCTIOM */
-void		raycast(t_img *img, t_map *map);
 
 /* CREATE SINGLE IMG*/
 void		create_minimap_img(t_cub3d *p);
@@ -125,17 +100,17 @@ void		draw_ceiling(t_img *img, t_map *map);
 void		draw_pixel(t_img *data, int x, int y, int color);
 void		draw_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2, int color);
 void		draw_rectangle(t_img *img, t_ipoint2d a, t_ipoint2d b, int color);
-void		draw_rectangle_fill(t_img *img, t_ipoint2d a, t_ipoint2d b, int color);
+void		draw_rectangle_fill(t_img *img, t_ipoint2d a, t_ipoint2d b,
+				int color);
 
 /* HOOK EVENTS FUNCTION */
 void		hook_events(t_cub3d *p);
 
-/* DRAWS PIXEL IN IMG*/
-
 /* CREATE STRUCTURES UTILS FUNCTIONS */
+t_rec		new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right);
 t_ipoint2d	new_ipoint2d(int x, int y);
 t_dpoint2d	new_dpoint2d(double x, double y);
-t_rec		new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right);
+t_ipoint2d	convert_dpoint2d_to_ipoint2d(t_dpoint2d dpoint2d);
 
 /* MATH UTILS FUNCTIONS */
 double		min(double a, double b);
