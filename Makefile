@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/08/27 13:25:02 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/08/28 20:20:20 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,31 +41,32 @@ DIR_LIBFT				:=				libft
 LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 
 
-SRCS					:=				srcs/main.c \
-										srcs/free.c \
-										srcs/io/open_file.c \
+SRCS					:=				srcs/io/open_file.c \
 										srcs/io/file_utils.c \
+										srcs/player/player_utils.c \
+										srcs/main.c \
+										srcs/render/create_window.c \
+										srcs/render/math_utils.c \
+										srcs/render/hooks.c \
+										srcs/render/raycast.c \
+										srcs/render/render_loop.c \
+										srcs/render/create_img.c \
+										srcs/render/create_utils.c \
+										srcs/render/draw/draw.c \
+										srcs/render/draw/draw_line.c \
+										srcs/render/draw/draw_floor_ceilling.c \
 										srcs/print/print.c \
-										srcs/parsing/colors_parsing.c \
+										srcs/free.c \
+										srcs/parsing/parsing_utils.c \
+										srcs/parsing/textures_parsing.c \
 										srcs/parsing/colors_utils.c \
 										srcs/parsing/map_parsing.c \
 										srcs/parsing/map_utils.c \
-										srcs/parsing/parsing.c \
-										srcs/parsing/parsing_utils.c \
-										srcs/parsing/textures_parsing.c \
 										srcs/parsing/textures_utils.c \
-										srcs/player/player_utils.c \
-										srcs/render/create_window.c \
-										srcs/render/hooks.c \
-										srcs/render/create_img.c \
-										srcs/render/draw_line.c \
-										srcs/render/draw.c \
-										srcs/render/create_utils.c \
-										srcs/render/math_utils.c \
-										srcs/render/render_loop.c \
-										srcs/render/raycast.c \
-										srcs/color/color.c \
-										srcs/texture/load_textures.c
+										srcs/parsing/parsing.c \
+										srcs/parsing/colors_parsing.c \
+										srcs/texture/load_textures.c \
+										srcs/color/color.c
 
 INCS					:=				include/cub3d_parsing.h \
 										include/cub3d_colors.h \
@@ -77,7 +78,7 @@ INCS					:=				include/cub3d_parsing.h \
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 
 
-CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -g3
+CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -pg -O2
 
 
 .PHONY:			all
