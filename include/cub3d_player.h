@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 13:03:24 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:14:37 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ typedef enum e_directions
 typedef struct s_player
 {
 	t_directions	player_direction;
-	t_point2d		pos;
-	t_point2d		dir;
-	t_point2d		plane;
+	t_dpoint2d		pos;
+	t_dpoint2d		dir;
+	t_dpoint2d		plane;
 }	t_player;
 
 /* UTILS FUNCTIONS */
 bool			is_player(char c);
 char			*get_player_direction_str(t_directions dir);
-t_point2d		init_player_dir(t_directions dir);
+t_dpoint2d		init_player_dir(t_directions dir);
 t_directions	get_player_direction(char c);
 
 #endif

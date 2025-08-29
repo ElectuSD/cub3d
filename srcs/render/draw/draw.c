@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:10:16 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 14:28:49 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:02:32 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 
 void	draw_player(t_img *img, t_map *map)
 {
-	int	scale;
-
-	scale = img->width / map->cols;
-	draw_rectangle_fill(img, new_point2d((map->player.pos.x - 0.25) * scale, (map->player.pos.y - 0.25) * scale),
-		new_point2d((map->player.pos.x + 0.25) * scale, (map->player.pos.y + 0.25) * scale), 0xFF0000);
-	draw_line(img, new_point2d(map->player.pos.x * scale, map->player.pos.y * scale),
-					new_point2d((map->player.pos.x + map->player.dir.x) * scale, (map->player.pos.y + map->player.dir.y) * scale), 0x0000FF);
+	draw_rectangle_fill(img, new_ipoint2d((map->player.pos.x - 0.25) * img->scale, (map->player.pos.y - 0.25) * img->scale),
+		new_ipoint2d((map->player.pos.x + 0.25) * img->scale, (map->player.pos.y + 0.25) * img->scale), 0xFF0000);
+	draw_line(img, new_ipoint2d(map->player.pos.x * img->scale, map->player.pos.y * img->scale),
+					new_ipoint2d((map->player.pos.x + map->player.dir.x) * img->scale, (map->player.pos.y + map->player.dir.y) * img->scale), 0x0000FF);
 }
 
 void	draw_grid(t_img *img, t_map *map)
@@ -31,8 +28,8 @@ void	draw_grid(t_img *img, t_map *map)
 	int			scale;
 	size_t		i;
 	size_t		j;
-	t_point2d	a;
-	t_point2d	b;
+	t_ipoint2d	a;
+	t_ipoint2d	b;
 
 	i = 0;
 	scale = img->width / map->cols;
@@ -43,8 +40,8 @@ void	draw_grid(t_img *img, t_map *map)
 		{
 			if (is_player(map->map[i][j]) || map->map[i][j] == '1' || map->map[i][j] == '0')
 			{
-				a = new_point2d(j * scale, (i * scale));
-				b = new_point2d((j + 1) * scale, ((i + 1) * scale));
+				a = new_ipoint2d(j * scale, (i * scale));
+				b = new_ipoint2d((j + 1) * scale, ((i + 1) * scale));
 				draw_rectangle_fill(img, a, b, 0x696969);
 			}
 			j++;
@@ -58,8 +55,8 @@ void	draw_map(t_img *img, t_map *map)
 	int			scale;
 	size_t		i;
 	size_t		j;
-	t_point2d	a;
-	t_point2d	b;
+	t_ipoint2d	a;
+	t_ipoint2d	b;
 
 	i = 0;
 	scale = img->width / map->cols;
@@ -71,8 +68,8 @@ void	draw_map(t_img *img, t_map *map)
 		{
 			if (map->map[i][j] == '1')
 			{
-				a = new_point2d((j * scale) + 1, (i * scale) + 1);
-				b = new_point2d(((j + 1) * scale) - 1, ((i + 1) * scale) - 1);
+				a = new_ipoint2d((j * scale) + 1, (i * scale) + 1);
+				b = new_ipoint2d(((j + 1) * scale) - 1, ((i + 1) * scale) - 1);
 				draw_rectangle_fill(img, a, b, 0xFFFFFF);
 			}
 			j++;
@@ -81,37 +78,37 @@ void	draw_map(t_img *img, t_map *map)
 	}
 }
 
-void	draw_rectangle_fill(t_img *img, t_point2d a, t_point2d b, int color)
+void	draw_rectangle_fill(t_img *img, t_ipoint2d a, t_ipoint2d b, int color)
 {
 	t_rec		rectangle;
-	t_point2d	buffer;
+	t_ipoint2d	buffer;
 
-	rectangle = new_rectangle(new_point2d(min(a.x, b.x), min(a.y, b.y)),
-			new_point2d(max(a.x, b.x), max(a.y, b.y)));
+	rectangle = new_rectangle(new_ipoint2d(min(a.x, b.x), min(a.y, b.y)),
+			new_ipoint2d(max(a.x, b.x), max(a.y, b.y)));
 	while (rectangle.tl.y <= rectangle.br.y)
 	{
-		buffer = new_point2d(rectangle.br.x, rectangle.tl.y);
+		buffer = new_ipoint2d(rectangle.br.x, rectangle.tl.y);
 		draw_line(img, rectangle.tl, buffer, color);
 		rectangle.tl.y += 1;
 	}
 }
 
-void	draw_rectangle(t_img *img, t_point2d a, t_point2d b, int color)
+void	draw_rectangle(t_img *img, t_ipoint2d a, t_ipoint2d b, int color)
 {
-	t_point2d	buffer;
+	t_ipoint2d	buffer;
 	t_rec		rectangle;
 
-	rectangle = new_rectangle(new_point2d(min(a.x, b.x), min(a.y, b.y)),
-			new_point2d(max(a.x, b.x), max(a.y, b.y)));
-	buffer = new_point2d(rectangle.br.x, rectangle.tl.y);
+	rectangle = new_rectangle(new_ipoint2d(min(a.x, b.x), min(a.y, b.y)),
+			new_ipoint2d(max(a.x, b.x), max(a.y, b.y)));
+	buffer = new_ipoint2d(rectangle.br.x, rectangle.tl.y);
 	draw_line(img, rectangle.tl, buffer, color);
 	draw_line(img, buffer, rectangle.br, color);
-	buffer = new_point2d(rectangle.tl.x, rectangle.br.y);
+	buffer = new_ipoint2d(rectangle.tl.x, rectangle.br.y);
 	draw_line(img, rectangle.br, buffer, color);
 	draw_line(img, buffer, rectangle.tl, color);
 }
 
-void	ft_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	draw_pixel(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 

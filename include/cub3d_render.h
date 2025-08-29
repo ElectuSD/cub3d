@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/26 11:33:05 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:04:48 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,22 @@ enum e_keycodes
 	DOWN					= 65364,
 };
 
-typedef struct s_point3d
+typedef struct s_dpoint2d
 {
 	double	x;
 	double	y;
-	double	z;
-}	t_point3d;
+}	t_dpoint2d;
 
-typedef struct s_point2d
+typedef struct s_ipoint2d
 {
-	double	x;
-	double	y;
-}	t_point2d;
+	int		x;
+	int		y;
+}	t_ipoint2d;
 
 typedef struct s_rec
 {
-	t_point2d	tl;
-	t_point2d	br;
+	t_ipoint2d	tl;
+	t_ipoint2d	br;
 }	t_rec;
 
 typedef struct s_line
@@ -78,8 +77,31 @@ typedef struct s_img
 	int			endian;
 	int			height;
 	int			width;
-	t_point2d	pos;
+	int			scale;
+	t_dpoint2d	pos;
 }	t_img;
+
+typedef struct s_raycast
+{
+	int			hit_side;
+	double		camerax;
+	t_dpoint2d	v_step;
+	t_dpoint2d	v_ray_dir;
+	t_dpoint2d	v_ray_start;
+	t_ipoint2d	v_map_check;
+	t_dpoint2d	v_ray_lenght_1d;
+	t_dpoint2d	v_ray_unit_step_size;
+}	t_raycast;
+
+typedef struct s_raycast_drawing
+{
+	t_img	texture;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	double	perp_wall_dist;
+}	t_raycast_drawing;
 
 /* RENDER LOOP FUNCTION */
 int			update_loop(void *params);
@@ -94,28 +116,26 @@ void		create_raycast_img(t_cub3d *p);
 /* INIT MLX_PTR AND WIN_PTR */
 bool		init_mlx(t_cub3d *p);
 
+/* DRAW FUNCTIONS */
+void		draw_map(t_img *img, t_map *map);
+void		draw_floor(t_img *img, t_map *map);
+void		draw_player(t_img *img, t_map *map);
+void		draw_raycast(t_img *img, t_map *map);
+void		draw_ceiling(t_img *img, t_map *map);
+void		draw_pixel(t_img *data, int x, int y, int color);
+void		draw_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2, int color);
+void		draw_rectangle(t_img *img, t_ipoint2d a, t_ipoint2d b, int color);
+void		draw_rectangle_fill(t_img *img, t_ipoint2d a, t_ipoint2d b, int color);
+
 /* HOOK EVENTS FUNCTION */
 void		hook_events(t_cub3d *p);
 
 /* DRAWS PIXEL IN IMG*/
-void		ft_mlx_pixel_put(t_img *data, int x, int y, int color);
-
-/* DRAW LINE FUNCTION USING BRESENHAM ALGORITHM */
-void		draw_line(t_img *img, t_point2d p1, t_point2d p2, int color);
-
-/* DRAW RECTANGLE USING DRAW LINE FUNCTION */
-void		draw_rectangle(t_img *img, t_point2d a, t_point2d b, int color);
-void		draw_rectangle_fill(t_img *img, t_point2d a, t_point2d b, int c);
-
-/* DRAW MAP USIGN DRAW RECTANGLE */
-void		draw_map(t_img *img, t_map *map);
-
-/* DRAW PLAYER FUNCTION */
-void		draw_player(t_img *img, t_map *map);
 
 /* CREATE STRUCTURES UTILS FUNCTIONS */
-t_point2d	new_point2d(double x, double y);
-t_rec		new_rectangle(t_point2d top_left, t_point2d bottom_right);
+t_ipoint2d	new_ipoint2d(int x, int y);
+t_dpoint2d	new_dpoint2d(double x, double y);
+t_rec		new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right);
 
 /* MATH UTILS FUNCTIONS */
 double		min(double a, double b);

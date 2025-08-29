@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:04:24 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 12:31:04 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:38:38 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	process_player(int key, t_cub3d *p)
 
 	rot_speed = 0.08;
 	move_speed = 0.2;
-	printf("KEYCODE : %d\n", key);
+	//printf("KEYCODE : %d\n", key);
 	if (key == UP || key == W_KEY)
 	{
 		if (is_wall(p->map.map[(int)p->map.player.pos.y][(int)(p->map.player.pos.x + p->map.player.dir.x * move_speed)]))

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:23:51 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/26 11:23:33 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:16:23 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ bool	is_player(char c)
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
-t_point2d		init_player_dir(t_directions dir)
+t_dpoint2d		init_player_dir(t_directions dir)
 {
 	if (dir == NORTH)
-		return (new_point2d(0, -1));
+		return (new_dpoint2d(0, -1));
 	if (dir == SOUTH)
-		return (new_point2d(0, 1));
+		return (new_dpoint2d(0, 1));
 	if (dir == WEST)
-		return (new_point2d(-1, 0));
+		return (new_dpoint2d(-1, 0));
 	if (dir == EAST)
-		return (new_point2d(1, 0));
-	return (new_point2d(0, -1));
+		return (new_dpoint2d(1, 0));
+	return (new_dpoint2d(0, -1));
 }
 
 t_directions	get_player_direction(char c)

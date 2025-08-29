@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 14:24:12 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:08:07 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@ void	create_minimap_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	p->minimap.addr = mlx_get_data_addr(p->minimap.img_ptr, \
-			&p->minimap.bits_per_pixel, &p->minimap.line_lenght, \
-			&p->minimap.endian);
+	p->minimap.addr = \
+		mlx_get_data_addr(p->minimap.img_ptr, &p->minimap.bits_per_pixel, \
+		&p->minimap.line_lenght, &p->minimap.endian);
 	if (!p->minimap.addr)
 	{
 		printf("Failed to get minimap data\n");
 		free_cub3d(p);
 		exit(1);
 	}
+	p->minimap.scale = p->minimap.width / p->map.cols;
 }
+
 void	create_raycast_img(t_cub3d *p)
 {
 	if (p->raycast.img_ptr)
@@ -54,14 +56,14 @@ void	create_raycast_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	p->raycast.addr = mlx_get_data_addr(p->raycast.img_ptr, \
-			&p->raycast.bits_per_pixel, &p->raycast.line_lenght, \
-			&p->raycast.endian);
+	p->raycast.addr = \
+		mlx_get_data_addr(p->raycast.img_ptr, &p->raycast.bits_per_pixel, \
+		&p->raycast.line_lenght, &p->raycast.endian);
 	if (!p->raycast.addr)
 	{
 		printf("Failed to get raycast data\n");
 		free_cub3d(p);
 		exit(1);
 	}
+	p->raycast.scale = p->raycast.width / p->map.cols;
 }
-
