@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:48:17 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 13:48:41 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:56:08 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 
 void	draw_player(t_img *img, t_map *map)
 {
-	draw_rectangle_fill(img,
-		new_ipoint2d((map->player.pos.x - 0.25) * img->scale,
-			(map->player.pos.y - 0.25) * img->scale),
-		new_ipoint2d((map->player.pos.x + 0.25) * img->scale,
-			(map->player.pos.y + 0.25) * img->scale), 0xFF0000);
-	draw_line(img,
-		new_ipoint2d(map->player.pos.x * img->scale,
-			map->player.pos.y * img->scale),
-		new_ipoint2d((map->player.pos.x + map->player.dir.x) * img->scale,
-			(map->player.pos.y + map->player.dir.y) * img->scale), 0x0000FF);
+	int		center_x;
+	int		center_y;
+	double	dir_x;
+	double	dir_y;
+
+	center_x = img->width / 2;
+	center_y = img->height / 2;
+	draw_rectangle_fill(img, new_ipoint2d(center_x - (0.25 * img->scale),
+			center_y - (0.25 * img->scale)), new_ipoint2d(center_x + (0.25
+				* img->scale), center_y + (0.25 * img->scale)), 0xFF0000);
+	dir_x = center_x + (map->player.dir.x * img->scale);
+	dir_y = center_y + (map->player.dir.y * img->scale);
+	draw_line(img, new_ipoint2d(center_x, center_y), new_ipoint2d(dir_x, dir_y),
+		0x0000FF);
 }
