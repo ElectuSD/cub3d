@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/08/29 14:28:12 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/09/01 11:06:57 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ INCS					:=				include/cub3d_colors.h \
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 
 
-CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -pg -O2
+CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -O3
 
 
 .PHONY:			all
