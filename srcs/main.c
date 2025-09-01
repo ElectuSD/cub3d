@@ -6,11 +6,12 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 12:34:32 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:59:00 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <sys/time.h>
 
 #include "mlx.h"
 #include "libft_mem.h"
@@ -47,6 +48,7 @@ int	main(int argc, char **argv)
 	if (!init_mlx(&p))
 		return (1);
 	create_img(&p);
+	gettimeofday(&p.frametime, NULL);
 	mlx_loop(p.mlx_ptr);
 	return (0);
 }

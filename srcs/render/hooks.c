@@ -6,50 +6,52 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:04:24 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 13:53:02 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 11:06:00 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 #include "mlx.h"
 #include "cub3d.h"
 
-static int	process_keys(int key, t_cub3d *p);
-static int	process_player(int key, t_cub3d *p);
+int			key_press(int key, int *keystate);
+int			key_release(int key, int *keystate);
 
 void	hook_events(t_cub3d *p)
 {
+	int	*keystate;
+
+	keystate = p->map.player.keystate;
 	mlx_hook(p->win_ptr, ON_DESTROY, 0L, free_cub3d_and_exit, p);
-	mlx_hook(p->win_ptr, ON_KEYDOWN, 1L << 0, process_player, p);
-	mlx_key_hook(p->win_ptr, process_keys, p);
+	mlx_hook(p->win_ptr, ON_KEYUP, 1L << 1, key_release, keystate);
+	mlx_hook(p->win_ptr, ON_KEYDOWN, 1L << 0, key_press, keystate);
 	mlx_loop_hook(p->mlx_ptr, update_loop, p);
 }
 
-static int	process_player(int key, t_cub3d *p)
+int	key_press(int key, int *keystate)
 {
-	t_player	*player;
-
-	player = &p->map.player;
-	player->move_speed = MOVE_SPEED * 0.01;
-	player->rot_speed = ROT_SPEED * 0.01;
-	if (key == W_KEY)
-		move_up(player->move_speed, &p->map, &player->pos, &player->dir);
-	if (key == S_KEY)
-		move_down(player->move_speed, &p->map, &player->pos, &player->dir);
-	if (key == D_KEY)
-		rotate_right(player->rot_speed, &player->dir, &player->plane);
-	if (key == A_KEY)
-		rotate_left(player->rot_speed, &player->dir, &player->plane);
-	if (key == W_KEY || key == S_KEY || key == D_KEY || key == A_KEY)
-		p->is_updated = false;
+	if (key < MAX_KEYS)
+		keystate[key] = 1;
+	else if (key == ESC_KEY)
+		keystate[0] = 1;
 	return (0);
 }
 
-static int	process_keys(int key, t_cub3d *p)
+int	key_release(int key, int *keystate)
 {
-	if (key == ESC_KEY)
-	{
-		free_cub3d(p);
-		exit (0);
-	}
+	if (key < MAX_KEYS)
+		keystate[key] = 0;
+	else if (key == ESC_KEY)
+		keystate[0] = 0;
+	return (0);
+}
+
+bool	is_key_pressed(int key, int *keystate)
+{
+	if (key < MAX_KEYS)
+		return (keystate[key]);
+	else if (key == ESC_KEY)
+		return (keystate[0]);
 	return (0);
 }

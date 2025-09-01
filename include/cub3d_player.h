@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 14:02:54 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:37:24 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef enum e_directions
 
 typedef struct s_player
 {
+	int				keystate[MAX_KEYS];
 	double			rot_speed;
 	double			move_speed;
 	t_dirs			player_direction;
