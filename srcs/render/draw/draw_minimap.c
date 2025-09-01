@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:48:47 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 13:57:16 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:23:46 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_grid(t_img *img, t_map *map)
 	t_ipoint2d	b;
 
 	i = 0;
-	scale = img->width / map->cols;
+	scale = img->width / map->rows;
 	while (map->map[i])
 	{
 		j = 0;
@@ -50,7 +50,7 @@ void	draw_map(t_img *img, t_map *map)
 	t_ipoint2d	b;
 
 	i = 0;
-	scale = img->width / map->cols;
+	scale = img->width / map->rows;
 	draw_grid(img, map);
 	while (map->map[i])
 	{

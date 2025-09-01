@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:01:31 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 13:03:24 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:37:24 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ typedef struct s_map
 }	t_map;
 
 /* GET MAP ROWS SIZE */
-size_t	get_map_size(char **map);
+size_t				get_map_size(char **map);
 
 #endif

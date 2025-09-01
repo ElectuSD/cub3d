@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 14:32:40 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 11:06:06 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 typedef struct s_cub3d	t_cub3d;
 typedef struct s_map	t_map;
+
+# define MAX_KEYS 256
 
 enum e_keycodes
 {
@@ -33,10 +35,6 @@ enum e_keycodes
 	S_KEY					= 115,
 	W_KEY					= 119,
 	ESC_KEY					= 65307,
-	LEFT					= 65361,
-	UP						= 65362,
-	RIGHT					= 65363,
-	DOWN					= 65364,
 };
 
 typedef struct s_dpoint2d
@@ -106,6 +104,7 @@ void		draw_rectangle_fill(t_img *img, t_ipoint2d a, t_ipoint2d b,
 
 /* HOOK EVENTS FUNCTION */
 void		hook_events(t_cub3d *p);
+bool		is_key_pressed(int key, int *keystate);
 
 /* CREATE STRUCTURES UTILS FUNCTIONS */
 t_rec		new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right);
