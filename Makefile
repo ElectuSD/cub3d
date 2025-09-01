@@ -61,6 +61,7 @@ SRCS					:=				srcs/io/file_utils.c \
 										srcs/render/draw/draw_line.c \
 										srcs/render/draw/draw_player.c \
 										srcs/render/draw/draw_minimap.c \
+										srcs/render/draw/draw_minimap_utils.c \
 										srcs/render/draw/draw_rectangle.c \
 										srcs/render/draw/draw_pixel.c \
 										srcs/color/color.c \
@@ -76,7 +77,10 @@ SRCS					:=				srcs/io/file_utils.c \
 										srcs/parsing/textures_utils.c \
 										srcs/parsing/parsing_utils.c \
 										srcs/player/player_movements.c \
-										srcs/player/player_utils.c
+										srcs/player/player_utils.c \
+										srcs/player/player_strafe.c \
+										srcs/player/player_controls.c \
+										srcs/render/render_utils.c
 
 INCS					:=				include/cub3d_colors.h \
 										include/cub3d_player.h \

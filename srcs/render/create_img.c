@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 14:33:19 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:11:57 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	create_minimap_img(t_cub3d *p)
 		exit(1);
 	}
 	p->minimap.scale = p->minimap.width / p->map.cols;
+	if (p->minimap.scale < 8)
+		p->minimap.scale = 8;
 	p->minimap.bytes_per_pixel = p->minimap.bits_per_pixel / 8;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_render.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 11:06:06 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:25:42 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ enum e_keycodes
 	S_KEY					= 115,
 	W_KEY					= 119,
 	ESC_KEY					= 65307,
+	LEFT_ARROW				= 65361,
+	UP_ARROW				= 65362,
+	RIGHT_ARROW				= 65363,
+	DOWN_ARROW				= 65364,
+	LEFT_SHIFT				= 65505,
 };
 
 typedef struct s_dpoint2d

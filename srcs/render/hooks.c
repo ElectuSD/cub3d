@@ -35,6 +35,12 @@ int	key_press(int key, int *keystate)
 		keystate[key] = 1;
 	else if (key == ESC_KEY)
 		keystate[0] = 1;
+	else if (key == LEFT_ARROW)
+		keystate[1] = 1;
+	else if (key == RIGHT_ARROW)
+		keystate[2] = 1;
+	else if (key == LEFT_SHIFT)
+		keystate[3] = 1;
 	return (0);
 }
 
@@ -44,6 +50,12 @@ int	key_release(int key, int *keystate)
 		keystate[key] = 0;
 	else if (key == ESC_KEY)
 		keystate[0] = 0;
+	else if (key == LEFT_ARROW)
+		keystate[1] = 0;
+	else if (key == RIGHT_ARROW)
+		keystate[2] = 0;
+	else if (key == LEFT_SHIFT)
+		keystate[3] = 0;
 	return (0);
 }
 
@@ -53,5 +65,11 @@ bool	is_key_pressed(int key, int *keystate)
 		return (keystate[key]);
 	else if (key == ESC_KEY)
 		return (keystate[0]);
+	else if (key == LEFT_ARROW)
+		return (keystate[1]);
+	else if (key == RIGHT_ARROW)
+		return (keystate[2]);
+	else if (key == LEFT_SHIFT)
+		return (keystate[3]);
 	return (0);
 }

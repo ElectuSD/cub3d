@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_player.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 10:37:24 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:25:20 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void		rotate_left(double rs, t_dpoint2d *dir, t_dpoint2d *plane);
 void		rotate_right(double rs, t_dpoint2d *dir, t_dpoint2d *plane);
 void		move_up(double ms, t_map *map, t_dpoint2d *pos, t_dpoint2d *dir);
 void		move_down(double ms, t_map *map, t_dpoint2d *pos, t_dpoint2d *dir);
+void		move_left(double ms, t_map *map, t_dpoint2d *pos,
+				t_dpoint2d *plane);
+void		move_right(double ms, t_map *map, t_dpoint2d *pos,
+				t_dpoint2d *plane);
 
 /* UTILS FUNCTIONS */
 bool		is_player(char c);
