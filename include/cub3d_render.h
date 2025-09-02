@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/02 14:36:13 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:06:35 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,35 +88,37 @@ typedef struct s_img
 }	t_img;
 
 /* RENDER LOOP FUNCTION */
-int			update_loop(void *params);
+int					update_loop(void *params);
 
 /* CREATE SINGLE IMG*/
-void		create_minimap_img(t_cub3d *p);
-void		create_raycast_img(t_cub3d *p);
+void				create_minimap_img(t_cub3d *p);
+void				create_raycast_img(t_cub3d *p);
 
 /* INIT MLX_PTR AND WIN_PTR */
-bool		init_mlx(t_cub3d *p);
+bool				init_mlx(t_cub3d *p);
 
 /* DRAW FUNCTIONS */
-void		draw_map(t_img *img, t_map *map);
-void		draw_floor(t_img *img, t_map *map);
-void		draw_player(t_img *img, t_map *map);
-void		draw_raycast(t_img *img, t_map *map);
-void		draw_ceiling(t_img *img, t_map *map);
-void		draw_pixel(t_img *data, int x, int y, int color);
-void		draw_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2, int color);
-void		draw_rectangle(t_img *img, t_ipoint2d a, t_ipoint2d b, int color);
-void		draw_rectangle_fill(t_img *img, t_ipoint2d a, t_ipoint2d b,
-				int color);
+void				draw_pixel(t_img *data, int x, int y, int color);
+void				draw_map(t_img *img, t_map *map);
+void				draw_floor(t_img *img, t_map *map);
+void				draw_player(t_img *img, t_map *map);
+void				draw_raycast(t_img *img, t_map *map);
+void				draw_ceiling(t_img *img, t_map *map);
+void				draw_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2,
+						int color);
+void				draw_rectangle(t_img *img, t_ipoint2d a, t_ipoint2d b,
+						int color);
+void				draw_rectangle_fill(t_img *img, t_ipoint2d a, t_ipoint2d b,
+						int color);
 
 /* HOOK EVENTS FUNCTION */
-void		hook_events(t_cub3d *p);
-bool		is_key_pressed(int key, int *keystate);
+void				hook_events(t_cub3d *p);
+bool				is_key_pressed(int key, int *keystate);
 
 /* CREATE STRUCTURES UTILS FUNCTIONS */
-t_rec		new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right);
-t_ipoint2d	new_ipoint2d(int x, int y);
-t_dpoint2d	new_dpoint2d(double x, double y);
-t_ipoint2d	convert_dpoint2d_to_ipoint2d(t_dpoint2d dpoint2d);
+t_rec				new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right);
+t_ipoint2d			new_ipoint2d(int x, int y);
+t_dpoint2d			new_dpoint2d(double x, double y);
+t_ipoint2d			convert_dpoint2d_to_ipoint2d(t_dpoint2d dpoint2d);
 
 #endif

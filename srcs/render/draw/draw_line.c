@@ -6,48 +6,86 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:28:05 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 14:28:38 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:26:02 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include <stdlib.h>
+
+#include "libft_mem.h"
+#include "libft_utils.h"
 
 #include "cub3d_render.h"
 
 static void	init_line(t_line *line, t_ipoint2d p1, t_ipoint2d p2, int c);
+static void	draw_vertical_line(t_img *img, t_ipoint2d a, int y2, int color);
+static void	draw_horizontal_line(t_img *img, t_ipoint2d a, int x, int color);
 static void	bressenham_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2, int c);
-static void	draw_simple_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2, int c);
 
 void	draw_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2, int color)
 {
-	if (p1.x == p2.x || p1.y == p2.y)
-		draw_simple_line(img, p1, p2, color);
+	if (p1.x == p2.x)
+		draw_vertical_line(img, p1, p2.y, color);
+	else if (p1.y == p2.y)
+		draw_horizontal_line(img, p1, p2.x, color);
 	else
 		bressenham_line(img, p1, p2, color);
 }
 
-static void	draw_simple_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2, int c)
+static void	draw_horizontal_line(t_img *img, t_ipoint2d a, int x, int color)
 {
-	t_ipoint2d	buffer;
+	unsigned int	*start;
+	int				width;
+	int				i;
 
-	if (p1.x == p2.x)
-	{
-		buffer = new_ipoint2d(p1.x, fmin(p1.y, p2.y));
-		while (buffer.y != fmax(p1.y, p2.y))
-		{
-			buffer.y += 1;
-			draw_pixel(img, buffer.x, buffer.y, c);
-		}
-	}
+	if (a.y < 0 || a.y >= img->height)
+		return ;
+	if (a.x > x)
+		ft_swap_int(&a.x, &x);
+	if (a.x < 0)
+		a.x = 0;
+	if (x >= img->width)
+		x = img->width - 1;
+	i = 0;
+	width = x - a.x + 1;
+	if (width <= 0)
+		return ;
+	start = (unsigned int *)(img->addr
+			+ (a.y * img->line_lenght + a.x * img->bytes_per_pixel));
+	if (width > 8 && (color & 0xFF) == ((color >> 8) & 0xFF)
+		&& ((color >> 8) & 0xFF) == ((color >> 16) & 0xFF))
+		ft_memset(start, color & 0xFF, width * 4);
 	else
+		while (i < width)
+			start[i++] = color;
+}
+
+static void	draw_vertical_line(t_img *img, t_ipoint2d a, int y2, int color)
+{
+	unsigned int	*pixel;
+	int				line_step;
+	int				height;
+	int				i;
+
+	if (a.x < 0 || a.x >= img->width)
+		return ;
+	if (a.y > y2)
+		ft_swap_int(&a.y, &y2);
+	if (a.y < 0)
+		a.y = 0;
+	if (y2 >= img->height)
+		y2 = img->height - 1;
+	i = 0;
+	height = y2 - a.y + 1;
+	if (height <= 0)
+		return ;
+	pixel = (unsigned int *)(img->addr
+			+ (a.y * img->line_lenght + a.x * img->bytes_per_pixel));
+	line_step = img->line_lenght / img->bytes_per_pixel;
+	while (i++ < height)
 	{
-		buffer = new_ipoint2d(fmin(p1.x, p2.x), p1.y);
-		while (buffer.x != fmax(p1.x, p2.x))
-		{
-			buffer.x += 1;
-			draw_pixel(img, buffer.x, buffer.y, c);
-		}
+		*pixel = color;
+		pixel += line_step;
 	}
 }
 

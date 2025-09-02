@@ -6,12 +6,16 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:49:45 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 11:25:22 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:42:29 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_map.h>
 #include "cub3d_raycast.h"
+
+static inline void	search_for_wall(char **map, t_raycast *r);
+static inline void	calculate_step_and_ray_lenght_1d(t_raycast *r);
+static inline void	init_raycast(t_img *img, t_map *map, t_raycast *r, int x);
 
 void	draw_raycast(t_img *img, t_map *map)
 {
@@ -23,7 +27,7 @@ void	draw_raycast(t_img *img, t_map *map)
 	while (x < img->width)
 	{
 		init_raycast(img, map, &r, x);
-		if (!is_in_map(map, r.v_ray_start))
+		if (!is_in_map(map, r.raystart))
 			return ;
 		calculate_step_and_ray_lenght_1d(&r);
 		search_for_wall(map->map, &r);
@@ -34,63 +38,54 @@ void	draw_raycast(t_img *img, t_map *map)
 	}
 }
 
-void	init_raycast(t_img *img, t_map *map, t_raycast *r, int x)
+static inline void	init_raycast(t_img *img, t_map *map, t_raycast *r, int x)
 {
 	r->camerax = 2.0 * x / img->width - 1;
-	r->v_ray_start = map->player.pos;
-	r->v_ray_dir = get_ray_dir(map->player.dir, map->player.plane, r->camerax);
-	r->v_ray_unit_step_size = get_ray_unit_step_size(r->v_ray_dir);
-	r->v_map_check = convert_dpoint2d_to_ipoint2d(r->v_ray_start);
+	r->raystart = map->player.pos;
+	r->raydir = get_ray_dir(map->player.dir, map->player.plane, r->camerax);
+	r->rayunitss = get_ray_unit_step_size(r->raydir);
+	r->mapcheck = convert_dpoint2d_to_ipoint2d(r->raystart);
 }
 
-void	calculate_step_and_ray_lenght_1d(t_raycast *r)
+static inline void	calculate_step_and_ray_lenght_1d(t_raycast *r)
 {
-	if (r->v_ray_dir.x < 0)
+	if (r->raydir.x < 0)
 	{
-		r->v_step.x = -1;
-		r->v_ray_lenght_1d.x = set_neg_dir_ray_lenght(r->v_ray_start.x, \
-			r->v_map_check.x, r->v_ray_unit_step_size.x);
+		r->step.x = -1;
+		r->raylenght.x = (r->raystart.x - r->mapcheck.x) * r->rayunitss.x;
 	}
 	else
 	{
-		r->v_step.x = 1;
-		r->v_ray_lenght_1d.x = set_pos_dir_ray_lenght(r->v_ray_start.x, \
-			r->v_map_check.x, r->v_ray_unit_step_size.x);
+		r->step.x = 1;
+		r->raylenght.x = (r->mapcheck.x + 1.0 - r->raystart.x) * r->rayunitss.x;
 	}
-	if (r->v_ray_dir.y < 0)
+	if (r->raydir.y < 0)
 	{
-		r->v_step.y = -1;
-		r->v_ray_lenght_1d.y = set_neg_dir_ray_lenght(r->v_ray_start.y, \
-			r->v_map_check.y, r->v_ray_unit_step_size.y);
+		r->step.y = -1;
+		r->raylenght.y = (r->raystart.y - r->mapcheck.y) * r->rayunitss.y;
 	}
 	else
 	{
-		r->v_step.y = 1;
-		r->v_ray_lenght_1d.y = set_pos_dir_ray_lenght(r->v_ray_start.y, \
-			r->v_map_check.y, r->v_ray_unit_step_size.y);
+		r->step.y = 1;
+		r->raylenght.y = (r->mapcheck.y + 1.0 - r->raystart.y) * r->rayunitss.y;
 	}
 }
 
-void	search_for_wall(char **map, t_raycast *r)
+static inline void	search_for_wall(char **map, t_raycast *r)
 {
-	bool	hit;
-
-	hit = false;
-	while (!hit)
+	while (!has_hit_wall(map, r->mapcheck))
 	{
-		if (r->v_ray_lenght_1d.x < r->v_ray_lenght_1d.y)
+		if (r->raylenght.x < r->raylenght.y)
 		{
 			r->hit_side = 0;
-			r->v_map_check.x += r->v_step.x;
-			r->v_ray_lenght_1d.x += r->v_ray_unit_step_size.x;
+			r->mapcheck.x += r->step.x;
+			r->raylenght.x += r->rayunitss.x;
 		}
 		else
 		{
 			r->hit_side = 1;
-			r->v_map_check.y += r->v_step.y;
-			r->v_ray_lenght_1d.y += r->v_ray_unit_step_size.y;
+			r->mapcheck.y += r->step.y;
+			r->raylenght.y += r->rayunitss.y;
 		}
-		if (has_hit_wall(map, r->v_map_check))
-			hit = true;
 	}
 }

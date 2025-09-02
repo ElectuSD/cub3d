@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:51:45 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/02 13:46:54 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:29:57 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	update_loop(void *params)
 	dt = get_delta_time(p);
 	clear_img(&p->minimap, 0x696969);
 	draw_map(&p->minimap, &p->map);
-	draw_player(&p->minimap, &p->map);
 	draw_floor(&p->raycast, &p->map);
 	draw_ceiling(&p->raycast, &p->map);
+	draw_player(&p->minimap, &p->map);
 	draw_raycast(&p->raycast, &p->map);
 	update_player(p, dt);
 	put_imgs_to_window(p, &p->raycast, &p->minimap);

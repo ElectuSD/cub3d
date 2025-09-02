@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 10:58:33 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 13:55:35 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:00:56 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ typedef struct s_raycast
 {
 	int			hit_side;
 	double		camerax;
-	t_dpoint2d	v_step;
-	t_dpoint2d	v_ray_dir;
-	t_dpoint2d	v_ray_start;
-	t_ipoint2d	v_map_check;
-	t_dpoint2d	v_ray_lenght_1d;
-	t_dpoint2d	v_ray_unit_step_size;
+	t_dpoint2d	step;
+	t_dpoint2d	raydir;
+	t_dpoint2d	raystart;
+	t_ipoint2d	mapcheck;
+	t_dpoint2d	raylenght;
+	t_dpoint2d	rayunitss;
 }	t_raycast;
 
 typedef struct s_raycast_drawing
@@ -43,17 +43,12 @@ typedef struct s_raycast_drawing
 }	t_raycast_drawing;
 
 /* INIT RAYCASTING */
-void		init_raycast(t_img *img, t_map *map, t_raycast *r, int x);
 void		init_raycast_drawing(t_raycast_drawing *rd, t_raycast *r,
 				int x, int height);
 
 /* DRAWS RAYCAST RESULTS ON IMG*/
 void		draw_texture_on_img(t_img *img, t_raycast_drawing *rd,
 				t_raycast *r);
-
-/* RAYCAST CALCULATIONS FUNCTIONS */
-void		search_for_wall(char **map, t_raycast *r);
-void		calculate_step_and_ray_lenght_1d(t_raycast *r);
 
 /* RAYCAST GETTERS */
 int			get_color_on_img(t_img *img, int x, int y);
