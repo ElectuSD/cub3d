@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:00:51 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 13:39:47 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:24:39 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	init_mlx(t_cub3d *p)
 		printf("Failed to init mlx\n");
 		return (false);
 	}
-	p->win_ptr = mlx_new_window(p->mlx_ptr, 1920, 1080, "Cub3d");
+	p->win_ptr = mlx_new_window(p->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 	if (!p->win_ptr)
 	{
 		printf("Failed to create mlx window\n");

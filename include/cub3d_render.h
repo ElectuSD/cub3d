@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 11:06:06 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:36:13 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 
 typedef struct s_cub3d	t_cub3d;
 typedef struct s_map	t_map;
+
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define MAP_WIDTH 300
+# define MAP_HEIGHT 300
+
+# define PLANE_DEFAULT 0.66
 
 # define MAX_KEYS 256
 

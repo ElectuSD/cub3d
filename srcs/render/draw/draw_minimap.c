@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:48:47 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 11:16:15 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:46:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	draw_grid(t_img *img, t_map *map)
 	int			screen_x;
 	int			screen_y;
 
-	offset_x = (map->player.pos.x * img->scale) - (img->width / 2);
-	offset_y = (map->player.pos.y * img->scale) - (img->height / 2);
+	offset_x = (map->player.pos.x * img->scale) - (img->width / 2.0);
+	offset_y = (map->player.pos.y * img->scale) - (img->height / 2.0);
 	i = 0;
 	scale = img->scale;
 	while (map->map[i])
@@ -50,10 +50,10 @@ void	draw_grid(t_img *img, t_map *map)
 						a.x = 0;
 					if (a.y < 0)
 						a.y = 0;
-					if (b.x > img->width)
-						b.x = img->width;
-					if (b.y > img->height)
-						b.y = img->height;
+					if (b.x >= img->width)
+						b.x = img->width - 1;
+					if (b.y >= img->height)
+						b.y = img->height - 1;
 					draw_rectangle_fill(img, a, b, 0x696969);
 				}
 			}
@@ -91,10 +91,10 @@ void	draw_map(t_img *img, t_map *map)
 						a.x = 0;
 					if (a.y < 0)
 						a.y = 0;
-					if (b.x > img->width)
-						b.x = img->width;
-					if (b.y > img->height)
-						b.y = img->height;
+					if (b.x >= img->width)
+						b.x = img->width - 1;
+					if (b.y >= img->height)
+						b.y = img->height - 1;
 					draw_rectangle_fill(img, a, b, 0xFFFFFF);
 				}
 			}
@@ -117,8 +117,8 @@ static t_ipoint2d	map_to_screen_coords(t_img *img, t_map *map, double map_x,
 	int		screen_x;
 	int		screen_y;
 
-	offset_x = (map->player.pos.x * img->scale) - (img->width / 2);
-	offset_y = (map->player.pos.y * img->scale) - (img->height / 2);
+	offset_x = (map->player.pos.x * img->scale) - (img->width / 2.0);
+	offset_y = (map->player.pos.y * img->scale) - (img->height / 2.0);
 	screen_x = (map_x * img->scale) - offset_x;
 	screen_y = (map_y * img->scale) - offset_y;
 	return (new_ipoint2d(screen_x, screen_y));

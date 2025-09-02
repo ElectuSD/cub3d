@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:51:45 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 11:16:00 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:46:54 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	update_loop(void *params)
 
 	p = params;
 	dt = get_delta_time(p);
-	clear_img(&p->minimap, 0x00000000);
+	clear_img(&p->minimap, 0x696969);
 	draw_map(&p->minimap, &p->map);
 	draw_player(&p->minimap, &p->map);
 	draw_floor(&p->raycast, &p->map);
@@ -48,20 +48,9 @@ static void	put_imgs_to_window(t_cub3d *p, t_img *raycast, t_img *minimap)
 
 static void	clear_img(t_img *img, int color)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < img->height)
-	{
-		x = 0;
-		while (x < img->width)
-		{
-			draw_pixel(img, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	draw_rectangle_fill(img,
+		new_ipoint2d(0, 0),
+		new_ipoint2d(MAP_WIDTH, MAP_HEIGHT), color);
 }
 
 static int	update_player(t_cub3d *p, double dt)

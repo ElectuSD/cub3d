@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 10:37:24 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:35:22 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdbool.h>
 # include "cub3d_render.h"
-
-# define PLANE_DEFAULT 0.66
 
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0

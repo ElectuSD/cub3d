@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 11:02:05 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:45:47 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "cub3d_map.h" 
 # include "cub3d_render.h" 
-
-# define FPS 240
 
 typedef struct s_cub3d
 {
