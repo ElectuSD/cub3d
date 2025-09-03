@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/01 16:26:30 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 09:55:37 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,7 @@
 
 static void	clear_img(t_img *img, int color)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < img->height)
-	{
-		x = 0;
-		while (x < img->width)
-		{
-			draw_pixel(img, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	ft_memset(img->addr, color, img->width * img->height * img->bytes_per_pixel);
 }
 
 static double	get_delta_time(t_cub3d *p)
@@ -63,7 +50,6 @@ static bool	player_moved(t_cub3d *p)
 
 void	render_scene(t_cub3d *p)
 {
-	clear_img(&p->raycast, 0x000000);
 	draw_floor(&p->raycast, &p->map);
 	draw_ceiling(&p->raycast, &p->map);
 	draw_raycast(&p->raycast, &p->map);

@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 09:43:16 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 09:50:41 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	create_minimap_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	p->minimap.scale = p->minimap.width / p->map.cols;
-	if (p->minimap.scale < 8)
-		p->minimap.scale = 8;
+	p->minimap.scale = (p->minimap.width / p->map.cols) * 2;
+	if (p->minimap.scale < 16)
+		p->minimap.scale = 16;
 	p->minimap.bytes_per_pixel = p->minimap.bits_per_pixel / 8;
 }
 
