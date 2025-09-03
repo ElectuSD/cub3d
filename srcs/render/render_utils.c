@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/03 10:59:38 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/03 13:59:55 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	render_scene(t_cub3d *p)
 		draw_player(&p->minimap, &p->map);
 		p->is_updated = true;
 	}
+	draw_crosshair(&p->raycast, 0xFF0000);
 	draw_minimap_on_raycast(&p->raycast, &p->minimap);
 }
 

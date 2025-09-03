@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 09:43:05 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 13:57:55 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void				draw_floor(t_img *img, t_map *map);
 void				draw_player(t_img *img, t_map *map);
 void				draw_raycast(t_img *img, t_map *map);
 void				draw_ceiling(t_img *img, t_map *map);
+void				draw_crosshair(t_img *img, int color);
 void				draw_line(t_img *img, t_ipoint2d p1, t_ipoint2d p2,
 						int color);
 void				draw_rectangle(t_img *img, t_ipoint2d a, t_ipoint2d b,
