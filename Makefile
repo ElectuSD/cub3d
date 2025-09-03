@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/09/03 11:14:30 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/09/03 13:59:01 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS					:=				srcs/io/file_utils.c \
 										srcs/render/draw/draw_minimap_utils.c \
 										srcs/render/draw/draw_minimap.c \
 										srcs/render/draw/draw_rectangle.c \
+										srcs/render/draw/draw_crosshair.c \
 										srcs/render/draw/draw_floor_ceilling.c \
 										srcs/render/draw/draw_line.c \
 										srcs/render/draw/draw_pixel.c \
