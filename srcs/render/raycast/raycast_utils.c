@@ -6,12 +6,14 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 11:05:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 10:38:03 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:00:49 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_map.h"
 #include "cub3d_raycast.h"
+
+static bool	is_wall(char c);
 
 bool	is_in_map(t_map *map, t_dpoint2d v_ray_start)
 {
@@ -22,5 +24,10 @@ bool	is_in_map(t_map *map, t_dpoint2d v_ray_start)
 
 bool	has_hit_wall(char **map, t_ipoint2d v_map_check)
 {
-	return (map[v_map_check.y][v_map_check.x] == '1' || map[v_map_check.y][v_map_check.x] == ' ');
+	return (is_wall(map[v_map_check.y][v_map_check.x]));
+}
+
+static bool	is_wall(char c)
+{
+	return (c == '1' || c == ' ');
 }

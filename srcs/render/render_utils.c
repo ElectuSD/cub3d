@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/03 09:55:37 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:59:38 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "mlx.h"
 #include <sys/time.h>
 
-static void	clear_img(t_img *img, int color)
+static void	clear_img(t_img *img, int c)
 {
-	ft_memset(img->addr, color, img->width * img->height * img->bytes_per_pixel);
+	ft_memset(img->addr, c, img->width * img->height * img->bytes_per_pixel);
 }
 
 static double	get_delta_time(t_cub3d *p)

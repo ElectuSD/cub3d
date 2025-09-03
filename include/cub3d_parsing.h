@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/02 12:41:01 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:13:18 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,13 @@ bool		is_color(char *line);
 bool		is_floor(char *line);
 bool		is_ceiling(char *line);
 
+/* PRINTS ERROR UTILS FUNCTIONS */
+bool		is_map_error(t_error error);
+bool		is_missing_error(t_error error);
+bool		is_invalid_color(t_error error);
+bool		is_duplicate_error(t_error error);
+
 /* PRINTS ERROR MESSAGE BASED ON ERROR DURING PARSING */
-void		print_parser_error(t_error error);
+void		print_error_helper(t_error error);
 
 #endif

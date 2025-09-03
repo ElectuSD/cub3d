@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 10:49:54 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:13:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static bool	init_map(t_map *map, char *filename)
 	error = parse(map);
 	if (error)
 	{
-		print_parser_error(error);
+		print_error_helper(error);
 		return (false);
 	}
 	get_map_infos(map);
