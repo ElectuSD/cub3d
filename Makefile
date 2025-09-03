@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/09/03 10:50:49 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/09/03 11:14:30 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,27 +42,29 @@ LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 
 SRCS					:=				srcs/io/file_utils.c \
 										srcs/io/open_file.c \
-										srcs/print/print.c \
+										srcs/print/print_error_utils.c \
+										srcs/print/print_error.c \
+										srcs/render/create_img.c \
+										srcs/render/hooks.c \
 										srcs/render/create_window.c \
+										srcs/render/render_loop.c \
+										srcs/render/render_utils.c \
 										srcs/render/raycast/raycast_setters.c \
 										srcs/render/raycast/raycast_getters.c \
-										srcs/render/raycast/raycast_drawing_utils.c \
 										srcs/render/raycast/raycast.c \
-										srcs/render/raycast/raycast_drawing.c \
 										srcs/render/raycast/raycast_drawing_setters.c \
-										srcs/render/raycast/raycast_drawing_getters.c \
+										srcs/render/raycast/raycast_drawing_utils.c \
 										srcs/render/raycast/raycast_utils.c \
+										srcs/render/raycast/raycast_drawing.c \
+										srcs/render/raycast/raycast_drawing_getters.c \
 										srcs/render/create_utils.c \
-										srcs/render/render_loop.c \
-										srcs/render/hooks.c \
 										srcs/render/math_utils.c \
-										srcs/render/create_img.c \
+										srcs/render/draw/draw_player.c \
+										srcs/render/draw/draw_minimap_utils.c \
+										srcs/render/draw/draw_minimap.c \
+										srcs/render/draw/draw_rectangle.c \
 										srcs/render/draw/draw_floor_ceilling.c \
 										srcs/render/draw/draw_line.c \
-										srcs/render/draw/draw_player.c \
-										srcs/render/draw/draw_minimap.c \
-										srcs/render/draw/draw_minimap_utils.c \
-										srcs/render/draw/draw_rectangle.c \
 										srcs/render/draw/draw_pixel.c \
 										srcs/color/color.c \
 										srcs/texture/load_textures.c \
@@ -71,16 +73,15 @@ SRCS					:=				srcs/io/file_utils.c \
 										srcs/parsing/map_utils.c \
 										srcs/parsing/map_parsing.c \
 										srcs/parsing/parsing.c \
-										srcs/parsing/colors_parsing.c \
 										srcs/parsing/colors_utils.c \
 										srcs/parsing/textures_parsing.c \
+										srcs/parsing/colors_parsing.c \
 										srcs/parsing/textures_utils.c \
 										srcs/parsing/parsing_utils.c \
-										srcs/player/player_movements.c \
 										srcs/player/player_utils.c \
-										srcs/player/player_strafe.c \
 										srcs/player/player_controls.c \
-										srcs/render/render_utils.c
+										srcs/player/player_strafe.c \
+										srcs/player/player_movements.c
 
 INCS					:=				include/cub3d_colors.h \
 										include/cub3d_player.h \
