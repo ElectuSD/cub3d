@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 10:57:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/29 14:36:43 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:21:37 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	init_raycast_drawing(t_raycast_drawing *rd, t_raycast *r, int x,
 			int height)
 {
 	rd->x = x;
-	rd->perp_wall_dist = get_perp_wall_dist(r->v_ray_lenght_1d, \
-		r->v_ray_unit_step_size, r->hit_side);
+	rd->perp_wall_dist = get_perp_wall_dist(r->raylenght, \
+		r->rayunitss, r->hit_side);
 	rd->line_height = height / rd->perp_wall_dist;
 	rd->draw_start = -rd->line_height / 2 + height / 2;
 	if (rd->draw_start < 0)

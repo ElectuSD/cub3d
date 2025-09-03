@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 16:11:57 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 09:43:16 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	create_minimap_img(t_cub3d *p)
 	if (p->minimap.img_ptr)
 		mlx_destroy_image(p->mlx_ptr, p->minimap.img_ptr);
 	p->minimap.img_ptr = NULL;
-	p->minimap.width = 300;
-	p->minimap.height = 300;
-	p->minimap.img_ptr = mlx_new_image(p->mlx_ptr, 300, 300);
+	p->minimap.width = MAP_WIDTH;
+	p->minimap.height = MAP_HEIGHT;
+	p->minimap.img_ptr = mlx_new_image(p->mlx_ptr, MAP_WIDTH, MAP_HEIGHT);
 	if (!p->minimap.img_ptr)
 	{
 		printf("Failed to create minimap\n");
@@ -50,9 +50,9 @@ void	create_raycast_img(t_cub3d *p)
 	if (p->raycast.img_ptr)
 		mlx_destroy_image(p->mlx_ptr, p->raycast.img_ptr);
 	p->raycast.img_ptr = NULL;
-	p->raycast.width = 1920;
-	p->raycast.height = 1080;
-	p->raycast.img_ptr = mlx_new_image(p->mlx_ptr, 1920, 1080);
+	p->raycast.width = WIN_WIDTH;
+	p->raycast.height = WIN_HEIGHT;
+	p->raycast.img_ptr = mlx_new_image(p->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!p->raycast.img_ptr)
 	{
 		printf("Failed to create raycast\n");
@@ -68,6 +68,5 @@ void	create_raycast_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	p->raycast.scale = p->raycast.width / p->map.cols;
 	p->raycast.bytes_per_pixel = p->raycast.bits_per_pixel / 8;
 }

@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:05:04 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 16:25:20 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 09:42:57 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdbool.h>
 # include "cub3d_render.h"
-
-# define PLANE_DEFAULT 0.66
 
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0

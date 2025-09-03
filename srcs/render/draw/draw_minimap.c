@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:48:47 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 15:06:45 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 09:43:59 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_ipoint2d	map_to_screen_coords(t_img *img, t_map *map, double map_x,
 	int		screen_x;
 	int		screen_y;
 
-	offset_x = (map->player.pos.x * img->scale) - (img->width / 2);
-	offset_y = (map->player.pos.y * img->scale) - (img->height / 2);
+	offset_x = (map->player.pos.x * img->scale) - (img->width / 2.0);
+	offset_y = (map->player.pos.y * img->scale) - (img->height / 2.0);
 	screen_x = (map_x * img->scale) - offset_x;
 	screen_y = (map_y * img->scale) - offset_y;
 	return (new_ipoint2d(screen_x, screen_y));

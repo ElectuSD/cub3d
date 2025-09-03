@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 16:25:53 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 09:43:08 by lucnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "cub3d_map.h" 
 # include "cub3d_render.h" 
 # include "cub3d_minimap_utils.h"
-
-# define FPS 240
 
 typedef struct s_cub3d
 {

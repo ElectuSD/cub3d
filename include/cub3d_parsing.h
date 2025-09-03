@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 10:59:22 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:41:01 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ typedef enum e_error
 	INVALID_MAP_LINE,
 	MAP_NOT_CLOSED,
 	INCOMPLETE_MAP,
+	INVALID_COLOR,
+	MISSING_COLOR,
+	MISSING_MAP,
+	MISSING_TEXTURE,
+	MISSING_PLAYER,
 }	t_error;
 
 typedef struct s_parser

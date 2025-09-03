@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:38:22 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 10:59:32 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:41:30 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "libft_mem.h"
 #include "cub3d_map.h"
 #include "cub3d_parsing.h"
+
+static int	check_parsing(t_parser *parser);
 
 int	parse_helper(t_parser *parser)
 {
@@ -65,6 +67,21 @@ int	parse(t_map *map)
 	map->map = convert_list(parser.map_list);
 	if (!map_is_closed(map->map, get_map_size(map->map)))
 		return (MAP_NOT_CLOSED);
+	error = check_parsing(&parser);
+	return (error);
+}
+
+static int	check_parsing(t_parser *parser)
+{
+	if (!parser->c_done || !parser->f_done)
+		return (MISSING_COLOR);
+	if (!parser->n_done || !parser->s_done
+		|| !parser->w_done || !parser->e_done)
+		return (MISSING_TEXTURE);
+	if (!parser->parsing_map_done)
+		return (MISSING_MAP);
+	if (!parser->map_infos.has_player)
+		return (MISSING_PLAYER);
 	return (NO_ERRORS);
 }
 
@@ -88,4 +105,14 @@ void	print_parser_error(t_error error)
 		printf("Error\nMap content is not last\n");
 	if (error == MAP_NOT_CLOSED)
 		printf("Error\nMap not closed by walls\n");
+	if (error == INVALID_COLOR)
+		printf("Error\nInvalid RGB color\n");
+	if (error == MISSING_COLOR)
+		printf("Error\nMissing color in map\n");
+	if (error == MISSING_TEXTURE)
+		printf("Error\nMissing texture in map\n");
+	if (error == MISSING_MAP)
+		printf("Error\nMissing map in map\n");
+	if (error == MISSING_PLAYER)
+		printf("Error\nMissing player in map\n");
 }
