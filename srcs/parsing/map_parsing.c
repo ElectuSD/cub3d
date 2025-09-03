@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/19 10:59:43 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:36:57 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,7 @@ static bool	check_neighbours(size_t x, size_t y, char **map, size_t map_size)
 		ny = y + dy[k];
 		nx = x + dx[k];
 		if (nx < 0 || ny < 0 || ny >= (int)map_size
-			|| nx >= (int)ft_strlen(map[ny])
-			|| char_in_set(map[ny][nx], " \t"))
+			|| nx >= (int)ft_strlen(map[ny]))
 			return (false);
 		k++;
 	}

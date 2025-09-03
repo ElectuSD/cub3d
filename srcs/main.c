@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:29:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 10:59:00 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:49:54 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_mlx(&p))
 		return (1);
-	create_img(&p);
+	if (!create_img(&p))
+		return (1);
 	gettimeofday(&p.frametime, NULL);
 	mlx_loop(p.mlx_ptr);
 	return (0);
@@ -98,7 +99,11 @@ static void	get_map_infos(t_map *map)
 
 static bool	create_img(t_cub3d *p)
 {
-	load_textures(p, &p->map);
+	if (load_textures(p, &p->map))
+	{
+		printf("Error\nFailed to load textures\n");
+		return (false);
+	}
 	create_minimap_img(p);
 	create_raycast_img(p);
 	return (true);

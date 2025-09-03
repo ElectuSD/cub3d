@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 11:45:25 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 16:23:39 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:40:25 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	rotate_left(double rs, t_dpoint2d *dir, t_dpoint2d *plane)
 
 static bool	is_wall(char c)
 {
-	return (c == '1');
+	return (c == '1' || c == ' ');
 }

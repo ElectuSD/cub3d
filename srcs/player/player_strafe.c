@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/01 16:26:30 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:39:55 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static bool	is_wall(char c)
 {
-	return (c == '1');
+	return (c == '1' || c == ' ');
 }
 
 void	move_left(double ms, t_map *map, t_dpoint2d *pos, t_dpoint2d *plane)

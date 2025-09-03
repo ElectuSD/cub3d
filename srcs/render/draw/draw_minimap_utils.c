@@ -6,13 +6,12 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 14:20:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/01 16:09:58 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:41:34 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_map.h"
 #include "cub3d_minimap_utils.h"
-#include <math.h>
 
 bool	is_map_part(char c)
 {
@@ -92,7 +91,7 @@ void	draw_map_row(t_img *img, t_map *map, size_t i)
 	j = 0;
 	while (map->map[i][j])
 	{
-		if (map->map[i][j] == '1')
+		if (map->map[i][j] == '1' || map->map[i][j] == ' ')
 			draw_wall(img, map, i, j);
 		j++;
 	}
