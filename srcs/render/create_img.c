@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 09:50:41 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/09/11 10:57:02 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	create_minimap_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	p->minimap.addr = \
-		mlx_get_data_addr(p->minimap.img_ptr, &p->minimap.bits_per_pixel, \
-		&p->minimap.line_lenght, &p->minimap.endian);
+	p->minimap.addr = mlx_get_data_addr(p->minimap.img_ptr,
+			&p->minimap.bits_per_pixel,
+			&p->minimap.line_lenght, &p->minimap.endian);
 	if (!p->minimap.addr)
 	{
 		printf("Failed to get minimap data\n");
@@ -59,9 +59,9 @@ void	create_raycast_img(t_cub3d *p)
 		free_cub3d(p);
 		exit(1);
 	}
-	p->raycast.addr = \
-		mlx_get_data_addr(p->raycast.img_ptr, &p->raycast.bits_per_pixel, \
-		&p->raycast.line_lenght, &p->raycast.endian);
+	p->raycast.addr = mlx_get_data_addr(p->raycast.img_ptr,
+			&p->raycast.bits_per_pixel,
+			&p->raycast.line_lenght, &p->raycast.endian);
 	if (!p->raycast.addr)
 	{
 		printf("Failed to get raycast data\n");

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 11:05:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 11:00:49 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/09/11 10:57:18 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	is_wall(char c);
 
 bool	is_in_map(t_map *map, t_dpoint2d v_ray_start)
 {
-	return (!(v_ray_start.x < map->cols && v_ray_start.x >= 0 \
+	return (!(v_ray_start.x < map->cols && v_ray_start.x >= 0
 			&& v_ray_start.y < map->rows && v_ray_start.y >= 0
 			&& map->map[(int)v_ray_start.y][(int)v_ray_start.x] == '1'));
 }
