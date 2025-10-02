@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 11:13:18 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:56:14 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int			parse(t_map *map);
 
 /* PARSE MAP */
 int			parse_map(t_parser *parser);
+void		get_map_infos(t_map *map);
 
 /* CHECKS IF MAP IS CLOSED BY WALLS */
 bool		map_is_closed(char **map, size_t map_size);

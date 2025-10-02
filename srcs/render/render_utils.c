@@ -6,13 +6,14 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/03 13:59:55 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:15:02 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft_mem.h"
 #include "mlx.h"
+#include <stdio.h>
 #include <sys/time.h>
 
 static void	clear_img(t_img *img, int c)
@@ -53,12 +54,11 @@ void	render_scene(t_cub3d *p)
 	draw_floor(&p->raycast, &p->map);
 	draw_ceiling(&p->raycast, &p->map);
 	draw_raycast(&p->raycast, &p->map);
-	if (player_moved(p) || !p->is_updated)
+	if (player_moved(p))
 	{
 		clear_img(&p->minimap, 0x000000);
 		draw_map(&p->minimap, &p->map);
 		draw_player(&p->minimap, &p->map);
-		p->is_updated = true;
 	}
 	draw_crosshair(&p->raycast, 0xFF0000);
 	draw_minimap_on_raycast(&p->raycast, &p->minimap);

@@ -6,9 +6,13 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:14:27 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 14:48:36 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:26:06 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
+
+#include "libft_io.h"
 
 #include "mlx.h"
 #include "cub3d.h"
@@ -29,6 +33,7 @@ void	free_cub3d(t_cub3d	*p)
 	free_map(p);
 	destroy_mlx_ptrs(&p->win_ptr, &p->raycast.img_ptr,
 		&p->minimap.img_ptr, &p->mlx_ptr);
+	get_next_line(NULL, 0, GNL_FLUSH);
 }
 
 void	destroy_mlx_ptrs(void **win_ptr, void **raycast_ptr,
@@ -62,14 +67,17 @@ void	free_map(t_cub3d *p)
 	size_t	i;
 
 	i = 0;
-	while (p->map.map[i])
+	while (p->map.map && p->map.map[i])
 	{
 		free(p->map.map[i]);
 		p->map.map[i] = NULL;
 		i++;
 	}
-	free(p->map.map);
-	p->map.map = NULL;
+	if (p->map.map)
+	{
+		free(p->map.map);
+		p->map.map = NULL;
+	}
 	free_textures(p->mlx_ptr, &p->map.textures);
 }
 
@@ -78,21 +86,25 @@ void	free_textures(void *mlx_ptr, t_textures *textures)
 	if (textures->north)
 	{
 		free(textures->north);
-		mlx_destroy_image(mlx_ptr, textures->n.img_ptr);
+		if (textures->n.img_ptr)
+			mlx_destroy_image(mlx_ptr, textures->n.img_ptr);
 	}
 	if (textures->south)
 	{
 		free(textures->south);
-		mlx_destroy_image(mlx_ptr, textures->s.img_ptr);
+		if (textures->s.img_ptr)
+			mlx_destroy_image(mlx_ptr, textures->s.img_ptr);
 	}
 	if (textures->west)
 	{
 		free(textures->west);
-		mlx_destroy_image(mlx_ptr, textures->w.img_ptr);
+		if (textures->w.img_ptr)
+			mlx_destroy_image(mlx_ptr, textures->w.img_ptr);
 	}
 	if (textures->east)
 	{
 		free(textures->east);
-		mlx_destroy_image(mlx_ptr, textures->e.img_ptr);
+		if (textures->e.img_ptr)
+			mlx_destroy_image(mlx_ptr, textures->e.img_ptr);
 	}
 }

@@ -1,7 +1,7 @@
-NO ./texture/lucnavar.xpm
-SO ./texture/images.xpm
-WE ./texture/portalwall.xpm
-EA ./texture/wall.xpm
+NO ./textures/lucnavar.xpm
+SO ./textures/images.xpm
+WE ./textures/portalwall.xpm
+EA ./textures/wall.xpm
  
 F 100,100,100
 C 135,206,235

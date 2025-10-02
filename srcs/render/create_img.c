@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:37:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/11 10:57:02 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:54:21 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,16 @@ void	create_raycast_img(t_cub3d *p)
 		exit(1);
 	}
 	p->raycast.bytes_per_pixel = p->raycast.bits_per_pixel / 8;
+}
+
+bool	create_img(t_cub3d *p)
+{
+	if (load_textures(p, &p->map))
+	{
+		printf("Error\nFailed to load textures\n");
+		return (false);
+	}
+	create_minimap_img(p);
+	create_raycast_img(p);
+	return (true);
 }

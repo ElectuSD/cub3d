@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 11:01:50 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 13:57:55 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:04:44 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,12 @@ typedef struct s_img
 int					update_loop(void *params);
 
 /* CREATE SINGLE IMG*/
+bool				create_img(t_cub3d *p);
 void				create_minimap_img(t_cub3d *p);
 void				create_raycast_img(t_cub3d *p);
+
+/* INIT CUB3D */
+bool				init_cub3d(t_cub3d *p, char *filename);
 
 /* INIT MLX_PTR AND WIN_PTR */
 bool				init_mlx(t_cub3d *p);

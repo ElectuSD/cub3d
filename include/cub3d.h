@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 09:43:08 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:15:08 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 # include "cub3d_map.h" 
 # include "cub3d_render.h" 
-# include "cub3d_minimap_utils.h"
 
 typedef struct s_cub3d
 {
-	bool			is_updated;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_img			minimap;

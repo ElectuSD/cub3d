@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 10:36:57 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:56:12 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "libft_io.h"
 #include "libft_str.h"
 #include "libft_lst.h"
-#include "libft_utils.h"
 
 #include "cub3d_player.h"
 #include "cub3d_parsing.h"
@@ -96,6 +95,31 @@ bool	map_is_closed(char **map, size_t map_size)
 		y++;
 	}
 	return (true);
+}
+
+void	get_map_infos(t_map *map)
+{
+	char	c;
+	size_t	i;
+	size_t	line_lenght;
+
+	map->rows = 0;
+	map->cols = 0;
+	while (map->map[map->rows])
+	{
+		i = 0;
+		while (map->map[map->rows][i])
+		{
+			c = map->map[map->rows][i];
+			if (is_player(c))
+				set_player_infos(&map->player, c, i, map->rows);
+			i++;
+		}
+		line_lenght = ft_strlen(map->map[map->rows]);
+		if (line_lenght > map->cols)
+			map->cols = line_lenght;
+		map->rows++;
+	}
 }
 
 static bool	check_neighbours(size_t x, size_t y, char **map, size_t map_size)
