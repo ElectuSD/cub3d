@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 04:00:02 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 17:24:59 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 18:14:52 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	render_loop(t_cub3d *p)
 	draw_floor(&p->raycast, p->map.floor.color);
 	draw_ceiling(&p->raycast, p->map.ceiling.color);
 	draw_raycast(&p->raycast, &p->map);
-	draw_crosshair(&p->raycast, 0xFF0000);
+	draw_crosshair(&p->raycast, CROSSHAIR_COLOR);
 	draw_minimap(&p->minimap, &p->raycast, &p->map);
 	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->raycast.img_ptr, 0, 0);
 	if (is_key_pressed(ESC_KEY, p->map.player.keystate))

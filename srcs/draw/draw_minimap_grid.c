@@ -6,10 +6,11 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 02:16:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 02:52:01 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 18:21:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "cub3d_map.h"
 #include "cub3d_draw.h"
 
@@ -22,9 +23,10 @@ void	draw_grid(t_img *img, t_map *map)
 	size_t	i;
 	double	offsets[2];
 
+	i = 0;
+	printf("Scale : %d\n", img->scale);
 	offsets[0] = (map->player.pos.x * img->scale) - (img->width / 2.0);
 	offsets[1] = (map->player.pos.y * img->scale) - (img->height / 2.0);
-	i = 0;
 	while (map->map[i])
 	{
 		draw_grid_row(img, map, i, offsets);

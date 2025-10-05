@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:54:05 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:58:08 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 18:14:52 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@
 
 # define MAP_WIDTH 300
 # define MAP_HEIGHT 300
+
 # define MINIMAP_CELL_COLOR 0x000000
 # define MINIMAP_GRID_COLOR 0x696969
 # define MINIMAP_WALL_COLOR 0xFFFFFF
+
+# define CROSSHAIR_COLOR 0xFF0000
 
 typedef struct s_map	t_map;
 typedef struct s_cub3d	t_cub3d;
