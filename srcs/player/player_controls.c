@@ -6,12 +6,12 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/01 16:26:30 by lucnavar         ###   ########.fr       */
+/*   Updated: 2025/10/05 02:58:06 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_player.h"
 #include "cub3d.h"
+#include "cub3d_player.h"
 
 int	update_player(t_cub3d *p, double dt)
 {

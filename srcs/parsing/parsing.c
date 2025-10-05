@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:38:22 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/02 16:28:29 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 03:46:52 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	check_parsing(t_parser *parser)
 		return (MISSING_TEXTURE);
 	if (!parser->parsing_map_done)
 		return (MISSING_MAP);
-	if (!parser->map_infos.has_player)
+	if (!parser->has_player)
 		return (MISSING_PLAYER);
 	return (NO_ERRORS);
 }

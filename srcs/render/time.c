@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_render.h                                     :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 04:01:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:05:57 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 04:00:29 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 04:00:51 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_RENDER_H
-# define CUB3D_RENDER_H
+#include <sys/time.h>
 
-typedef struct s_img	t_img;
-typedef struct s_cub3d	t_cub3d;
+#include "cub3d.h"
 
-/* GAME LOOP */
-int		render_loop(t_cub3d *p);
+double	get_delta_time(t_cub3d *p)
+{
+	double			delta;
+	struct timeval	cur_time;
 
-/* GET DELTA TIME */
-double	get_delta_time(t_cub3d *p);
-
-/* CLEARS IMG USING MEMSET */
-void	clear_img(t_img *img, int c);
-
-#endif // !CUB3D_RENDER_H
+	gettimeofday(&cur_time, NULL);
+	delta = (cur_time.tv_sec - p->frametime.tv_sec) + (cur_time.tv_usec
+			- p->frametime.tv_usec) / 1000000.0;
+	p->frametime = cur_time;
+	return (delta);
+}

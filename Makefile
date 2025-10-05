@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/10/02 16:06:37 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/10/05 04:08:43 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,67 +40,71 @@ LIBFT_NAME				:=				libft.a
 DIR_LIBFT				:=				libft
 LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 
-SRCS					:=				srcs/io/file_utils.c \
-										srcs/io/open_file.c \
-										srcs/print/print_error_utils.c \
-										srcs/print/print_error.c \
-										srcs/render/create_img.c \
-										srcs/render/hooks.c \
-										srcs/render/create_window.c \
-										srcs/render/render_loop.c \
-										srcs/render/render_utils.c \
-										srcs/render/raycast/raycast_setters.c \
-										srcs/render/raycast/raycast_getters.c \
-										srcs/render/raycast/raycast.c \
-										srcs/render/raycast/raycast_drawing_setters.c \
-										srcs/render/raycast/raycast_drawing_utils.c \
-										srcs/render/raycast/raycast_utils.c \
-										srcs/render/raycast/raycast_drawing.c \
-										srcs/render/raycast/raycast_drawing_getters.c \
-										srcs/render/create_utils.c \
-										srcs/render/math_utils.c \
-										srcs/render/draw/draw_player.c \
-										srcs/render/draw/draw_minimap_utils.c \
-										srcs/render/draw/draw_minimap.c \
-										srcs/render/draw/draw_rectangle.c \
-										srcs/render/draw/draw_crosshair.c \
-										srcs/render/draw/draw_floor_ceilling.c \
-										srcs/render/draw/draw_line.c \
-										srcs/render/draw/draw_pixel.c \
-										srcs/color/color.c \
-										srcs/texture/load_textures.c \
+SRCS					:=				srcs/main.c \
+										srcs/init.c \
 										srcs/free.c \
-										srcs/main.c \
-										srcs/parsing/map_utils.c \
-										srcs/parsing/map_parsing.c \
-										srcs/parsing/parsing.c \
-										srcs/parsing/colors_utils.c \
-										srcs/parsing/textures_parsing.c \
-										srcs/parsing/colors_parsing.c \
-										srcs/parsing/textures_utils.c \
-										srcs/parsing/parsing_utils.c \
+										srcs/color/color.c \
+										srcs/render/time.c \
+										srcs/render/utils.c \
+										srcs/render/game_loop.c \
 										srcs/player/player_utils.c \
 										srcs/player/player_controls.c \
+										srcs/player/player_movements.c \
 										srcs/player/player_strafe.c \
-										srcs/player/player_movements.c
+										srcs/raycast/raycast_drawing_setters.c \
+										srcs/raycast/raycast.c \
+										srcs/raycast/raycast_getters.c \
+										srcs/raycast/raycast_drawing_utils.c \
+										srcs/raycast/raycast_setters.c \
+										srcs/raycast/raycast_drawing_getters.c \
+										srcs/raycast/raycast_drawing.c \
+										srcs/print/print_error.c \
+										srcs/print/print_error_utils.c \
+										srcs/textures/load_textures.c \
+										srcs/parsing/parsing_utils.c \
+										srcs/parsing/textures_parsing.c \
+										srcs/parsing/colors_utils.c \
+										srcs/parsing/map_parsing.c \
+										srcs/parsing/map_utils.c \
+										srcs/parsing/textures_utils.c \
+										srcs/parsing/parsing.c \
+										srcs/parsing/colors_parsing.c \
+										srcs/input/hooks.c \
+										srcs/draw/draw_player.c \
+										srcs/draw/draw_minimap_grid.c \
+										srcs/draw/draw_line.c \
+										srcs/draw/create_img.c \
+										srcs/draw/draw_pixel.c \
+										srcs/draw/draw_minimap.c \
+										srcs/draw/draw_crosshair.c \
+										srcs/draw/draw_rectangle.c \
+										srcs/draw/draw_floor_ceilling.c \
+										srcs/maths/new_dpoint2d.c \
+										srcs/maths/new_rectangle.c \
+										srcs/maths/convert_d2d_to_i2d.c \
+										srcs/maths/new_ipoint2d.c \
+										srcs/map/map_check.c \
+										srcs/map/map_init.c \
+										srcs/map/map_check_wall.c
 
-INCS					:=				include/cub3d_colors.h \
-										include/cub3d_player.h \
+INCS					:=				include/cub3d.h \
+										include/cub3d_colors.h \
+										include/cub3d_draw.h \
+										include/cub3d_input.h \
 										include/cub3d_map.h \
-										include/cub3d_texture.h \
-										include/cub3d.h \
+										include/cub3d_maths.h \
+										include/cub3d_parsing.h \
+										include/cub3d_player.h \
 										include/cub3d_raycast.h \
-										include/cub3d_render.h \
-										include/cub3d_utils.h \
-										include/cub3d_parsing.h
-										
+										include/cub3d_textures.h \
+										include/cub3d_render.h
 										
 										
 
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 
 
-CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -g3
+CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -O3
 
 
 .PHONY:			all

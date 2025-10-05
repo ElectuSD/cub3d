@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_render.h                                     :+:      :+:    :+:   */
+/*   map_check_wall.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 04:01:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:05:57 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 03:16:23 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 03:17:45 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_RENDER_H
-# define CUB3D_RENDER_H
+#include <stdbool.h>
 
-typedef struct s_img	t_img;
-typedef struct s_cub3d	t_cub3d;
+#include "cub3d_maths.h"
 
-/* GAME LOOP */
-int		render_loop(t_cub3d *p);
+bool	is_wall(char c)
+{
+	return (c == '1' || c == ' ');
+}
 
-/* GET DELTA TIME */
-double	get_delta_time(t_cub3d *p);
-
-/* CLEARS IMG USING MEMSET */
-void	clear_img(t_img *img, int c);
-
-#endif // !CUB3D_RENDER_H
+bool	has_hit_wall(char **map, t_ipoint2d v_map_check)
+{
+	return (is_wall(map[v_map_check.y][v_map_check.x]));
+}

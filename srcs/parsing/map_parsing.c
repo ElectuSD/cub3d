@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/02 15:56:12 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 04:08:59 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	parse_map(t_parser *parser)
 			free_parser_line(&parser->line);
 			return (NO_ERRORS);
 		}
-		if (!is_valid_map_line(&parser->map_infos, line))
+		if (!is_valid_map_line(parser, line))
 			return (INVALID_MAP_LINE);
 		new = ft_lstnew(line);
 		if (!new)
@@ -95,31 +95,6 @@ bool	map_is_closed(char **map, size_t map_size)
 		y++;
 	}
 	return (true);
-}
-
-void	get_map_infos(t_map *map)
-{
-	char	c;
-	size_t	i;
-	size_t	line_lenght;
-
-	map->rows = 0;
-	map->cols = 0;
-	while (map->map[map->rows])
-	{
-		i = 0;
-		while (map->map[map->rows][i])
-		{
-			c = map->map[map->rows][i];
-			if (is_player(c))
-				set_player_infos(&map->player, c, i, map->rows);
-			i++;
-		}
-		line_lenght = ft_strlen(map->map[map->rows]);
-		if (line_lenght > map->cols)
-			map->cols = line_lenght;
-		map->rows++;
-	}
 }
 
 static bool	check_neighbours(size_t x, size_t y, char **map, size_t map_size)

@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_raycast.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 10:58:33 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/02 20:00:56 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 02:08:05 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 03:25:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_RAYCAST_H
-# define CUB3D_RAYCAST_H 
+# define CUB3D_RAYCAST_H
 
-# include "cub3d_render.h"
+# include <stdbool.h>
+
+# include "cub3d_draw.h"
+# include "cub3d_maths.h"
 
 typedef struct s_raycast
 {
@@ -66,9 +69,7 @@ double		set_pos_dir_ray_lenght(double ray_start, double map_check,
 double		set_neg_dir_ray_lenght(double ray_start, double map_check,
 				double ray_unit_step_size);
 
-/* CHECKS MAP BOUNDARIES */
-bool		is_in_map(t_map *map, t_dpoint2d v_ray_start);
+/* CHECK HIT SIDE */
 bool		is_east_or_north(int side, t_dpoint2d v_ray_dir);
-bool		has_hit_wall(char **map, t_ipoint2d v_map_check);
 
-#endif
+#endif // !CUB3D_RAYCAST_H

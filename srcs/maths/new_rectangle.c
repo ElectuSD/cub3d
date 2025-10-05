@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_render.h                                     :+:      :+:    :+:   */
+/*   new_rectangle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 04:01:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:05:57 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 02:48:22 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 02:49:18 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_RENDER_H
-# define CUB3D_RENDER_H
+#include "cub3d_maths.h"
 
-typedef struct s_img	t_img;
-typedef struct s_cub3d	t_cub3d;
+t_rec	new_rectangle(t_ipoint2d top_left, t_ipoint2d bottom_right)
+{
+	t_rec	new_rectangle;
 
-/* GAME LOOP */
-int		render_loop(t_cub3d *p);
-
-/* GET DELTA TIME */
-double	get_delta_time(t_cub3d *p);
-
-/* CLEARS IMG USING MEMSET */
-void	clear_img(t_img *img, int c);
-
-#endif // !CUB3D_RENDER_H
+	new_rectangle.tl = top_left;
+	new_rectangle.br = bottom_right;
+	return (new_rectangle);
+}

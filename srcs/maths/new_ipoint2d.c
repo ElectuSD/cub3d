@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_render.h                                     :+:      :+:    :+:   */
+/*   new_ipoint2d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 04:01:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:05:57 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 02:48:05 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 02:48:17 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_RENDER_H
-# define CUB3D_RENDER_H
+#include "cub3d_maths.h"
 
-typedef struct s_img	t_img;
-typedef struct s_cub3d	t_cub3d;
+t_ipoint2d	new_ipoint2d(int x, int y)
+{
+	t_ipoint2d	new_point;
 
-/* GAME LOOP */
-int		render_loop(t_cub3d *p);
-
-/* GET DELTA TIME */
-double	get_delta_time(t_cub3d *p);
-
-/* CLEARS IMG USING MEMSET */
-void	clear_img(t_img *img, int c);
-
-#endif // !CUB3D_RENDER_H
+	new_point.x = x;
+	new_point.y = y;
+	return (new_point);
+}

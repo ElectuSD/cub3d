@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_floor_ceilling.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/28 18:52:38 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 02:13:13 by fdeleard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d_draw.h"
+#include "cub3d_maths.h"
+
+void	draw_floor(t_img *img, int color)
+{
+	t_ipoint2d	mid_left;
+	t_ipoint2d	bottom_right;
+
+	mid_left = new_ipoint2d(0, img->height / 2.0);
+	bottom_right = new_ipoint2d(img->width, img->height);
+	draw_rectangle_fill(img, mid_left, bottom_right, color);
+}
+
+void	draw_ceiling(t_img *img, int color)
+{
+	t_ipoint2d	top_left;
+	t_ipoint2d	mid_right;
+
+	top_left = new_ipoint2d(0, 0);
+	mid_right = new_ipoint2d(img->width, img->height / 2.0);
+	draw_rectangle_fill(img, top_left, mid_right, color);
+}

@@ -3,26 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/27 12:35:56 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/27 12:36:25 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 02:07:22 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 02:07:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_colors.h"
 
-int	color_to_int(t_rgb color)
-{
-	return ((0xFF << 24) | (color.r << 16) | (color.g << 8) | color.b);
-}
-
-t_rgb	int_to_color(int color)
+t_rgb	create_color(unsigned char r, unsigned char g, unsigned char b)
 {
 	t_rgb	new_color;
 
-	new_color.r = (color >> 16) & 0xFF;
-	new_color.g = (color >> 8) & 0xFF;
-	new_color.b = color & 0xFF;
+	new_color.r = r;
+	new_color.g = g;
+	new_color.b = b;
 	return (new_color);
 }

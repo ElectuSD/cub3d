@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:09:24 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/02 11:24:02 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 01:36:12 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "cub3d_colors.h"
 #include "cub3d_parsing.h"
 
-static bool	cub3d_atoi(int *nb, const char *nptr);
+static bool	cub3d_atoi(unsigned char *nb, const char *nptr);
 static int	set_color_helper(t_parser *parser, char *identifier, t_rgb *color);
 static int	set_color_map(bool *has_parsed, t_rgb *map_color, t_rgb *new_color);
 
@@ -41,8 +41,9 @@ int	parse_colors(t_parser *parser)
 	return (ret);
 }
 
-static bool	cub3d_atoi(int *nb, const char *nptr)
+static bool	cub3d_atoi(unsigned char *nb, const char *nptr)
 {
+	int		prev_nb;
 	size_t	i;
 
 	i = 0;
@@ -59,7 +60,10 @@ static bool	cub3d_atoi(int *nb, const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
+		prev_nb = *nb;
 		*nb = (*nb * 10) + nptr[i] - '0';
+		if (prev_nb > *nb)
+			return (false);
 		i++;
 	}
 	return (nptr[i] <= '0' || nptr[i] >= '9' || nptr[i] == '0');

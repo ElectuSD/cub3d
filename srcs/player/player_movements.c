@@ -6,15 +6,13 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 11:45:25 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 10:40:25 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 03:27:09 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "cub3d_map.h"
-
-static bool	is_wall(char c);
 
 void	move_up(double ms, t_map *map, t_dpoint2d *pos, t_dpoint2d *dir)
 {
@@ -56,9 +54,4 @@ void	rotate_left(double rs, t_dpoint2d *dir, t_dpoint2d *plane)
 	dir->y = old_dir_x * sin(-rs) + dir->y * cos(-rs);
 	plane->x = old_plane_x * cos(-rs) - plane->y * sin(-rs);
 	plane->y = old_plane_x * sin(-rs) + plane->y * cos(-rs);
-}
-
-static bool	is_wall(char c)
-{
-	return (c == '1' || c == ' ');
 }

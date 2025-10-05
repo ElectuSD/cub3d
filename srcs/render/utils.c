@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_render.h                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 04:01:19 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:05:57 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 04:02:12 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 04:02:38 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_RENDER_H
-# define CUB3D_RENDER_H
+#include "libft_mem.h"
+#include "cub3d_draw.h"
 
-typedef struct s_img	t_img;
-typedef struct s_cub3d	t_cub3d;
-
-/* GAME LOOP */
-int		render_loop(t_cub3d *p);
-
-/* GET DELTA TIME */
-double	get_delta_time(t_cub3d *p);
-
-/* CLEARS IMG USING MEMSET */
-void	clear_img(t_img *img, int c);
-
-#endif // !CUB3D_RENDER_H
+void	clear_img(t_img *img, int c)
+{
+	ft_memset(img->addr, c, img->width * img->height * img->bytes_per_pixel);
+}

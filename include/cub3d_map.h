@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 11:01:31 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/01 10:37:24 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 01:55:18 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 03:55:22 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 # define CUB3D_MAP_H
 
 # include <stdlib.h>
-# include <stdbool.h>
 
 # include "cub3d_colors.h"
 # include "cub3d_player.h"
-# include "cub3d_texture.h"
-
-typedef struct s_map_info
-{
-	bool	has_player;
-	bool	is_closed;
-}	t_map_info;
+# include "cub3d_textures.h"
 
 typedef struct s_map
 {
@@ -38,7 +31,14 @@ typedef struct s_map
 	t_textures		textures;
 }	t_map;
 
-/* GET MAP ROWS SIZE */
-size_t				get_map_size(char **map);
+/* INIT MAP */
+void	get_map_infos(t_map *map);
 
-#endif
+/* MAP CHECKING FUNCTIONS */
+bool	is_in_map(t_map *map, t_dpoint2d v_ray_start);
+
+/* MAP WALL CHECKING FUNCTIONS */
+bool	is_wall(char c);
+bool	has_hit_wall(char **map, t_ipoint2d v_map_check);
+
+#endif // !CUB3D_MAP_H

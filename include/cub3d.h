@@ -3,18 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/21 10:30:49 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/02 16:15:08 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 01:52:34 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 03:54:49 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "cub3d_map.h" 
-# include "cub3d_render.h" 
+# include "cub3d_map.h"
+# include "cub3d_draw.h"
+
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 typedef struct s_cub3d
 {
@@ -26,21 +29,16 @@ typedef struct s_cub3d
 	struct timeval	frametime;
 }	t_cub3d;
 
-/* PRINTING FUNCTION FOR DEBUG */
-void	print_map_infos(t_map *map);
+/* INIT CUB3D */
+bool	init_cub3d(t_cub3d *p, char *filename);
+bool	init_mlx(t_cub3d *p);
 
 /* FREE FUNCTIONS */
-int		free_cub3d_and_exit(void *params);
-void	free_cub3d(t_cub3d	*p);
 void	free_map(t_cub3d *p);
+void	free_cub3d(t_cub3d	*p);
+int		free_cub3d_and_exit(void *params);
 void	free_textures(void *mlx_ptr, t_textures *textures);
 void	destroy_mlx_ptrs(void **win_ptr, void **raycast_ptr,
 			void **minimap_ptr, void **mlx_ptr);
-
-/* RENDER FUNCTIONS */
-void	render_scene(t_cub3d *p);
-int		update_player(t_cub3d *p, double dt);
-void	draw_minimap_on_raycast(t_img *raycast, t_img *minimap);
-int		render_main_loop(t_cub3d *p);
 
 #endif

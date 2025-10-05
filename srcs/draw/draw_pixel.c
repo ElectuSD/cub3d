@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_colors.h                                     :+:      :+:    :+:   */
+/*   draw_pixel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 01:53:32 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 01:53:42 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/08/29 13:49:17 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 02:52:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_COLORS_H
-# define CUB3D_COLORS_H
+#include "cub3d_draw.h"
 
-typedef union e_rgb
+void	draw_pixel(t_img *data, int x, int y, int color)
 {
-	struct
-	{
-		unsigned char	r;
-		unsigned char	g;
-		unsigned char	b;
-		unsigned char	a;
-	};
-	int					color;
-}	t_rgb;
+	unsigned int	*pixel;
 
-#endif
+	pixel = (unsigned int *)(data->addr
+			+ (y * data->line_lenght + x * data->bytes_per_pixel));
+	*pixel = color;
+}

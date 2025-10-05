@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_parsing.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 13:29:53 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/02 15:56:14 by fdeleard         ###   ########.fr       */
+/*   Created: 2025/10/05 01:57:17 by fdeleard          #+#    #+#             */
+/*   Updated: 2025/10/05 03:46:40 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_PARSING_H
 # define CUB3D_PARSING_H
 
-# include "cub3d_map.h"
+#include "cub3d_map.h"
 
 # define DEFAULT_TRIM " \t\n"
 
-typedef struct s_list		t_list;
+typedef struct s_list	t_list;
 
 typedef enum e_error
 {
@@ -47,7 +47,8 @@ typedef struct s_parser
 	char		*line;
 	t_map		*map;
 	t_list		*map_list;
-	t_map_info	map_infos;
+	bool		has_player;
+	bool		is_closed;
 	bool		c_done;
 	bool		f_done;
 	bool		n_done;
@@ -61,30 +62,26 @@ typedef struct s_parser
 /* MAIN PARSING FUNCTION */
 int			parse(t_map *map);
 
-/* PARSE MAP */
+/* PARSE ALL MAP CATEGORIES*/
 int			parse_map(t_parser *parser);
-void		get_map_infos(t_map *map);
+int			parse_colors(t_parser *parser);
+int			parse_textures(t_parser *parser);
 
 /* CHECKS IF MAP IS CLOSED BY WALLS */
 bool		map_is_closed(char **map, size_t map_size);
-
-/* PARSE CEILING AND FLOOR RGB COLORS */
-int			parse_colors(t_parser *parser);
-
-/* PARSE TEXTURES PATHS */
-int			parse_textures(t_parser *parser);
 
 /* UTILS FUNCTIONS FOR PARSING */
 int			get_next_non_empty_line(char **line, int fd);
 void		free_parser_line(char **line);
 char		*trim_end_of_line(char *line);
 char		*skip_leading_chars(char *line);
+size_t		get_map_size(char **map);
 
 /* CONVERT MAP LIST INTO MAP CHAR ** */
 char		**convert_list(t_list *map_list);
 
 /* LINE CHARACTER VALIDATION FUNCTION */
-bool		is_valid_map_line(t_map_info *infos, char *line);
+bool		is_valid_map_line(t_parser *infos, char *line);
 
 /* CHECKS IF LINE IS TEXTURE */
 bool		is_texture(char *line);
@@ -107,4 +104,4 @@ bool		is_duplicate_error(t_error error);
 /* PRINTS ERROR MESSAGE BASED ON ERROR DURING PARSING */
 void		print_error_helper(t_error error);
 
-#endif
+#endif // !CUB3D_PARSING_H

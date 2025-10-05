@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:25:10 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/19 10:36:44 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 03:43:12 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	is_valid_map_dir(char c);
 static bool	is_valid_map_char(char c);
 static bool	is_valid_map_wall(char c);
 
-bool	is_valid_map_line(t_map_info *infos, char *line)
+bool	is_valid_map_line(t_parser *infos, char *line)
 {
 	while (line && *line)
 	{

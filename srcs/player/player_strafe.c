@@ -6,17 +6,11 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/09/03 10:39:55 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 03:27:21 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_player.h"
 #include "cub3d_map.h"
-
-static bool	is_wall(char c)
-{
-	return (c == '1' || c == ' ');
-}
 
 void	move_left(double ms, t_map *map, t_dpoint2d *pos, t_dpoint2d *plane)
 {
