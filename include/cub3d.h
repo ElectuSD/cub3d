@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:52:34 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:54:49 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 17:53:11 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct s_cub3d
 /* INIT CUB3D */
 bool	init_cub3d(t_cub3d *p, char *filename);
 bool	init_mlx(t_cub3d *p);
+
+/* CHECKS FILE EXTENSION */
+bool	is_valid_filename(char *filename);
 
 /* FREE FUNCTIONS */
 void	free_map(t_cub3d *p);
