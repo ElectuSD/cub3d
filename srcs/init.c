@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 03:52:32 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:56:05 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 17:31:09 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ bool	init_mlx(t_cub3d *p)
 		printf("Failed to init mlx\n");
 		return (false);
 	}
+	return (true);
+}
+
+bool	init_mlx_window(t_cub3d *p)
+{
 	p->win_ptr = mlx_new_window(p->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 	if (!p->win_ptr)
 	{
 		printf("Failed to create mlx window\n");
 		return (false);
 	}
-	hook_events(p);
 	return (true);
 }
 
@@ -58,10 +62,9 @@ bool	init_cub3d(t_cub3d *p, char *filename)
 		return (false);
 	}
 	get_map_infos(&p->map);
-	if (!init_mlx(p))
+	if (!init_mlx(p) || !create_img(p) || !init_mlx_window(p))
 		return (false);
-	if (!create_img(p))
-		return (false);
+	hook_events(p);
 	return (error == NO_ERRORS);
 }
 

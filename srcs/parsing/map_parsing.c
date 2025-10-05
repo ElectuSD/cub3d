@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:08:59 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 17:21:59 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 #include "cub3d_player.h"
 #include "cub3d_parsing.h"
 
-static bool	check_neighbours(size_t x, size_t y, char **map, size_t map_size);
+static t_error	add_line_in_map_list(t_parser *parser, char *line);
+static bool		check_neighbours(size_t x, size_t y, char **map,
+					size_t map_size);
 
 int	parse_map(t_parser *parser)
 {
+	t_error	error;
 	char	*line;
-	int		error;
-	t_list	*new;
 
 	while (parser->line)
 	{
@@ -36,16 +37,28 @@ int	parse_map(t_parser *parser)
 			return (NO_ERRORS);
 		}
 		if (!is_valid_map_line(parser, line))
+		{
+			free_parser_line(&parser->line);
 			return (INVALID_MAP_LINE);
-		new = ft_lstnew(line);
-		if (!new)
-			return (MALLOC_ERROR);
-		ft_lstadd_back(&parser->map_list, new);
-		error = get_next_line(&parser->line, parser->map->fd, GNL_KEEP);
+		}
+		error = add_line_in_map_list(parser, line);
 		if (error)
 			return (error);
 	}
 	return (NO_ERRORS);
+}
+
+static t_error	add_line_in_map_list(t_parser *parser, char *line)
+{
+	t_error	error;
+	t_list	*new;
+
+	new = ft_lstnew(line);
+	if (!new)
+		return (MALLOC_ERROR);
+	ft_lstadd_back(&parser->map_list, new);
+	error = get_next_line(&parser->line, parser->map->fd, GNL_KEEP);
+	return (error);
 }
 
 char	**convert_list(t_list *map_list)

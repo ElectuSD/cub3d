@@ -6,16 +6,19 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:38:22 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:46:52 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 17:12:05 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_mem.h"
+#include "libft_lst.h"
+
 #include "cub3d_map.h"
 #include "cub3d_parsing.h"
 
-static int	parse_helper(t_parser *parser);
-static int	check_parsing(t_parser *parser);
+static t_error	parse_loop(t_parser *parser);
+static int		parse_helper(t_parser *parser);
+static int		check_parsing(t_parser *parser);
 
 int	parse(t_map *map)
 {
@@ -24,25 +27,38 @@ int	parse(t_map *map)
 
 	ft_memset(&parser, 0, sizeof(t_parser));
 	parser.map = map;
-	while (42)
+	error = parse_loop(&parser);
+	if (error)
 	{
-		if (!parser.line)
-		{
-			error = get_next_non_empty_line(&parser.line, map->fd);
-			if (error)
-				return (error);
-			if (!parser.line)
-				break ;
-		}
-		error = parse_helper(&parser);
-		if (error)
-			return (error);
+		ft_lstclear(&parser.map_list, free);
+		return (error);
 	}
 	map->map = convert_list(parser.map_list);
 	if (!map_is_closed(map->map, get_map_size(map->map)))
 		return (MAP_NOT_CLOSED);
 	error = check_parsing(&parser);
 	return (error);
+}
+
+static t_error	parse_loop(t_parser *parser)
+{
+	int			error;
+
+	while (42)
+	{
+		if (!parser->line)
+		{
+			error = get_next_non_empty_line(&parser->line, parser->map->fd);
+			if (error)
+				return (error);
+			if (!parser->line)
+				break ;
+		}
+		error = parse_helper(parser);
+		if (error)
+			return (error);
+	}
+	return (NO_ERRORS);
 }
 
 static int	parse_helper(t_parser *parser)
@@ -67,6 +83,7 @@ static int	parse_helper(t_parser *parser)
 		parser->parsing_map_done = true;
 		return (error);
 	}
+	ft_lstclear(&parser->map_list, free);
 	free_parser_line(&parser->line);
 	return (MAP_DUPPLICATE);
 }

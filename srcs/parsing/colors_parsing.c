@@ -6,11 +6,12 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:09:24 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 01:36:12 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 16:34:20 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_str.h"
+#include "libft_lst.h"
 
 #include "cub3d_map.h"
 #include "cub3d_colors.h"
@@ -28,7 +29,10 @@ int	parse_colors(t_parser *parser)
 	t_rgb	color;
 
 	if (parser->parsing_map_done)
+	{
+		ft_lstclear(&parser->map_list, free);
 		return (MAP_NOT_LAST);
+	}
 	line = trim_end_of_line(parser->line);
 	identifier = ft_strtok(line, DEFAULT_TRIM);
 	if (!cub3d_atoi(&color.r, ft_strtok(NULL, ",")))

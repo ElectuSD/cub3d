@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:01:36 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 11:13:08 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 16:06:58 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,34 @@ void	print_error_helper(t_error error)
 		print_invalid_color(error);
 }
 
+static void	print_map_error(t_error error)
+{
+	if (error == MAP_DUPPLICATE)
+		printf("Error\nTwo maps found in map\n");
+	if (error == MAP_NOT_LAST)
+		printf("Error\nMap content is not last\n");
+	if (error == MAP_NOT_CLOSED)
+		printf("Error\nMap not closed by walls\n");
+}
+
+static void	print_invalid_color(t_error error)
+{
+	if (error == INVALID_COLOR)
+		printf("Error\nInvalid RGB color\n");
+}
+
+static void	print_missing_error(t_error error)
+{
+	if (error == MISSING_COLOR)
+		printf("Error\nMissing color in map\n");
+	if (error == MISSING_TEXTURE)
+		printf("Error\nMissing texture in map\n");
+	if (error == MISSING_MAP)
+		printf("Error\nMissing map in map\n");
+	if (error == MISSING_PLAYER)
+		printf("Error\nMissing player in map\n");
+}
+
 static void	print_dupplicate_error(t_error error)
 {
 	if (error == NORTH_DUPPLICATE)
@@ -44,32 +72,4 @@ static void	print_dupplicate_error(t_error error)
 		printf("Error\nCeiling colors dupplicate in map\n");
 	if (error == FLOOR_DUPPLICATE)
 		printf("Error\nFloor colors dupplicate in map\n");
-}
-
-void	print_map_error(t_error error)
-{
-	if (error == MAP_DUPPLICATE)
-		printf("Error\nTwo maps found in map\n");
-	if (error == MAP_NOT_LAST)
-		printf("Error\nMap content is not last\n");
-	if (error == MAP_NOT_CLOSED)
-		printf("Error\nMap not closed by walls\n");
-}
-
-void	print_invalid_color(t_error error)
-{
-	if (error == INVALID_COLOR)
-		printf("Error\nInvalid RGB color\n");
-}
-
-void	print_missing_error(t_error error)
-{
-	if (error == MISSING_COLOR)
-		printf("Error\nMissing color in map\n");
-	if (error == MISSING_TEXTURE)
-		printf("Error\nMissing texture in map\n");
-	if (error == MISSING_MAP)
-		printf("Error\nMissing map in map\n");
-	if (error == MISSING_PLAYER)
-		printf("Error\nMissing player in map\n");
 }

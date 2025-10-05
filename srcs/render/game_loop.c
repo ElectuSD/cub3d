@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 04:00:02 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:10:32 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 17:24:59 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	render_loop(t_cub3d *p)
 
 	dt = get_delta_time(p);
 	update_player(p, dt);
+	clear_img(&p->minimap, 0x000000);
 	draw_floor(&p->raycast, p->map.floor.color);
 	draw_ceiling(&p->raycast, p->map.ceiling.color);
 	draw_raycast(&p->raycast, &p->map);

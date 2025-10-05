@@ -6,44 +6,60 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:11:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/08/21 11:33:57 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/05 17:32:47 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_lst.h"
 #include "libft_str.h"
 
 #include "cub3d_map.h"
 #include "cub3d_parsing.h"
+#include <stdlib.h>
 
-static int	set_texture_helper(t_parser *parser, char *identifier, char *path);
-static int	set_texture(bool *has_parsed, char **dir, char *path);
+static int		set_texture(bool *has_parsed, char **dir, char *path);
+static int		set_texture_helper(t_parser *parser, char *identifier,
+					char *path);
+static t_error	dup_path(char **path, char *line);
 
 int	parse_textures(t_parser *parser)
 {
 	int		ret;
-	char	*identifier;
 	char	*path;
 	char	*line;
+	char	*identifier;
 
 	if (parser->parsing_map_done)
+	{
+		ft_lstclear(&parser->map_list, free);
 		return (MAP_NOT_LAST);
+	}
 	line = ft_strtrim(parser->line, DEFAULT_TRIM);
 	if (!line)
 		return (MALLOC_ERROR);
 	identifier = ft_strtok(line, DEFAULT_TRIM);
 	path = ft_strtok(NULL, DEFAULT_TRIM);
-	if (path)
+	if (dup_path(&path, line) == MALLOC_ERROR)
+		return (MALLOC_ERROR);
+	ret = set_texture_helper(parser, identifier, path);
+	if (ret && path)
+		free(path);
+	free(line);
+	return (ret);
+}
+
+static t_error	dup_path(char **path, char *line)
+{
+	if (*path)
 	{
-		path = ft_strdup(path);
-		if (!path)
+		*path = ft_strdup(*path);
+		if (!(*path))
 		{
 			free(line);
 			return (MALLOC_ERROR);
 		}
 	}
-	ret = set_texture_helper(parser, identifier, path);
-	free(line);
-	return (ret);
+	return (NO_ERRORS);
 }
 
 static int	set_texture_helper(t_parser *parser, char *identifier, char *path)

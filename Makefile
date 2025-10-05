@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/10/05 17:25:36 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/10/05 17:53:48 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 SRCS					:=				srcs/main.c \
 										srcs/init.c \
 										srcs/free.c \
+										srcs/check_filename.c \
 										srcs/color/color.c \
 										srcs/render/time.c \
 										srcs/render/utils.c \
