@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 02:02:16 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:54:13 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:22:28 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ enum e_keycodes
 	UP_ARROW				= 65362,
 	RIGHT_ARROW				= 65363,
 	DOWN_ARROW				= 65364,
+	PLUS_KEY				= 65451,
+	MINUS_KEY				= 65453,
 	LEFT_SHIFT				= 65505,
 };
 

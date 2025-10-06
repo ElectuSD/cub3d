@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 02:42:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 17:41:07 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:52:13 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <sys/time.h>
 
 #include "mlx.h"
+
 #include "libft_mem.h"
 
 #include "cub3d.h"

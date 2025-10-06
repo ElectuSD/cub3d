@@ -6,11 +6,9 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 17:21:59 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:48:49 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
 
 #include "libft_io.h"
 #include "libft_str.h"

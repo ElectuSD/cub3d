@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:48:17 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 02:46:23 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:16:29 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	draw_player(t_img *img, t_map *map)
 	center_x = img->width / 2;
 	center_y = img->height / 2;
 	player_size = img->scale / 4;
-	if (player_size < 2)
-		player_size = 2;
 	draw_rectangle_fill(img, new_ipoint2d(center_x - player_size, center_y
 			- player_size), new_ipoint2d(center_x + player_size, center_y
 			+ player_size), 0xFF0000);

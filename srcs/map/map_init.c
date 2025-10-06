@@ -6,16 +6,13 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 03:31:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 18:09:13 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:48:06 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <string.h>
+#include "libft_str.h"
 
 #include "cub3d_map.h"
-#include "libft_str.h"
 
 void	get_map_infos(t_map *map)
 {

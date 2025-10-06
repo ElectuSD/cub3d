@@ -6,11 +6,12 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:01:36 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 16:06:58 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:50:07 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+
 #include "cub3d_parsing.h"
 
 static void	print_map_error(t_error error);

@@ -6,14 +6,11 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 03:19:00 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:19:25 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:47:44 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-
 #include "cub3d_map.h"
-#include "cub3d_maths.h"
 
 bool	is_in_map(t_map *map, t_dpoint2d v_ray_start)
 {

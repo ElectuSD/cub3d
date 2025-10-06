@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 03:09:31 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 04:06:20 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:42:51 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ static int	key_press(int key, int *keystate)
 		keystate[2] = 1;
 	else if (key == LEFT_SHIFT)
 		keystate[3] = 1;
+	else if (key == PLUS_KEY)
+		keystate[4] = 1;
+	else if (key == MINUS_KEY)
+		keystate[5] = 1;
 	return (0);
 }
 
@@ -57,6 +61,10 @@ static int	key_release(int key, int *keystate)
 		keystate[2] = 0;
 	else if (key == LEFT_SHIFT)
 		keystate[3] = 0;
+	else if (key == PLUS_KEY)
+		keystate[4] = 0;
+	else if (key == MINUS_KEY)
+		keystate[5] = 0;
 	return (0);
 }
 
@@ -72,5 +80,9 @@ bool	is_key_pressed(int key, int *keystate)
 		return (keystate[2]);
 	else if (key == LEFT_SHIFT)
 		return (keystate[3]);
+	else if (key == PLUS_KEY)
+		return (keystate[4]);
+	else if (key == MINUS_KEY)
+		return (keystate[5]);
 	return (0);
 }

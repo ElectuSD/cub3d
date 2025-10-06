@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:54:05 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 18:14:52 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:39:03 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define MINIMAP_GRID_COLOR 0x696969
 # define MINIMAP_WALL_COLOR 0xFFFFFF
 
+# define MINIMAP_SCALE 32
+
 # define CROSSHAIR_COLOR 0xFF0000
 
 typedef struct s_map	t_map;
@@ -31,27 +33,27 @@ typedef struct s_cub3d	t_cub3d;
 
 typedef struct s_img
 {
-	void		*img_ptr;
-	char		*addr;
-	int			bits_per_pixel;
-	int			bytes_per_pixel;
-	int			line_lenght;
-	int			endian;
-	int			height;
-	int			width;
-	int			scale;
-	t_dpoint2d	pos;
+	void			*img_ptr;
+	char			*addr;
+	int				bits_per_pixel;
+	int				bytes_per_pixel;
+	int				line_lenght;
+	int				endian;
+	int				height;
+	int				width;
+	unsigned int	scale;
+	t_dpoint2d		pos;
 }	t_img;
 
 typedef struct s_line
 {
-	double		dx;
-	int			sx;
-	double		dy;
-	int			sy;
-	double		err;
-	int			e2;
-	int			color;
+	double			dx;
+	int				sx;
+	double			dy;
+	int				sy;
+	double			err;
+	int				e2;
+	int				color;
 }	t_line;
 
 /* CREATE IMGS */

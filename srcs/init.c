@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 03:52:32 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 17:31:09 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:51:53 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 #include <errno.h>
 #include <string.h>
 
+#include "mlx.h"
+
 #include "libft_mem.h"
 
-#include "mlx.h"
 #include "cub3d.h"
-#include "cub3d_input.h"
 #include "cub3d_draw.h"
+#include "cub3d_input.h"
 #include "cub3d_parsing.h"
 
 static int	open_file(char *filename);

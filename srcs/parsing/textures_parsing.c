@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:11:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 17:32:47 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:49:27 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "cub3d_map.h"
 #include "cub3d_parsing.h"
-#include <stdlib.h>
 
 static int		set_texture(bool *has_parsed, char **dir, char *path);
 static int		set_texture_helper(t_parser *parser, char *identifier,

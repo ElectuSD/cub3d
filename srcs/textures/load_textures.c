@@ -6,11 +6,12 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 03:28:54 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:29:18 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:51:27 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
+
 #include "cub3d.h"
 
 static void	load_north(t_cub3d *p, t_map *map);
