@@ -6,12 +6,16 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/10/05 17:53:48 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/10/18 23:24:14 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
+#	MAKEFLAGS
 MAKEFLAGS 				+=		 		--no-print-directory
 
+
+#	COLORS
 ERASE					:=				\033[2K\r
 BLUE					:=				\033[34m
 YELLOW					:=				\033[33m
@@ -20,92 +24,104 @@ RED						:=				\033[31m
 END						:=				\033[0m
 
 
-NAME					:=				cub3d
+#	EXECUTABLE
+NAME					:=				cub3D
+
+
+#	COMPILERS
 CC						:=				cc
 
 
+#	PROJECT DIRECTORIES
 DIR_SRCS				:=				srcs
 DIR_INCS				:=				include
 DIR_OBJS				:=				.objs
-
-
-MLX_NAME				:=				libmlx_Linux.a
 DIR_MLX					:=				mlx_linux
-MLX						:=				$(DIR_MLX)/$(MLX_NAME)
-MLX_FLAGS				:=				-I/usr/include -Imlx_linux
-MLX_LINKS				:=				-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-
-
-LIBFT_NAME				:=				libft.a
 DIR_LIBFT				:=				libft
+
+
+#	LIBRAIRIES
+LIBFT_NAME				:=				libft.a
+MLX_NAME				:=				libmlx_Linux.a
+MLX						:=				$(DIR_MLX)/$(MLX_NAME)
 LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 
-SRCS					:=				srcs/main.c \
-										srcs/init.c \
-										srcs/free.c \
-										srcs/check_filename.c \
-										srcs/color/color.c \
-										srcs/render/time.c \
-										srcs/render/utils.c \
-										srcs/render/game_loop.c \
-										srcs/player/player_utils.c \
-										srcs/player/player_controls.c \
-										srcs/player/player_movements.c \
-										srcs/player/player_strafe.c \
-										srcs/raycast/raycast_drawing_setters.c \
-										srcs/raycast/raycast.c \
-										srcs/raycast/raycast_getters.c \
-										srcs/raycast/raycast_drawing_utils.c \
-										srcs/raycast/raycast_setters.c \
-										srcs/raycast/raycast_drawing_getters.c \
-										srcs/raycast/raycast_drawing.c \
-										srcs/print/print_error.c \
-										srcs/print/print_error_utils.c \
-										srcs/textures/load_textures.c \
-										srcs/parsing/parsing_utils.c \
-										srcs/parsing/textures_parsing.c \
-										srcs/parsing/colors_utils.c \
-										srcs/parsing/map_parsing.c \
-										srcs/parsing/map_utils.c \
-										srcs/parsing/textures_utils.c \
-										srcs/parsing/parsing.c \
-										srcs/parsing/colors_parsing.c \
-										srcs/input/hooks.c \
-										srcs/draw/draw_player.c \
-										srcs/draw/draw_minimap_grid.c \
-										srcs/draw/draw_line.c \
-										srcs/draw/create_img.c \
-										srcs/draw/draw_pixel.c \
-										srcs/draw/draw_minimap.c \
-										srcs/draw/draw_crosshair.c \
-										srcs/draw/draw_rectangle.c \
-										srcs/draw/draw_floor_ceilling.c \
-										srcs/maths/new_dpoint2d.c \
-										srcs/maths/new_rectangle.c \
-										srcs/maths/convert_d2d_to_i2d.c \
-										srcs/maths/new_ipoint2d.c \
-										srcs/map/map_check.c \
-										srcs/map/map_init.c \
-										srcs/map/map_check_wall.c
 
-INCS					:=				include/cub3d.h \
-										include/cub3d_colors.h \
-										include/cub3d_draw.h \
-										include/cub3d_input.h \
-										include/cub3d_map.h \
-										include/cub3d_maths.h \
-										include/cub3d_parsing.h \
-										include/cub3d_player.h \
-										include/cub3d_raycast.h \
-										include/cub3d_textures.h \
-										include/cub3d_render.h
+#	FLAGS
+FLAGS					:=				-Wall -Wextra -Werror -I$(DIR_INCS)
+MLX_FLAGS				:=				-I$(DIR_MLX)
+LIBFT_FLAGS				:=				-I$(DIR_LIBFT)/include
+CFLAGS					:=				$(FLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -O3 -std=gnu11
+LDFLAGS					:=				$(MLX) $(LIBFT) -L/usr/lib -lXext -lX11 -lm -lz
+
+
+#	SOURCES
+SRCS					:=				$(DIR_SRCS)/main.c \
+										$(DIR_SRCS)/init.c \
+										$(DIR_SRCS)/free.c \
+										$(DIR_SRCS)/check_filename.c \
+										$(DIR_SRCS)/color/color.c \
+										$(DIR_SRCS)/render/time.c \
+										$(DIR_SRCS)/render/utils.c \
+										$(DIR_SRCS)/render/game_loop.c \
+										$(DIR_SRCS)/player/player_utils.c \
+										$(DIR_SRCS)/player/player_controls.c \
+										$(DIR_SRCS)/player/player_movements.c \
+										$(DIR_SRCS)/player/player_strafe.c \
+										$(DIR_SRCS)/raycast/raycast_drawing_setters.c \
+										$(DIR_SRCS)/raycast/raycast.c \
+										$(DIR_SRCS)/raycast/raycast_getters.c \
+										$(DIR_SRCS)/raycast/raycast_drawing_utils.c \
+										$(DIR_SRCS)/raycast/raycast_setters.c \
+										$(DIR_SRCS)/raycast/raycast_drawing_getters.c \
+										$(DIR_SRCS)/raycast/raycast_drawing.c \
+										$(DIR_SRCS)/print/print_error.c \
+										$(DIR_SRCS)/print/print_error_utils.c \
+										$(DIR_SRCS)/textures/load_textures.c \
+										$(DIR_SRCS)/parsing/parsing_utils.c \
+										$(DIR_SRCS)/parsing/textures_parsing.c \
+										$(DIR_SRCS)/parsing/colors_utils.c \
+										$(DIR_SRCS)/parsing/map_parsing.c \
+										$(DIR_SRCS)/parsing/map_utils.c \
+										$(DIR_SRCS)/parsing/textures_utils.c \
+										$(DIR_SRCS)/parsing/parsing.c \
+										$(DIR_SRCS)/parsing/colors_parsing.c \
+										$(DIR_SRCS)/input/hooks.c \
+										$(DIR_SRCS)/draw/draw_player.c \
+										$(DIR_SRCS)/draw/draw_minimap_grid.c \
+										$(DIR_SRCS)/draw/draw_line.c \
+										$(DIR_SRCS)/draw/create_img.c \
+										$(DIR_SRCS)/draw/draw_pixel.c \
+										$(DIR_SRCS)/draw/draw_minimap.c \
+										$(DIR_SRCS)/draw/draw_crosshair.c \
+										$(DIR_SRCS)/draw/draw_rectangle.c \
+										$(DIR_SRCS)/draw/draw_floor_ceilling.c \
+										$(DIR_SRCS)/maths/new_dpoint2d.c \
+										$(DIR_SRCS)/maths/new_rectangle.c \
+										$(DIR_SRCS)/maths/convert_d2d_to_i2d.c \
+										$(DIR_SRCS)/maths/new_ipoint2d.c \
+										$(DIR_SRCS)/map/map_check.c \
+										$(DIR_SRCS)/map/map_init.c \
+										$(DIR_SRCS)/map/map_check_wall.c
+
+
+#	HEADERS
+INCS					:=				$(DIR_INCS)/cub3d.h \
+										$(DIR_INCS)/cub3d_colors.h \
+										$(DIR_INCS)/cub3d_draw.h \
+										$(DIR_INCS)/cub3d_input.h \
+										$(DIR_INCS)/cub3d_map.h \
+										$(DIR_INCS)/cub3d_maths.h \
+										$(DIR_INCS)/cub3d_parsing.h \
+										$(DIR_INCS)/cub3d_player.h \
+										$(DIR_INCS)/cub3d_raycast.h \
+										$(DIR_INCS)/cub3d_textures.h \
+										$(DIR_INCS)/cub3d_render.h
 										
 										
 
+#	OBJECTS
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
-
-
-CFLAGS					:=				-std=gnu11 -Wall -Wextra -Werror -I$(DIR_INCS) -I$(DIR_LIBFT)/include -O3
 
 
 .PHONY:			all
@@ -117,15 +133,18 @@ all:			libft mlx
 											fi; 
 
 
+#	LINKING
+${NAME}:								${OBJS}
+											@$(CC) $(OBJS) -o $@ $(LDFLAGS)
+											@printf "$(GREEN)$(NAME) > Done Compiling : $(END)$@\n"
+
+
+#	COMPILE C FILES
 $(DIR_OBJS)/%.o:						$(DIR_SRCS)/%.c	${INCS} $(LIBFT) $(MLX) Makefile
 											@mkdir -p $(dir $@)
-											@${CC} ${CFLAGS} ${MLX_FLAGS} -c $< -o $@
+											@${CC} ${CFLAGS} -c $< -o $@
 											@printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
 
-
-${NAME}:								${OBJS}
-											@$(CC) $(CFLAGS) $(OBJS) $(MLX_LINKS) $(LIBFT) -o $@
-											@printf "$(GREEN)$(NAME) > Done Compiling : $(END)$@\n"
 
 .PHONY:			libft
 libft:
@@ -136,7 +155,7 @@ libft:
 
 .PHONY:			mlx
 mlx:
-											@if [ ! -f $(MLX) ]; then \
+											@if ! $(MAKE) -C $(DIR_MLX) -q; then \
 												$(MAKE) -C $(DIR_MLX); \
 											else \
 												printf "$(YELLOW)$(DIR_MLX) > Nothing to be done $(END)\n"; \
@@ -159,6 +178,7 @@ clean:
 												printf "$(RED)$(NAME) > Done deleting : $(END)$(DIR_OBJS)\n"; \
 											fi;
 
+
 .PHONY:			fclean
 fclean:			clean
 											@if [ -f $(MLX) ]; then \
@@ -173,5 +193,7 @@ fclean:			clean
 												rm -rdf $(NAME); \
 												printf "$(RED)$(NAME) > Done deleting : $(END)$(NAME)\n"; \
 											fi;
+
+
 .PHONY:			re
 re:				fclean	all
