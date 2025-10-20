@@ -6,7 +6,7 @@
 /*   By: lucnavar <lucnavar@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:26:30 by lucnavar          #+#    #+#             */
-/*   Updated: 2025/10/06 10:41:07 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/20 08:57:39 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void	update_minimap_scale(t_img *minimap, int *keystate)
 {
 	if (is_key_pressed(PLUS_KEY, keystate))
 	{
-
 		if (minimap->scale >= 128)
 			minimap->scale = 128;
 		else
