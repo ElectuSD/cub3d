@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/10/18 23:24:14 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/10/27 14:20:29 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 FLAGS					:=				-Wall -Wextra -Werror -I$(DIR_INCS)
 MLX_FLAGS				:=				-I$(DIR_MLX)
 LIBFT_FLAGS				:=				-I$(DIR_LIBFT)/include
-CFLAGS					:=				$(FLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -O3 -std=gnu11
+CFLAGS					:=				$(FLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -std=gnu11 -O3
 LDFLAGS					:=				$(MLX) $(LIBFT) -L/usr/lib -lXext -lX11 -lm -lz
 
 
