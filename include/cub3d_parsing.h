@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:57:17 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 17:52:33 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/27 11:51:50 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "cub3d_map.h"
 
 # define DEFAULT_TRIM " \t\n"
+# define DEFAULT_COLOR_TRIM ","
 
 typedef struct s_list	t_list;
 
