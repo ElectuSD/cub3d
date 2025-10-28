@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:09:24 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/27 11:53:16 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:33:17 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	parse_colors(t_parser *parser)
 	}
 	line = trim_end_of_line(parser->line);
 	identifier = ft_strtok(line, DEFAULT_TRIM, SKIP_EMPTY);
-	if (!cub3d_atoi(&color.r, ft_strtok(NULL, DEFAULT_COLOR_TRIM, SKIP_EMPTY)))
+	if (!cub3d_atoi(&color.r, ft_strtok(NULL, DEFAULT_COLOR_TRIM, KEEP_EMPTY)))
 		return (INVALID_COLOR);
 	if (!cub3d_atoi(&color.g, ft_strtok(NULL, DEFAULT_COLOR_TRIM, KEEP_EMPTY)))
 		return (INVALID_COLOR);
-	if (!cub3d_atoi(&color.b, ft_strtok(NULL, DEFAULT_COLOR_TRIM, KEEP_EMPTY)))
+	if (!cub3d_atoi(&color.b, ft_strtok(NULL, "\0", KEEP_EMPTY)))
 		return (INVALID_COLOR);
 	if (ft_strtok(NULL, DEFAULT_TRIM, SKIP_EMPTY) != NULL)
 		return (INVALID_COLOR);
@@ -49,7 +49,6 @@ int	parse_colors(t_parser *parser)
 
 static bool	cub3d_atoi(unsigned char *nb, const char *nptr)
 {
-	int		prev_nb;
 	size_t	i;
 
 	i = 0;
@@ -64,15 +63,16 @@ static bool	cub3d_atoi(unsigned char *nb, const char *nptr)
 			return (false);
 		i++;
 	}
+	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
+		return (false);
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		prev_nb = *nb;
-		*nb = (*nb * 10) + nptr[i] - '0';
-		if (prev_nb > *nb)
+		if (*nb > (0xFF - (nptr[i] - '0')) / 10)
 			return (false);
+		*nb = (*nb * 10) + nptr[i] - '0';
 		i++;
 	}
-	return (nptr[i] <= '0' || nptr[i] >= '9' || nptr[i] == '0');
+	return (nptr[i] == '\0');
 }
 
 static int	set_color_helper(t_parser *parser, char *identifier, t_rgb *color)

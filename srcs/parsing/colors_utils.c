@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:40:22 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/06 10:48:34 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:12:24 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@ bool	is_color(char *line)
 
 bool	is_floor(char *line)
 {
-	return (ft_strncmp(line, "F", 1) == 0);
+	if (ft_strlen(line) == 0)
+		return (false);
+	return (ft_strncmp(line, "F", 1) == 0 && (line[1] == '\0' || line[1] == ' ' || line[1] == '\t'));
 }
 
 bool	is_ceiling(char *line)
 {
-	return (ft_strncmp(line, "C", 1) == 0);
+	if (ft_strlen(line) == 0)
+		return (false);
+	return (ft_strncmp(line, "C", 1) == 0 && (line[1] == '\0' || line[1] == ' ' || line[1] == '\t'));
 }

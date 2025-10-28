@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:01:36 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/06 10:50:07 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:06:14 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "cub3d_parsing.h"
 
 static void	print_map_error(t_error error);
-static void	print_invalid_color(t_error error);
+static void	print_invalid_error(t_error error);
 static void	print_missing_error(t_error error);
 static void	print_dupplicate_error(t_error error);
 
@@ -27,8 +27,8 @@ void	print_error_helper(t_error error)
 		print_map_error(error);
 	if (is_missing_error(error))
 		print_missing_error(error);
-	if (is_invalid_color(error))
-		print_invalid_color(error);
+	if (is_invalid_error(error))
+		print_invalid_error(error);
 }
 
 static void	print_map_error(t_error error)
@@ -41,10 +41,12 @@ static void	print_map_error(t_error error)
 		printf("Error\nMap not closed by walls\n");
 }
 
-static void	print_invalid_color(t_error error)
+static void	print_invalid_error(t_error error)
 {
 	if (error == INVALID_COLOR)
 		printf("Error\nInvalid RGB color\n");
+	if (error == INVALID_TEXTURE)
+		printf("Error\nInvalid Texture Found\n");
 }
 
 static void	print_missing_error(t_error error)

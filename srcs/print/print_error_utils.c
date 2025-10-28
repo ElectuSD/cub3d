@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:10:21 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/09/03 11:11:05 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:05:25 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	is_missing_error(t_error error)
 		|| error == MISSING_MAP || error == MISSING_PLAYER);
 }
 
-bool	is_invalid_color(t_error error)
+bool	is_invalid_error(t_error error)
 {
-	return (error == INVALID_COLOR);
+	return (error == INVALID_COLOR || error == INVALID_TEXTURE);
 }

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:34:42 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/06 10:49:41 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/28 09:49:53 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,28 @@ bool	is_texture(char *line)
 
 bool	is_north(char *line)
 {
-	return ((ft_strncmp(line, "NO", 2) == 0));
+	if (ft_strlen(line) <= 1)
+		return (false);
+	return ((ft_strncmp(line, "NO", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }
 
 bool	is_south(char *line)
 {
-	return ((ft_strncmp(line, "SO", 2) == 0));
+	if (ft_strlen(line) <= 1)
+		return (false);
+	return ((ft_strncmp(line, "SO", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }
 
 bool	is_west(char *line)
 {
-	return ((ft_strncmp(line, "WE", 2) == 0));
+	if (ft_strlen(line) <= 1)
+		return (false);
+	return ((ft_strncmp(line, "WE", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }
 
 bool	is_east(char *line)
 {
-	return ((ft_strncmp(line, "EA", 2) == 0));
+	if (ft_strlen(line) <= 1)
+		return (false);
+	return ((ft_strncmp(line, "EA", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }

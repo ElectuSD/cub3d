@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:57:17 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/27 11:51:50 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:05:25 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum e_error
 	MAP_NOT_CLOSED,
 	INCOMPLETE_MAP,
 	INVALID_COLOR,
+	INVALID_TEXTURE,
 	MISSING_COLOR,
 	MISSING_MAP,
 	MISSING_TEXTURE,
@@ -99,7 +100,7 @@ bool		is_ceiling(char *line);
 /* PRINTS ERROR UTILS FUNCTIONS */
 bool		is_map_error(t_error error);
 bool		is_missing_error(t_error error);
-bool		is_invalid_color(t_error error);
+bool		is_invalid_error(t_error error);
 bool		is_duplicate_error(t_error error);
 
 /* PRINTS ERROR MESSAGE BASED ON ERROR DURING PARSING */

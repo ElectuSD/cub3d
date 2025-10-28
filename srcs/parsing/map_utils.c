@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:25:10 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:43:12 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/10/28 09:59:54 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ bool	is_valid_map_line(t_parser *infos, char *line)
 		if (!is_valid_map_char(*line))
 		{
 			printf("Error\nNon valid character in map : %c\n", *line);
+			printf("Found in line : %s\n", infos->line);
 			return (false);
 		}
 		if (is_valid_map_dir(*line) && infos->has_player)
