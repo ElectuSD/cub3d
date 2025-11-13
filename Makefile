@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/11/13 11:35:27 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/11/13 14:31:28 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,11 +143,15 @@ all:			libft mlx
 
 #	COMPILE SRCS FILES RULE
 $(DIR_OBJS)/%.o:						$(DIR_SRCS)/%.c	$(LIBFT) $(MLX) Makefile
-											@mkdir -p $(dir $@)
 											@mkdir -p $(DIR_OBJS) $(DIR_DEPS)
+											@mkdir -p $(dir $@)
 											@${CC} ${CFLAGS} -c $< -o $@
-											@mv $(DIR_OBJS)/$(notdir $(basename $@)).d $(DIR_DEPS)/ 2>/dev/null || true
-											@printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
+											@src_rel=$(<:$(DIR_SRCS)/%.c=%.d); \
+											dep_file=$(DIR_OBJS)/$$src_rel; \
+											dep_dir=$(DIR_DEPS)/$$(dirname $$src_rel); \
+											mkdir -p $$dep_dir; \
+											mv $$dep_file $$dep_dir; \
+											printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
 
 
 #	LINKING
@@ -160,7 +164,7 @@ ${NAME}:								${OBJS}
 -include	$(DEPS)
 
 
-#	CLEAN RULE
+#	COMPILE LIBFT
 .PHONY:			libft
 libft:
 											@if ! $(MAKE) -C $(DIR_LIBFT) -q; then \
@@ -168,6 +172,7 @@ libft:
 											fi; 
 
 
+#	COMPILE MLX
 .PHONY:			mlx
 mlx:
 											@if ! $(MAKE) -C $(DIR_MLX) -q; then \
@@ -177,6 +182,7 @@ mlx:
 											fi; 
 
 
+#	CLEAN RULE
 .PHONY:			clean
 clean:
 											@make clean -C ${DIR_LIBFT}
@@ -186,12 +192,16 @@ clean:
 												else \
 												printf "$(RED)$(DIR_MLX) > Nothing to clean $(END)\n"; \
 												fi;
-											@if [ ! -d $(DIR_OBJS) ]; then \
+											@if [ ! -d $(DIR_OBJS) ] && [ ! -d $(DIR_DEPS) ]; then \
 												printf "$(RED)$(NAME) > Nothing to clean $(END)\n"; \
 											else \
-												rm -rdf $(DIR_OBJS); \
-												printf "$(RED)$(NAME) > Done deleting : $(END)$(DIR_OBJS)\n"; \
-											fi;
+												[ -d $(DIR_OBJS) ] && \
+													rm -rf $(DIR_OBJS) && \
+													printf "$(RED)$(NAME) > Done deleting : $(END)$(DIR_OBJS)\n"; \
+												[ -d $(DIR_DEPS) ] && \
+													rm -rf $(DIR_DEPS) && \
+													printf "$(RED)$(NAME) > Done deleting : $(END)$(DIR_DEPS)\n"; \
+											fi; true
 
 
 .PHONY:			fclean
