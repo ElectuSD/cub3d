@@ -6,14 +6,13 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 02:16:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/06 10:21:26 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:52:10 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_map.h"
 #include "cub3d_draw.h"
 
-static bool	is_map_part(char c);
 static void	draw_grid_row(t_img *img, t_map *map, size_t i, double *offsets);
 static void	draw_grid_cell(t_img *img, int screen_x, int screen_y, int scale);
 
@@ -71,9 +70,4 @@ static void	draw_grid_cell(t_img *img, int screen_x, int screen_y, int scale)
 	if (b.y > img->height)
 		b.y = img->height;
 	draw_rectangle_fill(img, a, b, MINIMAP_GRID_COLOR);
-}
-
-static bool	is_map_part(char c)
-{
-	return (is_player(c) || c == '1' || c == '0');
 }

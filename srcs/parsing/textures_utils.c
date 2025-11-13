@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:34:42 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/28 09:49:53 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:02:11 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,30 @@ bool	is_north(char *line)
 {
 	if (ft_strlen(line) <= 1)
 		return (false);
-	return ((ft_strncmp(line, "NO", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
+	return ((ft_strncmp(line, "NO", 2) == 0)
+		&& (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }
 
 bool	is_south(char *line)
 {
 	if (ft_strlen(line) <= 1)
 		return (false);
-	return ((ft_strncmp(line, "SO", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
+	return ((ft_strncmp(line, "SO", 2) == 0)
+		&& (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }
 
 bool	is_west(char *line)
 {
 	if (ft_strlen(line) <= 1)
 		return (false);
-	return ((ft_strncmp(line, "WE", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
+	return ((ft_strncmp(line, "WE", 2) == 0)
+		&& (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }
 
 bool	is_east(char *line)
 {
 	if (ft_strlen(line) <= 1)
 		return (false);
-	return ((ft_strncmp(line, "EA", 2) == 0) && (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
+	return ((ft_strncmp(line, "EA", 2) == 0)
+		&& (line[2] == '\0' || line[2] == ' ' || line[2] == '\t'));
 }

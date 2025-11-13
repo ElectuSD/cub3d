@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:11:30 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/28 10:04:00 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/13 11:03:33 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "cub3d_map.h"
 #include "cub3d_parsing.h"
 
+static bool		check_map_parsing(t_parser *parser);
 static int		set_texture(bool *has_parsed, char **dir, char *path);
 static int		set_texture_helper(t_parser *parser, char *identifier,
 					char *path);
@@ -28,18 +29,18 @@ int	parse_textures(t_parser *parser)
 	char	*line;
 	char	*identifier;
 
-	if (parser->parsing_map_done)
-	{
-		ft_lstclear(&parser->map_list, free);
+	if (check_map_parsing(parser))
 		return (MAP_NOT_LAST);
-	}
 	line = ft_strtrim(parser->line, DEFAULT_TRIM);
 	if (!line)
 		return (MALLOC_ERROR);
 	identifier = ft_strtok(line, DEFAULT_TRIM, SKIP_EMPTY);
 	path = ft_strtok(NULL, DEFAULT_TRIM, SKIP_EMPTY);
 	if (ft_strtok(NULL, DEFAULT_TRIM, SKIP_EMPTY))
+	{
+		free(line);
 		return (INVALID_TEXTURE);
+	}
 	if (dup_path(&path, line) == MALLOC_ERROR)
 		return (MALLOC_ERROR);
 	ret = set_texture_helper(parser, identifier, path);
@@ -47,6 +48,16 @@ int	parse_textures(t_parser *parser)
 		free(path);
 	free(line);
 	return (ret);
+}
+
+static bool	check_map_parsing(t_parser *parser)
+{
+	if (parser->parsing_map_done)
+	{
+		ft_lstclear(&parser->map_list, free);
+		return (MAP_NOT_LAST);
+	}
+	return (NO_ERRORS);
 }
 
 static t_error	dup_path(char **path, char *line)

@@ -6,7 +6,7 @@
 /*   By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 01:55:18 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/05 03:55:22 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:51:43 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_map
 void	get_map_infos(t_map *map);
 
 /* MAP CHECKING FUNCTIONS */
+bool	is_map_part(char c);
 bool	is_in_map(t_map *map, t_dpoint2d v_ray_start);
 
 /* MAP WALL CHECKING FUNCTIONS */

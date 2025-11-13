@@ -6,10 +6,11 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/06 10:48:49 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:39:43 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d_maths.h"
 #include "libft_io.h"
 #include "libft_str.h"
 #include "libft_lst.h"
@@ -86,14 +87,16 @@ char	**convert_list(t_list *map_list)
 bool	map_is_closed(char **map, size_t map_size)
 {
 	char	cur;
+	size_t	line_len;
 	size_t	x;
 	size_t	y;
 
 	y = 0;
 	while (y < map_size)
 	{
+		line_len = ft_strlen(map[y]);
 		x = skip_leading_chars(map[y]) - map[y];
-		while (x < ft_strlen(map[y]))
+		while (x < line_len)
 		{
 			cur = map[y][x];
 			if (cur == '0' || is_player(cur))
@@ -112,18 +115,25 @@ static bool	check_neighbours(size_t x, size_t y, char **map, size_t map_size)
 {
 	static int	dy[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
 	static int	dx[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
-	int			ny;
-	int			nx;
+	t_ipoint2d	n;
 	int			k;
+	int			line_len;
 
 	k = 0;
 	while (k < 8)
 	{
-		ny = y + dy[k];
-		nx = x + dx[k];
-		if (nx < 0 || ny < 0 || ny >= (int)map_size
-			|| nx >= (int)ft_strlen(map[ny]))
+		n.y = y + dy[k];
+		n.x = x + dx[k];
+		if (n.x < 0 || n.y < 0 || n.y >= (int)map_size)
 			return (false);
+		line_len = ft_strlen(map[n.y]);
+		if (n.x >= line_len)
+			return (false);
+		else
+		{
+			if (!is_map_part(map[n.y][n.x]) && map[n.y][n.x] != ' ')
+				return (false);
+		}
 		k++;
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:25:10 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/28 09:59:54 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:26:39 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ static bool	is_valid_map_dir(char c)
 
 static bool	is_valid_map_wall(char c)
 {
-	return (c == '\t' || c == '\n' || c == ' ' || c == '0' || c == '1');
+	return (c == '\n' || c == ' ' || c == '0' || c == '1');
 }

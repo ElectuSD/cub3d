@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:09:24 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/10/28 11:33:17 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:06:25 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ int	parse_colors(t_parser *parser)
 		return (INVALID_COLOR);
 	if (!cub3d_atoi(&color.g, ft_strtok(NULL, DEFAULT_COLOR_TRIM, KEEP_EMPTY)))
 		return (INVALID_COLOR);
-	if (!cub3d_atoi(&color.b, ft_strtok(NULL, "\0", KEEP_EMPTY)))
-		return (INVALID_COLOR);
-	if (ft_strtok(NULL, DEFAULT_TRIM, SKIP_EMPTY) != NULL)
+	if (!cub3d_atoi(&color.b, ft_strtok(NULL, NULL, KEEP_EMPTY)))
 		return (INVALID_COLOR);
 	ret = set_color_helper(parser, identifier, &color);
 	return (ret);
