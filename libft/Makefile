@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/11/13 14:24:37 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/11/13 14:31:28 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -189,7 +189,7 @@ clean:
 												[ -d $(DIR_DEPS) ] && \
 													rm -rf $(DIR_DEPS) && \
 													printf "$(RED)$(NAME) > Done deleting : $(END)$(DIR_DEPS)\n"; \
-											fi; true
+											fi;
 
 #	FCLEAN RULE
 .PHONY:			fclean
