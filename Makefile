@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/11/13 14:31:28 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/11/13 20:30:05 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,16 +43,17 @@ DIR_LIBFT				:=				libft
 
 #	LIBRAIRIES
 LIBFT_NAME				:=				libft.a
+LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
+LIBFT_FLAGS				:=				-I$(DIR_LIBFT)/include
+
 MLX_NAME				:=				libmlx_Linux.a
 MLX						:=				$(DIR_MLX)/$(MLX_NAME)
-LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
+MLX_FLAGS				:=				-I$(DIR_MLX)
 
 
 #	FLAGS
 FLAGS					:=				-Wall -Wextra -Werror -I$(DIR_INCS)
 DEPFLAGS				:=				-MMD -MP
-MLX_FLAGS				:=				-I$(DIR_MLX)
-LIBFT_FLAGS				:=				-I$(DIR_LIBFT)/include
 CFLAGS					:=				$(FLAGS) $(DEPFLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -std=gnu11
 LDFLAGS					:=				$(MLX) $(LIBFT) -L/usr/lib -lXext -lX11 -lm -lz
 
@@ -132,6 +133,7 @@ OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 DEPS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_DEPS)/%.d)
 
 
+
 #	ALL RULE
 .PHONY:			all
 all:			libft mlx
@@ -141,17 +143,12 @@ all:			libft mlx
 												$(MAKE) ${NAME}; \
 											fi; 
 
+
 #	COMPILE SRCS FILES RULE
 $(DIR_OBJS)/%.o:						$(DIR_SRCS)/%.c	$(LIBFT) $(MLX) Makefile
-											@mkdir -p $(DIR_OBJS) $(DIR_DEPS)
-											@mkdir -p $(dir $@)
-											@${CC} ${CFLAGS} -c $< -o $@
-											@src_rel=$(<:$(DIR_SRCS)/%.c=%.d); \
-											dep_file=$(DIR_OBJS)/$$src_rel; \
-											dep_dir=$(DIR_DEPS)/$$(dirname $$src_rel); \
-											mkdir -p $$dep_dir; \
-											mv $$dep_file $$dep_dir; \
-											printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
+											@mkdir -p $(dir $@) $(dir $(DIR_DEPS)/$*.d)
+											@${CC} ${CFLAGS} -MF $(DIR_DEPS)/$*.d -c $< -o $@
+											@printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
 
 
 #	LINKING

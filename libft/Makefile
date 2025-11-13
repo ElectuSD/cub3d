@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: fdeleard <fdeleard@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/11/13 14:31:28 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/11/13 20:24:04 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-#
-#
+
+
 #	MAKEFLAGS
 MAKEFLAGS 				+=		 		--no-print-directory
 
@@ -145,6 +145,7 @@ OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
 DEPS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_DEPS)/%.d)
 
 
+
 #	ALL RULE
 .PHONY:			all
 all:
@@ -157,15 +158,10 @@ all:
 
 #	COMPILE SRCS FILES RULE
 $(DIR_OBJS)/%.o:						$(DIR_SRCS)/%.c Makefile
-											@mkdir -p $(DIR_OBJS) $(DIR_DEPS)
-											@mkdir -p $(dir $@)
-											@${CC} ${CFLAGS} -c $< -o $@
-											@src_rel=$(<:$(DIR_SRCS)/%.c=%.d); \
-											dep_file=$(DIR_OBJS)/$$src_rel; \
-											dep_dir=$(DIR_DEPS)/$$(dirname $$src_rel); \
-											mkdir -p $$dep_dir; \
-											mv $$dep_file $$dep_dir; \
-											printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
+											@mkdir -p $(dir $@) $(dir $(DIR_DEPS)/$*.d)
+											@${CC} ${CFLAGS} -MF $(DIR_DEPS)/$*.d -c $< -o $@
+											@printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
+
 
 #	LINKING
 ${NAME}:								${OBJS}
@@ -189,7 +185,8 @@ clean:
 												[ -d $(DIR_DEPS) ] && \
 													rm -rf $(DIR_DEPS) && \
 													printf "$(RED)$(NAME) > Done deleting : $(END)$(DIR_DEPS)\n"; \
-											fi;
+											fi; true
+
 
 #	FCLEAN RULE
 .PHONY:			fclean
