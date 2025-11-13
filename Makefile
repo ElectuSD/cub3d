@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/10/28 12:46:56 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/11/13 11:06:41 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,16 @@ LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 FLAGS					:=				-Wall -Wextra -Werror -I$(DIR_INCS)
 MLX_FLAGS				:=				-I$(DIR_MLX)
 LIBFT_FLAGS				:=				-I$(DIR_LIBFT)/include
-CFLAGS					:=				$(FLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -std=gnu11 -O3
+CFLAGS					:=				$(FLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -std=gnu11
 LDFLAGS					:=				$(MLX) $(LIBFT) -L/usr/lib -lXext -lX11 -lm -lz
+
+
+#	DEBUG FLAGS
+ifeq ($(MODE),debug)
+	CFLAGS				+=				-g3
+else
+	CFLAGS				+=				-O3
+endif
 
 
 #	SOURCES
@@ -197,3 +205,8 @@ fclean:			clean
 
 .PHONY:			re
 re:				fclean	all
+
+
+.PHONY:			debug
+debug:			fclean
+											@$(MAKE) MODE=debug all
