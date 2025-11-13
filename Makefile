@@ -6,7 +6,7 @@
 #    By: allefran <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 15:15:38 by fdeleard          #+#    #+#              #
-#    Updated: 2025/11/13 11:06:41 by fdeleard         ###   ########.fr        #
+#    Updated: 2025/11/13 11:35:27 by fdeleard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ CC						:=				cc
 DIR_SRCS				:=				srcs
 DIR_INCS				:=				include
 DIR_OBJS				:=				.objs
+DIR_DEPS				:=				.deps
 DIR_MLX					:=				mlx_linux
 DIR_LIBFT				:=				libft
 
@@ -49,9 +50,10 @@ LIBFT					:=				$(DIR_LIBFT)/$(LIBFT_NAME)
 
 #	FLAGS
 FLAGS					:=				-Wall -Wextra -Werror -I$(DIR_INCS)
+DEPFLAGS				:=				-MMD -MP
 MLX_FLAGS				:=				-I$(DIR_MLX)
 LIBFT_FLAGS				:=				-I$(DIR_LIBFT)/include
-CFLAGS					:=				$(FLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -std=gnu11
+CFLAGS					:=				$(FLAGS) $(DEPFLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -std=gnu11
 LDFLAGS					:=				$(MLX) $(LIBFT) -L/usr/lib -lXext -lX11 -lm -lz
 
 
@@ -63,7 +65,7 @@ else
 endif
 
 
-#	SOURCES
+#	SOURCES AND HEADERS
 SRCS					:=				$(DIR_SRCS)/main.c \
 										$(DIR_SRCS)/init.c \
 										$(DIR_SRCS)/free.c \
@@ -112,8 +114,6 @@ SRCS					:=				$(DIR_SRCS)/main.c \
 										$(DIR_SRCS)/map/map_init.c \
 										$(DIR_SRCS)/map/map_check_wall.c
 
-
-#	HEADERS
 INCS					:=				$(DIR_INCS)/cub3d.h \
 										$(DIR_INCS)/cub3d_colors.h \
 										$(DIR_INCS)/cub3d_draw.h \
@@ -126,12 +126,13 @@ INCS					:=				$(DIR_INCS)/cub3d.h \
 										$(DIR_INCS)/cub3d_textures.h \
 										$(DIR_INCS)/cub3d_render.h
 										
-										
 
-#	OBJECTS
+#	OBJECTS AND DEPENDENCIES
 OBJS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_OBJS)/%.o)
+DEPS					:=				$(SRCS:$(DIR_SRCS)/%.c=$(DIR_DEPS)/%.d)
 
 
+#	ALL RULE
 .PHONY:			all
 all:			libft mlx
 											@if $(MAKE) -q $(NAME); then \
@@ -140,6 +141,14 @@ all:			libft mlx
 												$(MAKE) ${NAME}; \
 											fi; 
 
+#	COMPILE SRCS FILES RULE
+$(DIR_OBJS)/%.o:						$(DIR_SRCS)/%.c	$(LIBFT) $(MLX) Makefile
+											@mkdir -p $(dir $@)
+											@mkdir -p $(DIR_OBJS) $(DIR_DEPS)
+											@${CC} ${CFLAGS} -c $< -o $@
+											@mv $(DIR_OBJS)/$(notdir $(basename $@)).d $(DIR_DEPS)/ 2>/dev/null || true
+											@printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
+
 
 #	LINKING
 ${NAME}:								${OBJS}
@@ -147,13 +156,11 @@ ${NAME}:								${OBJS}
 											@printf "$(GREEN)$(NAME) > Done Compiling : $(END)$@\n"
 
 
-#	COMPILE C FILES
-$(DIR_OBJS)/%.o:						$(DIR_SRCS)/%.c	${INCS} $(LIBFT) $(MLX) Makefile
-											@mkdir -p $(dir $@)
-											@${CC} ${CFLAGS} -c $< -o $@
-											@printf "$(BLUE)$(NAME) > Compiling : $(END)$<\n"
+#	INCLUDE DEPENDENCIES FILES
+-include	$(DEPS)
 
 
+#	CLEAN RULE
 .PHONY:			libft
 libft:
 											@if ! $(MAKE) -C $(DIR_LIBFT) -q; then \
