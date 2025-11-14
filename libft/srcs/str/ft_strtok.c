@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:03:45 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/11/13 14:11:49 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/14 11:37:51 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*keep_empty(char **save, const char *delim);
 char	*ft_strtok(char *str, const char *delim, t_strtok_flag flag)
 {
 	static char	*save = NULL;
-	
+
 	if (str)
 		save = str;
 	else if (!save)
@@ -37,7 +37,7 @@ char	*ft_strtok(char *str, const char *delim, t_strtok_flag flag)
 static char	*keep_empty(char **save, const char *delim)
 {
 	char	*token_start;
-	
+
 	if (**save == '\0')
 		return (NULL);
 	token_start = *save;
@@ -65,7 +65,7 @@ static char	*keep_empty(char **save, const char *delim)
 static char	*skip_empty(char **save, const char *delim)
 {
 	char	*token_start;
-	
+
 	while (**save && is_delim(delim, **save))
 		++(*save);
 	if (**save == '\0')
