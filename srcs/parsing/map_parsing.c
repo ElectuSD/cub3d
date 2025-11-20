@@ -6,7 +6,7 @@
 /*   By: fdeleard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:13:06 by fdeleard          #+#    #+#             */
-/*   Updated: 2025/11/13 10:39:43 by fdeleard         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:11:39 by fdeleard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static t_error	add_line_in_map_list(t_parser *parser, char *line)
 
 	new = ft_lstnew(line);
 	if (!new)
+	{
+		free(line);
 		return (MALLOC_ERROR);
+	}
 	ft_lstadd_back(&parser->map_list, new);
 	error = get_next_line(&parser->line, parser->map->fd, GNL_KEEP);
 	return (error);
@@ -71,7 +74,10 @@ char	**convert_list(t_list *map_list)
 	map_size = ft_lstsize(map_list);
 	map = malloc((map_size + 1) * sizeof(char *));
 	if (!map)
+	{
+		ft_lstclear(&map_list, free);
 		return (NULL);
+	}
 	i = 0;
 	while (i < map_size)
 	{
